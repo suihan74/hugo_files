@@ -1,12 +1,12 @@
 baseURL = "https://suihan74.github.io/"
 languageCode = "ja"
-title = "すいはんブログ.io"
+title = "すいはんぶろぐ.io"
 theme = "github-style"
 publishDir = "public"
 
 [params]
   author = "すいはん"
-  description = "ほげげ"
+  description = "コード的な何か置き場"
   github = "suihan74"
   twitter = "suihan742"
   email = "suihan742@gmail.com"

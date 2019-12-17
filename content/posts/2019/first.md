@@ -1,5 +1,6 @@
 ---
 title: "hello world"
+description: "はじめはいつもの"
 tags: ["hoge"]
 date: 2019-12-17T00:30:02+09:00
 draft: false
