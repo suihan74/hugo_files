@@ -189,8 +189,6 @@ draft: false
 </div>
 ```
 
-[主な変更履歴](https://github.com/suihan74/github-style/commit/f0be7adcce5203d76a44409bf41f7ad45a3baa3e#diff-e720269f10ce3098515abef3dc8a581d)
-
 クラスpt-0を除去することで小幅画面で記事タイトル部分のtopマージンが無くなるのを回避。  
 d-noneを除去することで小幅画面でも記事ヘッダスペースを表示し続けるようになった。
 
