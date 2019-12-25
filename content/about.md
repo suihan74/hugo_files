@@ -31,33 +31,33 @@ layout: "about"
 いずれも独学，個人開発での経験
 
 ## アプリ開発
-- Windows UWPアプリの開発 (C#, XAML)
-  - Twitter/Mastodonクライアント (2017-2018)
-    - blogで公開 -> http://suihan74.orz.hm/blog/suihantwit2/
 - Androidアプリの開発 (Kotlin, XML)
   - はてなブックマーク閲覧/投稿アプリ (2019)
     - Playストアで公開 -> https://play.google.com/store/apps/details?id=com.suihan74.satena
     - Github: https://github.com/suihan74/Satena
   - カメラとOCRを用いたテキスト入力マッシュルームアプリ (2019-)
     - Github: https://github.com/suihan74/PhoPyPe
+- Windows UWPアプリの開発 (C#, XAML)
+  - Twitter/Mastodonクライアント (2017-2018)
+    - blogで公開 -> http://suihan74.orz.hm/blog/suihantwit2/
 
 ## ほか趣味・学習
-- 多目的進化アルゴリズムの実験プログラム作成 (2015-2016)
-  - C++11
-- C言語を学習済みの学生を対象にしたC++11入門用スライドの作成 (2016)
-  - https://www.slideshare.net/secret/58IcHdcin05FsU
-- 直近の株価推移から次が上昇か下降かを推定する強化学習プログラムの作成 (2016)
-  - C++11
+- UWPでのはてなブックマーク閲覧/投稿アプリ作成 (2018)
+  - C#7
+  - 後にAndroidアプリ作成に方針転換
+- コンパイラ・スクリプト言語実行用ランタイムの実装に関する学習 (2017)
+  - C++14
+  - 字句解析，構文解析，レジスタマシン，ガベージコレクション，async/awaitの実装など
 - ProjectEuler (2016)
   - プログラムを書いて解く数学問題集への解答
   - C++11
   - Github: https://github.com/suihan74/ProjectEuler
-- コンパイラ・スクリプト言語実行用ランタイムの実装に関する学習 (2017)
-  - C++14
-  - 字句解析，構文解析，レジスタマシン，ガベージコレクション，async/awaitの実装など
-- UWPでのはてなブックマーク閲覧/投稿アプリ作成 (2018)
-  - C#7
-  - 後にAndroidアプリ作成に方針転換
+- 直近の株価推移から次が上昇か下降かを推定する強化学習プログラムの作成 (2016)
+  - C++11
+- C言語を学習済みの学生を対象にしたC++11入門用スライドの作成 (2016)
+  - https://www.slideshare.net/secret/58IcHdcin05FsU
+- 多目的進化アルゴリズムの実験プログラム作成 (2015-2016)
+  - C++11
 
 ## 大学時代の経歴
 - 電気通信大学 情報理工学部 総合情報学科 学士
