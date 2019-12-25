@@ -99,7 +99,7 @@ MastodonとHatenaを（割と無意味に）追加。
 
 ちなみにこの記事の場合はこれ。
 
-```md
+```yaml
 ---
 title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
