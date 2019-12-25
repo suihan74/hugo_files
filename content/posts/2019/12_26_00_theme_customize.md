@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2019-12-26T01:09:42+09:00
+lastmod: 2019-12-26T04:50:00+09:00
 draft: false
 ---
 
@@ -227,3 +227,21 @@ d-noneを除去することで小幅画面でも記事ヘッダスペースを�
 - description, keywordsを追加 → [2fdf2bc](https://github.com/suihan74/github-style/commit/2fdf2bc1fb62f03f6b1f2ecad71b0901d51093a0#diff-35755203408c34159ac6094e42351391)  
 記事markdownのメタデータに`keywords: "~~~"`を追加すると出力したhtmlにも追加される。  
 なおkeywordsメタタグは現在ではSEO的には意味がない模様（じゃあ何故追加した）
+
+# 追記 (2016/12/26 04:50)
+
+タグ一覧画面を追加。
+
+![変更点SS3](/images/12_26_00_03.png "変更点SS3 - タグ一覧画面")
+
+- [/layouts/_default/terms.html](https://github.com/suihan74/github-style/blob/master/layouts/_default/terms.html) を追加。
+- [/layouts/partials/tags.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/tags.html) を追加。terms.htmlのコンテンツ部分。posts.htmlをベースに作成。
+- 他の全ての画面（overview, posts, about）のメニュー部分にタグ一覧画面へのリンクを作成。  
+```html
+<a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3" href="{{ absURL "tags/" }}">
+    Tags
+    <span class="Counter hide-lg hide-md hide-sm">
+        {{ len .Site.Taxonomies.tags }}
+    </span>
+</a>
+```
