@@ -15,3 +15,8 @@ publishDir = "public"
   utterances = "suihan74.github.io"
   avatar = "https://avatars0.githubusercontent.com/u/5970984?s=460&v=4"
   url = "https://suihan74.github.io/"
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
