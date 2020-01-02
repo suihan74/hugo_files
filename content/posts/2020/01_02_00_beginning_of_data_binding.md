@@ -180,7 +180,7 @@ class HogeViewModel(
 ...
 
 <TextView
-        android:text="@={vm.text}"
+        android:text="@{vm.text}"
         android:visibility="@{vm.display ? View.VISIBLE : View.GONE}"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"/>
