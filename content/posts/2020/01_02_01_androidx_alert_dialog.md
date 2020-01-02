@@ -23,7 +23,7 @@ android:接頭辞のつく属性はサポートライブラリのスタイルに
 
 > 注: サポート ライブラリの属性名は、android: 接頭辞を使用しません。これは Android フレームワークの属性にのみ使用します。
 
-[スタイルとテーマ | Android Developers](https://developer.android.com/guide/topics/ui/look-and-feel/themes.html)
+[スタイルとテーマ | Android Developers](https://developer.android.com/guide/topics/ui/look-and-feel/themes.html#CustomizeTheme)
 
 はい切腹しますありがとうございました。
 
