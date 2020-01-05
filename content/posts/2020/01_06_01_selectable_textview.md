@@ -59,6 +59,8 @@ java.lang.IllegalArgumentException: Invalid offset: -1. Valid range is [0, 16]
 
 コールバックとかで呼ばれてエラー発生個所までの間にユーザーコード出てこないやつ割と困る。
 
+なお、この様子gifアニメーションのように`TextView.customSelectionActionModeCallback`を設定して文字列選択を監視していると、そちらにも`selectionStart = -1`とか`selectionEnd = -1`とかの値が入ってくる。やめてほしい。
+
 # 解決方法
 
 [IllegalArgumentException while selecting text in Android TextView - Stack Overflow](https://stackoverflow.com/questions/33821008/illegalargumentexception-while-selecting-text-in-android-textview/43290390#43290390)
