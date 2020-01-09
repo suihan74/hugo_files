@@ -1,7 +1,7 @@
 ---
 title: "外部からprivateなsuspendメソッドを実行する方法"
 description: private suspendなメソッドをリフレクションで取得して非同期実行する方法。
-tags: ["android", "kotlin", "coroutine"]
+tags: ["kotlin", "coroutine"]
 date: 2020-01-09T17:08:19+09:00
 lastmod: 2020-01-09T17:08:19+09:00
 draft: false
