@@ -58,6 +58,12 @@ hogeMethod.invokeSuspend(instance, 0, "hoge")
 runBlockingするなりして終了を待機しておけばいいんだろうか。  
 いい感じの方法が他にあれば知りたい。
 
+---
+
+参考  
+[java - How to run suspend method via reflection? - Stack Overflow](https://stackoverflow.com/questions/47654537/how-to-run-suspend-method-via-reflection)
+
+---
 
 ## 余談
 
