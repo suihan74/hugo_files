@@ -7,7 +7,7 @@ lastmod: 2020-01-13T13:43:46+09:00
 draft: false
 ---
 
-Twitterをぼんやり眺めていたら、1/8頃からはてブの公式アカウントが共有しているコメントページのURLが変わっていたことに気がついたのでメモ。
+Twitterをぼんやり眺めていたら、1/8頃から[はてブの公式アカウント](https://twitter.com/hatebu)が共有しているコメントページのURLが変わっていたことに気がついたのでメモ。
 
 この記事を書いた直前に一応[Satena](https://play.google.com/store/apps/details?id=com.suihan74.satena)にも変更を反映してある。
 
