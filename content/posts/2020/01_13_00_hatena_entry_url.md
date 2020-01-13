@@ -1,9 +1,9 @@
 ---
-title: "公式がTwitterに共有しているはてブのコメントページURLがまた変わっていた件"
+title: "はてブ公式がTwitterに共有しているコメントページURLがまた変わっていた件"
 description: /entry/s/...だったり/entry/https://...だったりentry?url=...だったり
 tags: ["memo", "hatena"]
 date: 2020-01-13T13:43:46+09:00
-lastmod: 2020-01-13T14:46:46+09:00
+lastmod: 2020-01-13T15:11:46+09:00
 draft: false
 ---
 
