@@ -3,7 +3,7 @@ title: "公式がTwitterに共有しているはてブのコメントページUR
 description: /entry/s/...だったり/entry/https://...だったりentry?url=...だったり
 tags: ["memo", "hatena"]
 date: 2020-01-13T13:43:46+09:00
-lastmod: 2020-01-13T13:43:46+09:00
+lastmod: 2020-01-13T14:46:46+09:00
 draft: false
 ---
 
@@ -15,7 +15,8 @@ Twitterをぼんやり眺めていたら、1/8頃から[はてブの公式アカ
 
 # 内容
 
-今現在使用されているコメントページURLは次の3パターン存在することになる。
+今現在使用されているコメントページURLは次の3パターン存在することになる。  
+パターン2,3は今のところ公式ページでは目にしておらず、SNSに投稿されるリンクに使用されている。
 
 例としてGoogleのトップページ https://www.google.com/ に対するコメントページのURLを扱う。
 
@@ -23,7 +24,8 @@ Twitterをぼんやり眺めていたら、1/8頃から[はてブの公式アカ
 
 https://b.hatena.ne.jp/entry/s/www.google.com/
 
-要するに、https://b.hatena.ne.jp/entry/ 以下にhttpsなら/s/を加えてスキーム以外の部分を続かせればよい。
+要するに、https://b.hatena.ne.jp/entry/ 以下にhttpsなら/s/を加えてスキーム以外の部分を続かせればよい。  
+はてブページ内ではこの方式が使用されている。
 
 ## パターン2
 
