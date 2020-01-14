@@ -1,5 +1,5 @@
 ---
-title: "ダイアログ化したActivityの外側タップ時を検知する"
+title: "ダイアログ化したActivityの外側タップを検知する"
 description: "AppDialogThemeが設定されたActivityの外側をタップするとActivityが閉じるが、その前に何らかの処理を追加する方法"
 tags: ["android", "kotlin", "activity"]
 date: 2020-01-15T01:30:40+09:00
