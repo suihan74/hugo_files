@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2019-12-26T04:50:00+09:00
+lastmod: 2020-01-15T04:20:00+09:00
 draft: false
 ---
 
@@ -18,6 +18,67 @@ draft: false
 GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるテーマ。
 
 # 改修点
+
+## 追記 (2020/01/15 04:20)
+
+### 1. GitHubのファイル変更履歴へのリンクを追加。
+
+![変更点SS4](/images/12_26_00_04.png "変更点SS4 - History")
+
+#### [/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
+```html {linenos=table, linenostart=64}
+<div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between">
+    <div class="BtnGroup">
+    {{ $historyUrl := add (substr (printf "https://github.com/%s/hugo_files/commits/master/content%s" .Site.Params.github .RelPermalink) 0 -1) ".md" }}
+    <a rel="nofollow" class="btn btn-sm BtnGroup-item" href="{{ $historyUrl }}">History</a>
+    </div>
+</div>
+```
+
+ファイルパスの取得に`.File.Path`を使用すると、ディレクトリの区切り文字がエスケープされてしまってどうしようもなかった。  
+`.Permalink`、`.RelPermalink`を使用する場合は何故かエスケープは回避されるようなのでこれで`/posts/2019/hoge/`みたいな文字列を取得し、最後の`/`を削って`".md"`をくっ付ける力技で(無理矢理)解決。
+
+### 2. `post.html`の「投稿日時」「更新日時」を絶対時間で表示するように変更。
+
+![変更点SS5](/images/12_26_00_05.png "変更点SS5 - 絶対時間に変更")
+
+ついでに「更新日時」は「投稿日時」と異なる場合のみ表示するようにした。
+
+#### [/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
+```html {linenos=table, linenostart=37}
+<div class="d-block text-small text-gray">
+    Created at <time datetime="{{ .PublishDate.Format "2006-01-02 15:04" }}" class="no-wrap">
+        {{ .PublishDate.Format "2006/01/02 15:04" }}</time>
+{{ if ne .PublishDate .Lastmod }}
+    <span class="file-info-divider"></span>
+    Updated at <time datetime="{{ .Lastmod.Format "2006-01-02 15:04" }}" class="no-wrap">
+        {{ .Lastmod.Format "2006/01/02 15:04" }}</time>
+{{ end }}
+</div>
+```
+
+---
+
+## 追記 (2019/12/26 04:50)
+
+タグ一覧画面を追加。
+
+![変更点SS3](/images/12_26_00_03.png "変更点SS3 - タグ一覧画面")
+
+- [/layouts/_default/terms.html](https://github.com/suihan74/github-style/blob/master/layouts/_default/terms.html) を追加。
+- [/layouts/partials/tags.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/tags.html) を追加。terms.htmlのコンテンツ部分。posts.htmlをベースに作成。
+- 他の全ての画面（overview, posts, about）のメニュー部分にタグ一覧画面へのリンクを作成。  
+```html
+<a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3" href="{{ absURL "tags/" }}">
+    Tags
+    <span class="Counter hide-lg hide-md hide-sm">
+        {{ len .Site.Taxonomies.tags }}
+    </span>
+</a>
+```
+
+---
+
 ## SS
 
 ![変更点SS1](/images/12_26_00_01.png "変更点SS1 - Overview画面(大)")
@@ -227,21 +288,3 @@ d-noneを除去することで小幅画面でも記事ヘッダスペースを�
 - description, keywordsを追加 → [2fdf2bc](https://github.com/suihan74/github-style/commit/2fdf2bc1fb62f03f6b1f2ecad71b0901d51093a0#diff-35755203408c34159ac6094e42351391)  
 記事markdownのメタデータに`keywords: "~~~"`を追加すると出力したhtmlにも追加される。  
 なおkeywordsメタタグは現在ではSEO的には意味がない模様（じゃあ何故追加した）
-
-# 追記 (2016/12/26 04:50)
-
-タグ一覧画面を追加。
-
-![変更点SS3](/images/12_26_00_03.png "変更点SS3 - タグ一覧画面")
-
-- [/layouts/_default/terms.html](https://github.com/suihan74/github-style/blob/master/layouts/_default/terms.html) を追加。
-- [/layouts/partials/tags.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/tags.html) を追加。terms.htmlのコンテンツ部分。posts.htmlをベースに作成。
-- 他の全ての画面（overview, posts, about）のメニュー部分にタグ一覧画面へのリンクを作成。  
-```html
-<a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3" href="{{ absURL "tags/" }}">
-    Tags
-    <span class="Counter hide-lg hide-md hide-sm">
-        {{ len .Site.Taxonomies.tags }}
-    </span>
-</a>
-```
