@@ -3,13 +3,23 @@ title: "ダイアログ化したActivityの外側タップを検知する"
 description: "AppDialogThemeが設定されたActivityの外側をタップするとActivityが閉じるが、その前に何らかの処理を追加する方法"
 tags: ["android", "kotlin", "activity"]
 date: 2020-01-15T01:30:40+09:00
-lastmod: 2020-01-15T01:30:40+09:00
+lastmod: 2020-01-17T01:30:00+09:00
 draft: false
+---
+
+## 追記 (2020-01-17 01:30)
+
+記述例の`DialogActivity`を表示するために`android:theme`に設定する値がプロジェクト内で自分で用意したスタイルになっていたので修正。
+
+修正前: `@style/AppDialogTheme`  
+↓  
+修正後: `@style/Theme.AppCompat.Dialog`
+
 ---
 
 # Activityをダイアログ表示する
 
-`android:theme`に`@style/AppDialogTheme`を設定した`Activity`はダイアログとして表示される。(以下`DialogActivity`と呼称することにする)
+`android:theme`に`@style/Theme.AppCompat.Dialog`を設定した`Activity`はダイアログとして表示される。(以下`DialogActivity`と呼称することにする)
 
 次のは[Satena](https://play.google.com/store/apps/details?id=com.suihan74.satena)のブクマ投稿画面を抜粋。
 
@@ -17,7 +27,7 @@ draft: false
 ```xml {linenos=table, linenostart=62}
 <activity
         android:name=".scenes.post2.BookmarkPostActivity"
-        android:theme="@style/AppDialogTheme">
+        android:theme="@style/Theme.AppCompat.Dialog">
     ...
 </activity>
 ```
