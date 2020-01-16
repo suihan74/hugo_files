@@ -4,6 +4,7 @@ title = "すいはんぶろぐ.io"
 theme = "github-style"
 publishDir = "public"
 googleAnalytics = "UA-71542625-2"
+hasCJKLanguage = true
 
 [params]
   author = "すいはん"
