@@ -4,6 +4,10 @@ description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
 lastmod: 2020-01-16T05:00:00+09:00
+archives:
+    - 2019
+    - 2019/12
+    - 2019/12/26
 draft: false
 ---
 

@@ -4,6 +4,10 @@ description: private suspendなメソッドをリフレクションで取得し�
 tags: ["kotlin", "coroutine"]
 date: 2020-01-09T17:08:19+09:00
 lastmod: 2020-01-09T17:08:19+09:00
+archives:
+    - 2020
+    - 2020/01
+    - 2020/01/09
 draft: false
 ---
 

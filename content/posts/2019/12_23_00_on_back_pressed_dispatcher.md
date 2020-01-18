@@ -4,6 +4,10 @@ description: タイミングを誤ると画面の一番上にあるFragmentの�
 tags: ["android", "kotlin", "OnBackPressedDispatcher"]
 date: 2019-12-23T01:18:10+09:00
 lastmod: 2019-12-23T01:18:10+09:00
+archives:
+    - 2019
+    - 2019/12
+    - 2019/12/23
 draft: false
 ---
 

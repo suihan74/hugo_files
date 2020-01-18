@@ -4,6 +4,10 @@ description: startActivityForResult()で呼んでonActivityResult()で結果を�
 tags: ["android", "kotlin", "activity"]
 date: 2020-01-07T03:02:05+09:00
 lastmod: 2020-01-07T03:02:05+09:00
+archives:
+    - 2020
+    - 2020/01
+    - 2020/01/07
 draft: false
 ---
 

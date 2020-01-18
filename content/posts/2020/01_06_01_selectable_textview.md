@@ -4,6 +4,10 @@ description: LinkMovementMethodを設定したTextViewを文字列選択して�
 tags: ["android", "kotlin", "view"]
 date: 2020-01-06T02:49:08+09:00
 lastmod: 2020-01-06T02:49:08+09:00
+archives:
+    - 2020
+    - 2020/01
+    - 2020/01/06
 draft: false
 ---
 
