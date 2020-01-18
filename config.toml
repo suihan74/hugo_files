@@ -17,6 +17,7 @@ hasCJKLanguage = true
   utterances = "suihan74.github.io"
   avatar = "https://avatars0.githubusercontent.com/u/5970984?s=460&v=4"
   url = "https://suihan74.github.io/"
+  hugoRepository = "hugo_files"
 
 [markup]
   [markup.goldmark]
