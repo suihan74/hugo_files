@@ -1,5 +1,5 @@
 ---
-title: "Satenaで最近多いスパムからのスター通知を一部無視できるようにした"
+title: "はてなで最近多いスパムからのスター通知をSatenaで一部無視できるようにした"
 description: ""
 tags: ["Hatena", "Satena", "memo"]
 date: 2020-01-27T00:42:28+09:00
