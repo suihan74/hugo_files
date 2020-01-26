@@ -21,7 +21,7 @@ draft: false
 
 ## 「あなたへのお知らせ」を取得するAPI
 
-はてなのページ右上にある「あなたへのお知らせ」は、ログイン情報を付加(cookieにrkを挿入する)して <https://www.hatena.ne.jp/notify/api/pull> をGETすることでJSONで取得することができる。
+はてなのページ右上にある「あなたへのお知らせ」は、ログイン情報を付加(cookieにrkを設定)して <https://www.hatena.ne.jp/notify/api/pull> をGETすることでJSONで取得することができる。
 
 通常の中身がどんなものか詳細は省くとして、今回の件のスパムからきた通知は次のようになる。
 
