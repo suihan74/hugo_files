@@ -11,7 +11,8 @@ archives:
 draft: false
 ---
 
-### 参考  
+### 参考
+
 [静的サイトジェネレータHugoを使ったサイト構築（アーカイブ編） &middot; feedtailor Inc. スタッフブログ](http://staff.feedtailor.jp/2016/08/10/hugo_16/)
 
 参考というかほぼそのまま全内容なのだが。。。
@@ -32,7 +33,6 @@ draft: false
 
 [Taxonomies | Hugo # Hugo Taxonomy Defaults](https://gohugo.io/content-management/taxonomies/#default-taxonomies)
 
-
 ## 2. レイアウトファイルを用意
 
 >Taxonomy編 で説明したように、以下の順に検索されます。
@@ -46,8 +46,7 @@ draft: false
 >
 >前述の config.toml の設定では左辺が archive でしたので、上の 1 は /layout/taxonomy/archive.html となります。
 
-http://staff.feedtailor.jp/2016/08/10/hugo_16/
-
+<http://staff.feedtailor.jp/2016/08/10/hugo_16/>
 
 ## 3. 記事のフロントマターに項目を作成
 
