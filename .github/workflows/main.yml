@@ -21,8 +21,7 @@ jobs:
       uses: peaceiris/actions-hugo@v2
 
     - name: Build
-      run: |
-          hugo --gc --minify --cleanDestinationDir
+      run: hugo --gc --minify --cleanDestinationDir
       env:
         TZ: 'Asia/Tokyo'
 

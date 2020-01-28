@@ -3,12 +3,23 @@ title: "GitHub Actionsでブログを自動デプロイするようにした"
 description: "サブモジュールを使っているリポジトリ上でのHugo+Actionsの設定"
 tags: ["Hugo", "GitHub", "Actions"]
 date: 2020-01-29T02:40:00+09:00
-lastmod: 2020-01-29T02:40:00+09:00
+lastmod: 2020-01-29T03:00:00+09:00
 archives:
     - 2020
     - 2020/01
     - 2020/01/29
 draft: false
+---
+
+## 追記 (2020/01/29 03:00)
+
+Actionのジョブを実行する際のタイムゾーンを指定するようにymlファイルを修正。
+
+```yml
+env:
+  TZ: 'Asia/Tokyo'
+```
+
 ---
 
 ## 前提
@@ -120,8 +131,9 @@ jobs:
       uses: peaceiris/actions-hugo@v2
 
     - name: Build
-      run: |
-          hugo --gc --minify --cleanDestinationDir
+      run: hugo --gc --minify --cleanDestinationDir
+      env:
+        TZ: 'Asia/Tokyo'
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
@@ -132,6 +144,7 @@ jobs:
         EXTERNAL_REPOSITORY: suihan74/suihan74.github.io
         PUBLISH_BRANCH: master
         PUBLISH_DIR: ./public
+        TZ: 'Asia/Tokyo'
 ```
 
 ## 結果
@@ -147,4 +160,3 @@ jobs:
 - [Hugo+GitHub Pages+GitHub Actionsで自動デプロイする方法 - Qiita](https://qiita.com/syui/items/f1f2db8660cda34d8938)
 
 - [HugoのデプロイをGitHub Actionsで行う &middot; Posts of knsh14](https://knsh14.github.io/posts/how-to-automate-deploying-hugo/)
-
