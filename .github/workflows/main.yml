@@ -23,9 +23,9 @@ jobs:
         hugo-version:
         # extended: true
 
-    - name: Setup public repo
-      run: |
-          git clone --depth 1 https://suihan74:${{ secrets.MY_GITHUB_ACCESS_TOKEN }}@github.com/suihan74/suihan74.github.io.git public
+#    - name: Setup public repo
+#      run: |
+#          git clone --depth 1 https://suihan74:${{ secrets.MY_GITHUB_ACCESS_TOKEN }}@github.com/suihan74/suihan74.github.io.git public
 
     - name: Build
       run: |
