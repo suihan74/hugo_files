@@ -12,6 +12,10 @@ jobs:
     - name: Fix up git URLs
       run: echo -e '[url "https://github.com/"]\n  insteadOf = "git@github.com:"' >> ~/.gitconfig
 
+    - name: Setup public repo
+      run: |
+          git clone --depth 1 https://suihan74:${{ secrets.MY_GITHUB_ACCESS_TOKEN }}@github.com/suihan74/suihan74.github.io.git public
+
     - name: Checkout
       uses: actions/checkout@v1
       with:
@@ -22,10 +26,6 @@ jobs:
       with:
         hugo-version:
         # extended: true
-
-#    - name: Setup public repo
-#      run: |
-#          git clone --depth 1 https://suihan74:${{ secrets.MY_GITHUB_ACCESS_TOKEN }}@github.com/suihan74/suihan74.github.io.git public
 
     - name: Build
       run: |
@@ -39,7 +39,6 @@ jobs:
       run: |
         export MSG=`git log --format=%B -n 1 HEAD`
         cd public
-        ls -a
         git config --local user.name "suihan74"
         git config --local user.email "suihan742@gmail.com"
         git add .
