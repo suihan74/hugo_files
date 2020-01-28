@@ -25,8 +25,8 @@ jobs:
     - name: Build
       run: |
            hugo --gc --minify --cleanDestinationDir
-           touch ./public/.nojekyll
-           cp ./CNAME ./public/
+#           touch ./public/.nojekyll
+#           cp ./CNAME ./public/
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
