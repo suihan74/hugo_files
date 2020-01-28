@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-01-16T05:00:00+09:00
+lastmod: 2020-01-29T00:15:00+09:00
 archives:
     - 2019
     - 2019/12
@@ -13,7 +13,7 @@ draft: false
 
 どこをどう変えたか、どうやって変えたか……etcを忘れそうなので急ぎメモ。
 
-# ベーステーマ
+## ベーステーマ
 
 [github-style](https://github.com/MeiK2333/github-style)
 
@@ -21,13 +21,13 @@ draft: false
 
 GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるテーマ。
 
-# 改修点
+## 改修点
 
-## 追記 (2020/01/16 05:00)
+### 追記 (2020/01/16 05:00)
 
-### トップページに草生やした
+#### トップページに草生やした
 
-![変更点SS6](/images/12_26_00_06.png "変更点SS6 - 草")
+![変更点SS6](/images/2019/12_26_00_06.png "変更点SS6 - 草")
 
 GitHubで何か活動した日には草が生えるやつ。  
 ここではとりあえず「記事を新規投稿したらcount+=1」するようにした。
@@ -40,13 +40,14 @@ GitHubで何か活動した日には草が生えるやつ。
 
 ---
 
-## 追記 (2020/01/15 04:20)
+### 追記 (2020/01/15 04:20)
 
-### 1. GitHubのファイル変更履歴へのリンクを追加。
+#### 1. GitHubのファイル変更履歴へのリンクを追加
 
-![変更点SS4](/images/12_26_00_04.png "変更点SS4 - History")
+![変更点SS4](/images/2019/12_26_00_04.png "変更点SS4 - History")
 
-#### [/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
+[/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
+
 ```html {linenos=table, linenostart=64}
 <div class="d-flex py-1 py-md-0 flex-auto flex-order-1 flex-md-order-2 flex-sm-grow-0 flex-justify-between">
     <div class="BtnGroup">
@@ -59,13 +60,14 @@ GitHubで何か活動した日には草が生えるやつ。
 ファイルパスの取得に`.File.Path`を使用すると、ディレクトリの区切り文字がエスケープされてしまってどうしようもなかった。  
 `.Permalink`、`.RelPermalink`を使用する場合は何故かエスケープは回避されるようなのでこれで`/posts/2019/hoge/`みたいな文字列を取得し、最後の`/`を削って`".md"`をくっ付ける力技で(無理矢理)解決。
 
-### 2. `post.html`の「投稿日時」「更新日時」を絶対時間で表示するように変更。
+#### 2. `post.html`の「投稿日時」「更新日時」を絶対時間で表示するように変更
 
-![変更点SS5](/images/12_26_00_05.png "変更点SS5 - 絶対時間に変更")
+![変更点SS5](/images/2019/12_26_00_05.png "変更点SS5 - 絶対時間に変更")
 
 ついでに「更新日時」は「投稿日時」と異なる場合のみ表示するようにした。
 
-#### [/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
+[/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
+
 ```html {linenos=table, linenostart=37}
 <div class="d-block text-small text-gray">
     Created at <time datetime="{{ .PublishDate.Format "2006-01-02 15:04" }}" class="no-wrap">
@@ -80,15 +82,16 @@ GitHubで何か活動した日には草が生えるやつ。
 
 ---
 
-## 追記 (2019/12/26 04:50)
+### 追記 (2019/12/26 04:50)
 
 タグ一覧画面を追加。
 
-![変更点SS3](/images/12_26_00_03.png "変更点SS3 - タグ一覧画面")
+![変更点SS3](/images/2019/12_26_00_03.png "変更点SS3 - タグ一覧画面")
 
 - [/layouts/_default/terms.html](https://github.com/suihan74/github-style/blob/master/layouts/_default/terms.html) を追加。
 - [/layouts/partials/tags.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/tags.html) を追加。terms.htmlのコンテンツ部分。posts.htmlをベースに作成。
 - 他の全ての画面（overview, posts, about）のメニュー部分にタグ一覧画面へのリンクを作成。  
+
 ```html
 <a class="UnderlineNav-item mr-0 mr-md-1 mr-lg-3" href="{{ absURL "tags/" }}">
     Tags
@@ -100,15 +103,15 @@ GitHubで何か活動した日には草が生えるやつ。
 
 ---
 
-## SS
+### SS
 
-![変更点SS1](/images/12_26_00_01.png "変更点SS1 - Overview画面(大)")
+![変更点SS1](/images/2019/12_26_00_01.png "変更点SS1 - Overview画面(大)")
 
-![変更点SS2](/images/12_26_00_02.png "変更点SS2 - Post画面 + 画面(小)")
+![変更点SS2](/images/2019/12_26_00_02.png "変更点SS2 - Post画面 + 画面(小)")
 
-## 詳細
+### 詳細
 
-### 1. サイトタイトルを追加
+#### 1. サイトタイトルを追加
 
 [layout/layouts/partials/header.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/header.html)
 
@@ -134,7 +137,7 @@ GitHubで何か活動した日には草が生えるやつ。
 
 ---
 
-### 2. Authorアイコンをクリックしても何も起きないように変更
+#### 2. Authorアイコンをクリックしても何も起きないように変更
 
 [layout/layouts/partials/user-profile.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/user-profile.html)
 
@@ -142,13 +145,13 @@ GitHubで何か活動した日には草が生えるやつ。
 
 ---
 
-### 3. 利用中アカウントへのショートカットを追加
+#### 3. 利用中アカウントへのショートカットを追加
 
 MastodonとHatenaを（割と無意味に）追加。
 
 ---
 
-### 4. 小プロフィールアイコンを削除
+#### 4. 小プロフィールアイコンを削除
 
 押しても何も起きなかったので。
 
@@ -156,7 +159,7 @@ MastodonとHatenaを（割と無意味に）追加。
 
 ---
 
-### 5. 記事本文の冒頭ではなく概要を設定し表示するように変更
+#### 5. 記事本文の冒頭ではなく概要を設定し表示するように変更
 
 [layout/layouts/partials/overview.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/overview.html)
 
@@ -194,7 +197,7 @@ draft: false
 
 ---
 
-### 6. 記事に設定したタグを表示
+#### 6. 記事に設定したタグを表示
 
 [layout/layouts/partials/overview.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/overview.html)
 
@@ -211,7 +214,7 @@ draft: false
 
 [layout/layouts/partials/posts.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/posts.html) もほぼ同様。
 
-```
+```hugo
 {{ with HOGE }}
 ~~~
 {{ end }}
@@ -224,7 +227,8 @@ draft: false
 （タグページのURLは設定したタグの小文字になる（英数字の場合））
 
 ---
-### 7. 記事の更新時間の表示を変更・修正
+
+#### 7. 記事の更新時間の表示を変更・修正
 
 [layout/layouts/partials/overview.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/overview.html)
 
@@ -239,19 +243,19 @@ draft: false
 
 ---
 
-### 8. 改造後のテーマのリポジトリへのリンクを追加
+#### 8. 改造後のテーマのリポジトリへのリンクを追加
 
 はい。
 
 ---
 
-### 9. 小幅画面にもサイトタイトルを追加
+#### 9. 小幅画面にもサイトタイトルを追加
 
 はい。
 
 ---
 
-### 10. 小幅画面でも記事ヘッダ部分を省略しないように変更
+#### 10. 小幅画面でも記事ヘッダ部分を省略しないように変更
 
 [layout/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
 
@@ -282,7 +286,7 @@ d-noneを除去することで小幅画面でも記事ヘッダスペースを�
 
 ---
 
-### 11. `<head>`部分
+#### 11. `<head>`部分
 
 [layout/layouts/partials/head.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/head.html)
 
@@ -290,6 +294,7 @@ d-noneを除去することで小幅画面でも記事ヘッダスペースを�
 同様にしてTwitterカードなども追加可能だが、別にこれだけでよくね？みたいにはなっている。  
 .IsHome == trueのときとは、要するに https://suihan74.github.io/ （トップページ）が表示されているとき。それ以外を記事扱いでいいのかみたいな感じはする。  
 あとは記事ごとに画像やらを追加したい場合はelse側にも`og:image`を追加して、記事のメタデータに`image: "url"`とか設定するようにしておけばいい（何故しない）
+
 ```html
     <!-- OGP -->
     <meta property="og:url" content="{{ .URL | absURL }}"/>
