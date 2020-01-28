@@ -23,6 +23,8 @@ jobs:
     - name: Build
       run: |
           hugo --gc --minify --cleanDestinationDir
+      env:
+        TZ: 'Asia/Tokyo'
 
     - name: Deploy
       uses: peaceiris/actions-gh-pages@v2
@@ -32,3 +34,4 @@ jobs:
         EXTERNAL_REPOSITORY: suihan74/suihan74.github.io
         PUBLISH_BRANCH: master
         PUBLISH_DIR: ./public
+        TZ: 'Asia/Tokyo'
