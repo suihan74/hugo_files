@@ -39,6 +39,7 @@ jobs:
       run: |
         export MSG=`git log --format=%B -n 1 HEAD`
         cd public
+        ls -a
         git config --local user.name "suihan74"
         git config --local user.email "suihan742@gmail.com"
         git add .
