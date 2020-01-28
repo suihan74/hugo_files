@@ -29,9 +29,9 @@ jobs:
 
     - name: Build
       run: |
+          hugo --gc --minify --cleanDestinationDir
 #          git submodule init
 #          git submodule update
-          hugo --gc --minify --cleanDestinationDir
 
     - name: Deploy
       run: |
