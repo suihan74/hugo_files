@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-01-29T00:15:00+09:00
+lastmod: 2020-02-01T01:40:00+09:00
 archives:
     - 2019
     - 2019/12
@@ -22,6 +22,73 @@ draft: false
 GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるテーマ。
 
 ## 改修点
+
+### 追記 (2020/02/01 01:30)
+
+#### 1. CSSをキャッシュ避けするようにした
+
+ブラウザにキャッシュされるとCSSの修正を伴う改修作業が著しく面倒なので、hugoコマンドでのサイト生成ごとにキャッシュ避けするクエリを追加するようにした。
+
+[/layouts/partials/head.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/head.html)
+
+```html {linenos=table, linenostart=8}
+<link crossorigin="anonymous" media="all"
+    rel="stylesheet" href="{{ printf "%s?%s" ("css/user.css" | absURL) (now.Format "20060102150405") }}"/>
+```
+
+#### 2. サイト内検索をヘッダ部分に追加
+
+![変更点SS7](/images/2019/12_26_00_07.png "変更点 - 検索ボックス")
+
+Googleカスタム検索を利用したサイト内検索を追加。
+
+いまのところ一定以上の画面幅でのみヘッダ部分右側に検索ボックスが表示されるようになっている。
+
+テンプレート該当箇所は以下。入力ボックスは「1文字以上を入力状態でEnter」でsubmitされるようにしてある。(`onkeydown="~~~"`部分)
+
+こいつを使うには[Googleカスタム検索](https://cse.google.com/)にサイトを登録して、`cx`を取得する必要がある。cxは`config.toml`のパラメータ`googleCSE`に設定するようにした。この値を指定すると以下のテンプレート部分が有効になりサイトに表示される。
+
+[/layouts/partials/header.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/header.html)
+
+```html {linenos=table, linenostart=52}
+<!-- Google Custom Search -->
+{{- with $.Site.Params.googleCSE }}
+<div class="Header-item position-relative mr-0 d-none d-lg-flex Details-content--hidden">
+    <div class="header-search flex-self-stretch flex-lg-self-auto mr-0 mr-lg-3 mb-3 mb-lg-0 position-relative js-jump-to">
+        <div class="position-relative">
+            <form
+                class="js-site-search-form"
+                role="search"
+                action="https://cse.google.com/cse"
+                method="get">
+                <input type="hidden" name="cx" value="{{ . }}" />
+                <label class="form-control input-sm header-search-wrapper p-0 header-search-wrapper-jump-to position-relative d-flex flex-justify-between flex-items-center js-chromeless-input-container">
+                    <input
+                        type="text"
+                        class="form-control input-sm header-search-input"
+                        name="q"
+                        value=""
+                        placeholder="Search"
+                        autocapitalize="off"
+                        aria-label="Search"
+                        spellcheck="false"
+                        onkeydown="if(event.keyCode==13){if(this.value.length){document.getElementById('header-search-submit').click();return false}else{return false}};"
+                        autocomplete="off">
+                    <button id="header-search-submit" class="mr-1 ml-1 header-search-button" type="submit">
+                        <svg class="header-search-button-icon" width="13" height="13" viewBox="0 0 13 13">
+                            <title>サイト内検索</title>
+                            <path d="~~~省略~~~"></path>
+                        </svg>
+                    </button>
+                </label>
+            </form>
+        </div>
+    </div>
+</div>
+{{- end }}
+```
+
+---
 
 ### 追記 (2020/01/16 05:00)
 
