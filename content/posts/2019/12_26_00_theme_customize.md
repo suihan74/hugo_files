@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-02-01T01:40:00+09:00
+lastmod: 2020-02-01T02:40:00+09:00
 archives:
     - 2019
     - 2019/12
@@ -23,7 +23,7 @@ GitHub風……というかCSSとか一部GitHubからそのまま持ってき�
 
 ## 改修点
 
-### 追記 (2020/02/01 01:40)
+### 追記 (2020/02/01 02:40)
 
 #### 1. CSSをキャッシュ避けするようにした
 
@@ -33,7 +33,7 @@ GitHub風……というかCSSとか一部GitHubからそのまま持ってき�
 
 ```html {linenos=table, linenostart=8}
 <link crossorigin="anonymous" media="all"
-    rel="stylesheet" href="{{ printf "%s?%s" ("css/user.css" | absURL) (now.Format "20060102150405") }}"/>
+    rel="stylesheet" href='{{ printf "%s?%s" ("css/user.css" | absURL) (now.Format "20060102150405") }}'/>
 ```
 
 #### 2. サイト内検索をヘッダ部分に追加
@@ -86,6 +86,45 @@ Googleカスタム検索を利用したサイト内検索を追加。
     </div>
 </div>
 {{- end }}
+```
+
+#### 3. 「Archives」をメニューに追加
+
+日付ごとの記事リストを(草を使わないでメニューからも)表示できるようにした。
+
+また、メニュー部分を別ファイルに分けた。
+
+[/layouts/partials/menu.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/menu.html)
+
+```html
+<!-- ページ上部メニュー部分 -->
+<div class="UnderlineNav width-full user-profile-nav js-sticky top-0">
+    <nav class="UnderlineNav-body">
+        <a class='UnderlineNav-item mr-0 mr-md-1 mr-lg-3 {{ if eq .Path "" }}selected{{ end }}' href="{{ .Site.BaseURL }}">
+            Overview
+        </a>
+        <a class='UnderlineNav-item mr-0 mr-md-1 mr-lg-3 {{ if hasPrefix .Path "posts" }}selected{{ end }}' href='{{ absURL "posts/" }}'>
+            Posts
+            <span class="Counter hide-lg hide-md hide-sm">
+                {{- $mainSections := .Site.Params.mainSections | default (slice "post") }}
+                {{- $section := where .Site.RegularPages "Section" "in" $mainSections }}
+                {{- len $section }}
+            </span>
+        </a>
+        <a class='UnderlineNav-item mr-0 mr-md-1 mr-lg-3 {{ if hasPrefix .Path "tags" }}selected{{ end }}' href='{{ absURL "tags/" }}'>
+            Tags
+            <span class="Counter hide-lg hide-md hide-sm">
+                {{ len .Site.Taxonomies.tags }}
+            </span>
+        </a>
+        <a class='UnderlineNav-item mr-0 mr-md-1 mr-lg-3 {{ if hasPrefix .Path "archives" }}selected{{ end }}' href='{{ absURL "archives/" }}'>
+            Archives
+        </a>
+        <a class='UnderlineNav-item mr-0 mr-md-1 mr-lg-3 {{ if eq .Path "about.md" }}selected{{ end }}' href='{{ absURL "about/" }}'>
+            About
+        </a>
+    </nav>
+</div>
 ```
 
 ---
