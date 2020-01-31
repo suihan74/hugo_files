@@ -18,6 +18,7 @@ hasCJKLanguage = true
   avatar = "/images/author.png"
   url = "https://suihan74.github.io/"
   hugoRepository = "hugo_files"
+  googleCSE = "006598476776954487838:x6qvcxfxgqt"
 
 [markup]
   [markup.goldmark]
