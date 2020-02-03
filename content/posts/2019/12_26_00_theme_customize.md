@@ -49,8 +49,8 @@ SVGの中身をhtmlファイルに直書きしないとスタイルが適用で�
 4. `partial/head.html`を編集
 
     ```html {linenos=table, linenostart=30}
-    <link rel="icon" type="image/x-icon" href="favicon.ico">
-    <link rel="shortcut icon" href="favicon.ico"/>
+    <link rel="icon" type="image/x-icon" class="js-site-favicon" href='{{ "/favicon.ico" | absURL }}'>
+    <link rel="shortcut icon" href='{{ "/favicon.ico" | absURL }}'/>
     ```
 
 ### 追記 (2020/02/01 02:40)
