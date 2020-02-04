@@ -1,7 +1,7 @@
 ---
 title: "Androidアプリ開発Tips – dbファイルをぶっこ抜く→読み込む"
 description: "ぶっこ抜いたRoomのDBファイルを再配置して読み込む方法"
-tags: ["Android", "kotlin", "Room"]
+tags: ["Android", "kotlin", "Room", "migrated_from_previous_blog"]
 date: 2019-12-16T20:08:00+09:00
 lastmod: 2020-02-01T03:10:11+09:00
 archives:
