@@ -34,7 +34,7 @@ draft: false
 ### [goenv](https://github.com/syndbg/goenv)のインストール
 
 ```sh
-$ git clone git@gihub:syndbg/goenv ~/.goenv
+$ git clone git@gihub.com:syndbg/goenv ~/.goenv
 ```
 
 .bash_profileなりを編集。
