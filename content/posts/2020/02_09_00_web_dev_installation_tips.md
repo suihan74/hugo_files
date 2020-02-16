@@ -155,11 +155,11 @@ local   all             all              peer
 ### フロント側のfirebaseのアプリ設定を修正する
 
 `echo/front/src/main.js`内の`firebaseConfig`オブジェクトの内容を、  
-「[firebaseコンソール](https://console.firebase.google.com/)/設定/全般」最下部の`「マイアプリ」`部分の内容に修正する。
+「[firebaseコンソール](https://console.firebase.google.com/)/(プロジェクト)/設定/全般」最下部の`「マイアプリ」`部分の内容に修正する。
 
 ### バック側にfirebaseの秘密鍵を用意
 
-「[firebaseコンソール](https://console.firebase.google.com/)/設定/サービスアカウント」からAdminSDKの秘密鍵を生成して、`echo/back/echo-sns-firebase-adminsdk.json`として配置する。
+「[firebaseコンソール](https://console.firebase.google.com/)/(プロジェクト)/設定/サービスアカウント」からAdminSDKの秘密鍵を生成して、`echo/back/echo-sns-firebase-adminsdk.json`として配置する。
 
 Goのコードでは環境変数でファイルを指定して秘密鍵の内容を読み込むようにしているので、`CREDENTIALS`という名前で環境変数に先のファイル名を指定する。
 
