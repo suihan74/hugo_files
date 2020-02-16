@@ -182,7 +182,8 @@ $ sudo service postgresql start
 ### 2. バックエンドの起動
 
 ```sh
-$ go run echo/back/*.go
+$ cd echo/back
+$ go run *.go
 ```
 
 `go mod`のおかげで依存パッケージは初回実行時に自動的に用意される。
