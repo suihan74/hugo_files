@@ -3,12 +3,18 @@ title: "echoの実行環境構築メモ"
 description: "WSL上でgoやったりnode.jsやったり"
 tags: ["golang", "node.js", "WSL"]
 date: 2020-02-09T03:57:59+09:00
-lastmod: 2020-02-10T01:23:00+09:00
+lastmod: 2020-02-16T23:15:00+09:00
 archives:
     - 2020
     - 2020/02
     - 2020/02/09
 draft: false
+---
+
+## 追記 (2020/02/16 23:15)
+
+フロント側のfirebase認証に必要な設定が足りなかったので追記。
+
 ---
 
 現在、(完成するかわからないというかそれまで続くかわからないが)[完全匿名SNS](https://github.com/suihan74/echo)を作りたいなと思い勉強しながらちまちまやっている。
@@ -144,9 +150,16 @@ local   all             all              peer
 
 [PostgreSQLのPeer認証と他の認証方法への変更|Web Memorandum](http://www.utsushiiro.jp/blog/archives/327)
 
-## firebaseの秘密鍵を用意
+## firebase認証を使用するための設定
 
-firebaseのコンソールからAdminSDKの秘密鍵を生成して、`echo/back/echo-sns-firebase-adminsdk.json`として配置する。
+### フロント側のfirebaseのアプリ設定を修正する
+
+`echo/front/src/main.js`内の`firebaseConfig`オブジェクトの内容を、  
+「[firebaseコンソール](https://console.firebase.google.com/)/設定/全般」最下部の`「マイアプリ」`部分の内容に修正する。
+
+### バック側にfirebaseの秘密鍵を用意
+
+「[firebaseコンソール](https://console.firebase.google.com/)/設定/サービスアカウント」からAdminSDKの秘密鍵を生成して、`echo/back/echo-sns-firebase-adminsdk.json`として配置する。
 
 Goのコードでは環境変数でファイルを指定して秘密鍵の内容を読み込むようにしているので、`CREDENTIALS`という名前で環境変数に先のファイル名を指定する。
 
