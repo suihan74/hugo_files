@@ -11,7 +11,7 @@ archives:
 draft: false
 ---
 
-AndroidアプリでQRコードを生成して画面に表示する方法。
+AndroidアプリでQRコードを生成して画面に表示する方法。今回は読み取りについては書いていない。
 
 ## build.gradle (app)
 
