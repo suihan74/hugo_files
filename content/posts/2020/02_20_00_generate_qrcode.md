@@ -4,7 +4,10 @@ description: "zxingでQRコード生成"
 tags: ["Android", "kotlin", "QRcode"]
 date: 2020-02-20T01:48:21+09:00
 lastmod: 2020-02-22T00:57:00+09:00
-archives: 2020/02/20
+archives:
+    - 2020
+    - 2020-02
+    - 2020-02-20
 draft: false
 ---
 

@@ -4,7 +4,10 @@ description: ""
 tags: ["Hatena", "Satena", "memo"]
 date: 2020-01-27T00:42:28+09:00
 lastmod: 2020-01-27T00:42:28+09:00
-archives: 2020/01/27
+archives:
+    - 2020
+    - 2020-01
+    - 2020-01-27
 draft: false
 ---
 

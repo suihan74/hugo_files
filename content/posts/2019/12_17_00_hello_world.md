@@ -4,7 +4,10 @@ description: "はじめはいつもの"
 tags: ["hugo"]
 date: 2019-12-17T00:30:02+09:00
 lastmod: 2019-12-18T01:57:00+09:00
-archives: 2019/12/17
+archives:
+    - 2019
+    - 2019-12
+    - 2019-12-17
 draft: false
 ---
 

@@ -4,7 +4,10 @@ description: "サブモジュールを使っているリポジトリ上でのHug
 tags: ["Hugo", "GitHub", "Actions"]
 date: 2020-01-29T02:40:00+09:00
 lastmod: 2020-01-29T03:00:00+09:00
-archives: 2020/01/29
+archives:
+    - 2020
+    - 2020-01
+    - 2020-01-29
 draft: false
 ---
 

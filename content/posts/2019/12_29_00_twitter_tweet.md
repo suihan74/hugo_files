@@ -4,7 +4,10 @@ description: そのままTwitterの引用コードをコピーしても表示で
 tags: ["hugo"]
 date: 2019-12-29T03:05:26+09:00
 lastmod: 2019-12-29T03:05:26+09:00
-archives: 2019/12/29
+archives:
+    - 2019
+    - 2019-12
+    - 2019-12-29
 draft: false
 ---
 

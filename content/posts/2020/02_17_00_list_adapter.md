@@ -4,7 +4,10 @@ description: "リストの更新処理をユーティリティ頼りにする。
 tags: ["Android", "kotlin", "recyclerview"]
 date: 2020-02-17T18:52:19+09:00
 lastmod: 2020-02-17T18:52:19+09:00
-archives: 2020/02/17
+archives:
+    - 2020
+    - 2020-02
+    - 2020-02-17
 draft: false
 ---
 

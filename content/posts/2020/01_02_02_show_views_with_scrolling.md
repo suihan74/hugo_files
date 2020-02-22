@@ -4,7 +4,10 @@ description: コード側からLayoutParamを設定する方法
 tags: ["android", "kotlin"]
 date: 2020-01-03T00:12:34+09:00
 lastmod: 2020-01-03T00:12:34+09:00
-archives: 2020/01/02
+archives:
+    - 2020
+    - 2020-01
+    - 2020-01-02
 draft: false
 ---
 

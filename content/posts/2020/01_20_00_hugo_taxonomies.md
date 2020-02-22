@@ -4,7 +4,10 @@ description: "アーカイブページを静的構築する方法"
 tags: ["hugo", "memo"]
 date: 2020-01-20T02:25:00+09:00
 lastmod: 2020-01-20T02:25:00+09:00
-archives: 2020/01/20
+archives:
+    - 2020
+    - 2020-01
+    - 2020-01-20
 draft: false
 ---
 
