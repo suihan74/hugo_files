@@ -20,6 +20,9 @@ jobs:
     - name: Setup Hugo
       uses: peaceiris/actions-hugo@v2
 
+    - name: Clean Archives
+      run: rm -rf public/archives
+
     - name: Build
       run: hugo --gc --minify --cleanDestinationDir
       env:
