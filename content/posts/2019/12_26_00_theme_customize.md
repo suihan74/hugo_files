@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-02-03T20:55:00+09:00
+lastmod: 2020-02-22T15:15:00+09:00
 archives:
     - 2019
     - 2019/12
@@ -22,6 +22,27 @@ draft: false
 GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるテーマ。
 
 ## 改修点
+
+### 追記 (2020/02/22 15:15)
+
+見出しの横にアンカーを表示するようにした。
+
+![変更点SS8](/images/2019/12_26_00_08.png "変更点 - 見出しアンカー")
+
+マークダウン→HTMLタグの変換時にフックする方法ないのかと思って調べてたら「生成後の文字列を正規表現で置き換える」やり方を見つけたので利用した。
+
+[/layouts/partials/post.html](https://github.com/suihan74/github-style/blob/master/layouts/partials/post.html)
+
+```vue {linenos=true, linenostart=75}
+<article class="markdown-body entry-content p-3 p-md-6" itemprop="text">
+    {{- .Content | replaceRE "(<h[1-9] id=\"([^\"]+)\".+)(</h[1-9]+>)" "${1}<a class=\"anchor\" aria-hidden=\"true\" href=\"#${2}\"><svg class=\"octicon octicon-link\" viewBox=\"0 0 16 16\" version=\"1.1\" width=\"16\" height=\"16\" aria-hidden=\"true\"><path fill-rule=\"evenodd\" d=\"--省略--\"></path></svg></a> ${3}" | safeHTML -}}
+</article>
+```
+
+参考  
+[Hugo で markdown の hタグに自動で anchorタグをつける - n/a n/a nao](https://blog.nananao.com/entry/hugo-htag-add-atag)
+
+---
 
 ### 追記 (2020/02/03 20:55)
 
@@ -52,6 +73,8 @@ SVGの中身をhtmlファイルに直書きしないとスタイルが適用で�
     <link rel="icon" type="image/x-icon" class="js-site-favicon" href='{{ "/favicon.ico" | absURL }}'>
     <link rel="shortcut icon" href='{{ "/favicon.ico" | absURL }}'/>
     ```
+
+---
 
 ### 追記 (2020/02/01 02:40)
 
