@@ -4,10 +4,7 @@ description: "ListAdapterを使ってアイテムをロードしたときに初�
 tags: ["Android", "kotlin", "RecyclerView"]
 date: 2020-02-22T14:10:58+09:00
 lastmod: 2020-02-22T14:10:58+09:00
-archives:
-    - 2020
-    - 2020/02
-    - 2020/02/22
+archives: 2020/02/22
 draft: false
 ---
 

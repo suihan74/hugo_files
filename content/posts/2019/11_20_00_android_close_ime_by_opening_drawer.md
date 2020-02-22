@@ -4,10 +4,7 @@ description: "Drawer展開を検知したら入力メソッドを閉じるよう
 tags: ["Android", "kotlin", "migrated_from_previous_blog"]
 date: 2019-11-20T01:42:00+09:00
 lastmod: 2020-02-01T03:10:11+09:00
-archives:
-    - 2019
-    - 2019/11
-    - 2019/11/20
+archives: 2019/11/20
 draft: false
 hide_overview: true
 ---

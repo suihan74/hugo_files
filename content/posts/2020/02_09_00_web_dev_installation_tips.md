@@ -4,10 +4,7 @@ description: "WSL上でgoやったりnode.jsやったり"
 tags: ["golang", "node.js", "WSL"]
 date: 2020-02-09T03:57:59+09:00
 lastmod: 2020-02-16T23:15:00+09:00
-archives:
-    - 2020
-    - 2020/02
-    - 2020/02/09
+archives: 2020/02/09
 draft: false
 ---
 

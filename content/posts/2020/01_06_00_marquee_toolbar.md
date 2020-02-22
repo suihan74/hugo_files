@@ -4,10 +4,7 @@ description: 2020年にもなって文字列をmarqueeさせたくなったの�
 tags: ["android", "kotlin", "view"]
 date: 2020-01-06T00:18:01+09:00
 lastmod: 2020-01-06T00:18:01+09:00
-archives:
-    - 2020
-    - 2020/01
-    - 2020/01/06
+archives: 2020/01/06
 draft: false
 ---
 

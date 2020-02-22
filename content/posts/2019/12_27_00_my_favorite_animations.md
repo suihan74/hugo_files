@@ -4,10 +4,7 @@ description: 2010年代最後に振り返る、個人的ベストアニメ。
 tags: ["anime", "note"]
 date: 2019-12-29T02:43:00+09:00
 lastmod: 2019-12-29T15:42:00+09:00
-archives:
-    - 2019
-    - 2019/12
-    - 2019/12/27
+archives: 2019/12/27
 draft: false
 ---
 

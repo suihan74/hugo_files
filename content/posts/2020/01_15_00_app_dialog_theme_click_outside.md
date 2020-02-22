@@ -4,10 +4,7 @@ description: "AppDialogThemeが設定されたActivityの外側をタップす�
 tags: ["android", "kotlin", "activity"]
 date: 2020-01-15T01:30:40+09:00
 lastmod: 2020-01-17T01:30:00+09:00
-archives:
-    - 2020
-    - 2020/01
-    - 2020/01/15
+archives: 2020/01/15
 draft: false
 ---
 

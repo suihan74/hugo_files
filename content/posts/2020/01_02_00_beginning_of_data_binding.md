@@ -4,10 +4,7 @@ description: いまさらAndroidでDataBinding触れはじめてみた浅い記�
 tags: ["android", "kotlin", "DataBinding", "ViewModel", "LiveData"]
 date: 2020-01-02T17:04:24+09:00
 lastmod: 2020-01-02T17:04:24+09:00
-archives:
-    - 2020
-    - 2020/01
-    - 2020/01/12
+archives: 2020/01/12
 draft: false
 ---
 

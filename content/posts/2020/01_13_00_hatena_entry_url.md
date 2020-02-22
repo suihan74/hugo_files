@@ -4,10 +4,7 @@ description: /entry/s/...だったり/entry/https://...だったりentry?url=...
 tags: ["memo", "hatena"]
 date: 2020-01-13T13:43:46+09:00
 lastmod: 2020-01-13T15:11:46+09:00
-archives:
-    - 2020
-    - 2020/01
-    - 2020/01/13
+archives: 2020/01/13
 draft: false
 ---
 

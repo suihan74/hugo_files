@@ -4,10 +4,7 @@ description: "ぶっこ抜いたRoomのDBファイルを再配置して読み込
 tags: ["Android", "kotlin", "Room", "migrated_from_previous_blog"]
 date: 2019-12-16T20:08:00+09:00
 lastmod: 2020-02-01T03:10:11+09:00
-archives:
-    - 2019
-    - 2019/12
-    - 2019/12/16
+archives: 2019/12/16
 draft: false
 hide_overview: true
 ---
