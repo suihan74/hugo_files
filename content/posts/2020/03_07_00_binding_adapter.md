@@ -108,7 +108,7 @@ fun ImageView.setSource(src: String?, defaultSrc: String?) {
 
 ## 属性名の名前空間
 
-バインディングアダプタの`value`に指定する属性名はここまで`@BindingAdapter("hoge")`のように記述してきたが、このときこのバインディングアダプタは「属性値の型が一致する***"android:"以外のすべての名前空間***のhoge」にマッチする。  
+バインディングアダプタの`value`に指定する属性名はここまで`@BindingAdapter("hoge")`のように記述してきたが、このときこのバインディングアダプタは「属性値の型が一致する ***"android:"以外の***すべての名前空間のhoge」にマッチする。  
 (`"app:hoge"`、`"hoge"`...)
 
 `"android:"`にマッチさせる為には明示的に`@BindingAdapter("android:hoge")`と書く必要がある。
