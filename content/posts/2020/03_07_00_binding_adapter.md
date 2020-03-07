@@ -3,7 +3,7 @@ title: "BindingAdapterに関するいくつかのこと"
 description: "シンプルな方法でビューに値をセットする。"
 tags: ["android", "kotlin", "DataBinding"]
 date: 2020-03-07T20:30:49+09:00
-lastmod: 2020-03-07T20:30:49+09:00
+lastmod: 2020-03-07T21:23:49+09:00
 archives:
     - 2020
     - 2020-03
@@ -53,6 +53,8 @@ kotlinの場合、指定する対象にこのような拡張関数を用意す�
     android:visibility="@{vm.hogeBool}"
 />
 ```
+
+なお、`vm.hogeBool`が`LiveData<Boolean>`とかの場合でもこの書き方でいい(`"@{vm.hogeBool.value}"`とかにしない)
 
 ## 複数の属性を扱う
 
