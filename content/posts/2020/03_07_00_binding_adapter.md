@@ -17,7 +17,7 @@ draft: false
 
 [Android - DataBindingはじめ - すいはんぶろぐ.io](/posts/2020/01_02_00_beginning_of_data_binding/)
 
-先述した前記事ではConverter使って双方向バインディング時の値変換ができるよみたいなことを書いたのだが、`BindingAdapter`を使う方法を書いてなかったのでここに記録しておく。
+前記事で`BindingAdapter`を使う方法を書いてなかったのでここに記録しておく。
 
 以下の内容は自分がやったことのみ記述していますので、詳細な情報は一次情報にあたってください。
 
