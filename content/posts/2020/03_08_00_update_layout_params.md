@@ -26,6 +26,9 @@ toolbar.layoutParams = (toolbar.layoutParams as? AppBarLayout.LayoutParams)?.app
 
 ちゃんと更新用の拡張関数が用意されているのでこれを使うようにする。
 
+-> [List of KTX extensions | Android Developers](https://developer.android.com/kotlin/ktx/extensions-list#for_androidviewview)  
+androidxに含まれるものっぽい。
+
 ```kt
 // ツールバーをコンテンツのスクロールに合わせて隠したりする設定をコード側でする例
 toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
