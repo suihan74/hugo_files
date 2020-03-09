@@ -3,12 +3,21 @@ title: "Android - DataBindingはじめ"
 description: いまさらAndroidでDataBinding触れはじめてみた浅い記事
 tags: ["android", "kotlin", "DataBinding", "ViewModel", "LiveData"]
 date: 2020-01-02T17:04:24+09:00
-lastmod: 2020-01-02T17:04:24+09:00
+lastmod: 2020-03-02T03:02:00+09:00
 archives:
     - 2020
     - 2020-01
     - 2020-01-02
+hide_overview: true
 draft: false
+---
+
+## 追記 (2020-03-10)
+
+[BindingAdapterに関するいくつかのこと - すいはんぶろぐ.io](/posts/2020/03_07_00_binding_adapter/)
+
+関連する記事としてバインディングアダプタの使い方を書いた。
+
 ---
 
 最近ずっとSatenaのActivity/Fragmentのコード側を作り直す作業をしていて、ViewModel + LiveDataは割と活用してきて"前よりは"いい感じになってきているのだが、  
@@ -18,9 +27,9 @@ DataBindingに関しては以前UWPアプリ作るとき（中途半端に）触
 とりあえず導入的なものと、  
 主に忘れそうな部分についていくつかメモを書く。
 
-# 導入
+## 導入
 
-## build.gradle (app)
+### build.gradle (app)
 
 ViewModelやらDataBindingを使用するのに必要な設定・依存関係を追加する。
 
@@ -46,7 +55,7 @@ dependencies {
 }
 ```
 
-## activity_hoge.xml
+### activity_hoge.xml
 
 以前のレイアウトの内容を`<layout>`で囲い、`<data> ~ </data>`にバインドに必要な情報を記述する。  
 ここでは、コード側で用意してバインドする`ViewModel`のオブジェクトをレイアウトファイル内では`vm`として扱う。
@@ -74,7 +83,7 @@ dependencies {
 </layout>
 ```
 
-## HogeActivity.kt
+### HogeActivity.kt
 
 ActivityHogeBindingはレイアウトまで書いてビルドすると自動的に生成される。  
 `ViewDataBinding`を継承した`"アッパーキャメルなレイアウトファイル名 + Binding"`という名前のクラスができるので、これを`DataBindingUtil.setContentView<T>(...)`の型引数に与えて呼ぶとバインドが開始される。
@@ -112,12 +121,12 @@ class HogeActivity : AppCompatActivity() {
 
 `ViewModel`を使うことで`savedInstanceState`はせいぜい初回起動か復元後かを判別する程度の用途しか無くなりましたとさ。良さ。
 
-# データの変更をViewに反映する
+## データの変更をViewに反映する
 
 たとえば次のようなViewModelを用意するとする。  
 `LiveData<T>`は`LiveData<T>.value`が変更された際に生きている監視者に変更を通知するもの。`LiveData<T>`を継承して好きなように作ることもできるが、ここでは面倒なので`value`を外から変更できる`MutableLiveData<T>`を使うことにする。
 
-## HogeViewModel.kt
+### HogeViewModel.kt
 
 ```kt
 class HogeViewModel(
@@ -154,7 +163,7 @@ class HogeViewModel(
 これで`viewModel.text`が変更されたときに`TextView`の表示も変更されるようになる。楽。
 
 
-# Viewの変更をデータに反映する
+## Viewの変更をデータに反映する
 
 `EditText`の入力テキストを先ほどの`HogeViewModel.text`に反映する例。
 
@@ -169,8 +178,7 @@ class HogeViewModel(
 
 他にもチェックボックスやトグルボタンの状態管理など。
 
-
-# 真偽値をバインドしてVisibilityを変更する例
+## 真偽値をバインドしてVisibilityを変更する例
 
 楽そうだと思ったのはこれ。
 
@@ -200,7 +208,7 @@ class HogeViewModel(
 
 [バインディングアダプター | Android Developers](https://developer.android.com/topic/libraries/data-binding/binding-adapters.html?hl=ja)
 
-# 双方向バインディングでConverterを介して値をやりとりする
+## 双方向バインディングでConverterを介して値をやりとりする
 
 たとえば適当な列挙型`HogeEnum`があるとして、これを`Spinner`に表示して選択させたいときなどに以下のようなシングルトンを用意しておいて、レイアウトから呼ぶことができる。
 
@@ -239,7 +247,7 @@ object HogeEnumConverter {
 
 [DataBindingのInverseMethodの使い方 - Kenji Abe - Medium](https://medium.com/@star_zero/databindingのinversemethodの使い方-63f4effa49a0)
 
-# 手をつけていないこと
+## 手をつけていないこと
 
 以上のように特にシンプルな部分に関してはデータバインディング使っておけば基本的には楽そうである。
 
