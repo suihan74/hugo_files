@@ -3,7 +3,7 @@ title: "Android - DataBindingはじめ"
 description: いまさらAndroidでDataBinding触れはじめてみた浅い記事
 tags: ["android", "kotlin", "DataBinding", "ViewModel", "LiveData"]
 date: 2020-01-02T17:04:24+09:00
-lastmod: 2020-03-02T03:02:00+09:00
+lastmod: 2020-03-10T03:02:00+09:00
 archives:
     - 2020
     - 2020-01
@@ -161,7 +161,6 @@ class HogeViewModel(
 `@{...}`でViewModel→Viewの単方向データバインディング。
 
 これで`viewModel.text`が変更されたときに`TextView`の表示も変更されるようになる。楽。
-
 
 ## Viewの変更をデータに反映する
 
