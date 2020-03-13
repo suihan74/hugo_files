@@ -1,7 +1,7 @@
 ---
 title: Win10用Twitter/MastodonアプリSuihanTwit
 description: Twitter/Mastodonを一画面に並べて閲覧・同時投稿できるUWPアプリ
-tags: ["UWP", "C#", "Twitter", "Mastodon", "migrated_from_previous_blog"]
+tags: ["UWP", "CSharp", "Twitter", "Mastodon", "migrated_from_previous_blog"]
 date: 2019-06-10T00:00:00+09:00
 lastmod: 2019-06-10T00:00:00+09:00
 archives:
