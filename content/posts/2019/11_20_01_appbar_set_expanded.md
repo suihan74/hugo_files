@@ -29,6 +29,7 @@ draft: false
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <com.google.android.material.appbar.AppBarLayout
+            android:id="@+id/appbarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <Toolbar
@@ -52,6 +53,7 @@ toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
 スクロールを監視するViewには`app:layout_behavior`属性をこんな感じで記述しておく。
 
 ```xml
+<!-- ViewPagerなのは適当 -->
 <androidx.viewpager.widget.ViewPager
         android:layout_width="match_parent"
         android:layout_height="match_parent"
@@ -77,7 +79,7 @@ toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
 ```kt
 // 第一引数: 表示する場合true、隠す場合false
 // 第二引数: アニメーションするか否か
-appBarLayout.setExpanded(true, true)
+appbarLayout.setExpanded(true, true)
 ```
 
 {{< figure src="/images/2019/11_20_01_02.gif" width="25%" attr="不正な挙動: 画面遷移後、アプリバー上のSearchViewが見えない" >}}
