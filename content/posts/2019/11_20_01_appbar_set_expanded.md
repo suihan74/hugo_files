@@ -29,7 +29,7 @@ draft: false
         android:layout_width="match_parent"
         android:layout_height="match_parent">
     <com.google.android.material.appbar.AppBarLayout
-            android:id="@+id/appbarLayout"
+            android:id="@+id/appBarLayout"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
         <Toolbar
@@ -79,7 +79,7 @@ toolbar.updateLayoutParams<AppBarLayout.LayoutParams> {
 ```kt
 // 第一引数: 表示する場合true、隠す場合false
 // 第二引数: アニメーションするか否か
-appbarLayout.setExpanded(true, true)
+appBarLayout.setExpanded(true, true)
 ```
 
 {{< figure src="/images/2019/11_20_01_02.gif" width="25%" attr="不正な挙動: 画面遷移後、アプリバー上のSearchViewが見えない" >}}
