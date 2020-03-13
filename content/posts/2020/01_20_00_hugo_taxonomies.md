@@ -90,7 +90,7 @@ archives:
 以上を記述しておくことで、`hugo new`した際に自動的にアーカイブ用の情報が挿入される。  
 この記事の場合の出力結果↓
 
-### posts/2020/01_19_00_hugo_taxonomies.md
+### posts/2020/01_20_00_hugo_taxonomies.md
 
 ```yaml
 ---
@@ -107,7 +107,7 @@ draft: false
 ---
 ```
 
-これで[/archives/2020/](/archives/2020/)とか[/archives/2020-01/](/archives/2020-01/)とか[/archives/2020-01-19/](/archives/2020-01-19/)とかでアーカイブページを表示することができる。
+これで[/archives/2020/](/archives/2020/)とか[/archives/2020-01/](/archives/2020-01/)とか[/archives/2020-01-20/](/archives/2020-01-20/)とかでアーカイブページを表示することができる。
 
 やったぜ。
 
