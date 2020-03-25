@@ -1,0 +1,9 @@
+{{ range $.Params }}
+<a href="https://www.amazon.co.jp/dp/{{ . }}?tag=suihan7406-22" target=”_blank”>
+  <img src="https://images-na.ssl-images-amazon.com/images/P/{{ . }}.09.MZZZZZZZs" alt="">
+</a>
+<!--
+<a href="https://www.amazon.co.jp/dp/{{ . }}?tag=suihan7406-22" target=”_blank”>
+  <img border="0" src="https://ws-fe.amazon-adsystem.com/widgets/q?_encoding=UTF8&MarketPlace=JP&ASIN={{ . }}&ServiceVersion=20070822&ID=AsinImage&WS=1&Format=_SL250_&tag=suihan7406-22" >
+</a>-->
+{{ end }}
