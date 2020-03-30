@@ -1,7 +1,7 @@
 ---
 title: "SearchViewのカーソル色を指定する方法"
 description: "SearchView内のEditText部分のカーソル色を指定する。"
-tags: ["android", "kotlin"]
+tags: ["android", "kotlin", "SearchView", "style"]
 date: 2020-03-31T00:05:00+09:00
 lastmod: 2020-03-31T00:05:00+09:00
 archives:
