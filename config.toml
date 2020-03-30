@@ -19,6 +19,7 @@ hasCJKLanguage = true
   url = "https://suihan74.github.io/"
   hugoRepository = "hugo_files"
   googleCSE = "006598476776954487838:x6qvcxfxgqt"
+  amazonAssociate = "suihan7406-22"
 
 [markup]
   [markup.goldmark]
