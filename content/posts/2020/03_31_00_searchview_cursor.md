@@ -9,7 +9,7 @@ archives:
     - 2020-03
     - 2020-03-31
 hide_overview: false
-draft: true
+draft: false
 ---
 
 ## 前提
