@@ -1,5 +1,6 @@
+{{ $associateId := $.Site.Params.amazonAssociate }}
 {{ range $.Params }}
-<a href="https://www.amazon.co.jp/dp/{{ . }}?tag=suihan7406-22" target=”_blank”>
+<a href="https://www.amazon.co.jp/dp/{{ . }}?tag={{ $associateId }}" target=”_blank”>
   <img src="https://images-na.ssl-images-amazon.com/images/P/{{ . }}.09.MZZZZZZZs" alt="">
 </a>
 <!--
