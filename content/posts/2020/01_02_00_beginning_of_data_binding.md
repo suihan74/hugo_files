@@ -3,7 +3,7 @@ title: "Android - DataBindingはじめ"
 description: いまさらAndroidでDataBinding触れはじめてみた浅い記事
 tags: ["android", "kotlin", "DataBinding", "ViewModel", "LiveData"]
 date: 2020-01-02T17:04:24+09:00
-lastmod: 2020-03-10T03:02:00+09:00
+lastmod: 2020-03-31T17:50:00+09:00
 archives:
     - 2020
     - 2020-01
@@ -11,6 +11,13 @@ archives:
 hide_overview: true
 draft: false
 ---
+
+## 追記 (2020-03-31)
+
+lifecycleに関する依存先のバージョンを`2.2.0`にアップデート。  
+それに伴い、`ViewModelProvider`を使用したViewModelのインスタンス生成方法を修正。
+
+`ViewModelProviders.of(owner)` → `ViewModelProvider(owner)`
 
 ## 追記 (2020-03-10)
 
@@ -46,11 +53,11 @@ android {
 dependencies {
     ...
     // ViewModel and LiveData
-    def lifecycle_version = "2.1.0"
+    def lifecycle_version = "2.2.0"
     implementation "androidx.lifecycle:lifecycle-extensions:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-viewmodel-ktx:$lifecycle_version"
     implementation "androidx.lifecycle:lifecycle-common-java8:$lifecycle_version"
-    testImplementation "androidx.arch.core:core-testing:$lifecycle_version"
+    testImplementation "androidx.arch.core:core-testing:2.1.0"
     ...
 }
 ```
@@ -101,7 +108,7 @@ class HogeActivity : AppCompatActivity() {
         val factory = HogeViewModel.Factory(
             ...
         )
-        viewModel = ViewModelProviders.of(this, factory)[HogeViewModel::class.java]
+        viewModel = ViewModelProvider(this, factory)[HogeViewModel::class.java]
 
         // データバインド
         binding = DataBindingUtil.setContentView<ActivityHogeBinding>(
