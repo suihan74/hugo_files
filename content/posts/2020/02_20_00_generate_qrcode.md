@@ -3,15 +3,24 @@ title: "AndroidでQRコードを生成して画面に表示する"
 description: "zxingでQRコード生成"
 tags: ["Android", "kotlin", "QRcode"]
 date: 2020-02-20T01:48:21+09:00
-lastmod: 2020-02-22T00:57:00+09:00
+lastmod: 2020-03-31T17:50:00+09:00
 archives:
     - 2020
     - 2020-02
     - 2020-02-20
+hide_overview: true
 draft: false
 ---
 
 AndroidアプリでQRコードを生成して画面に表示する方法。今回は読み取りについては書いていない。
+
+## 追記 (2020-03-31)
+
+lifecycleに関する依存先のバージョンを`2.2.0`にアップデート。  
+それに伴い、`ViewModelProvider`を使用したViewModelのインスタンス生成方法を修正。
+
+`ViewModelProviders.of(owner)` → `ViewModelProvider(owner)`
+
 
 ## build.gradle (app)
 
@@ -59,7 +68,7 @@ class HogeActivity : AppCompatActivity {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModel = ViewModelProviders.of(this)[HogeViewModel::class.java]
+        val viewModel = ViewModelProvider(this)[HogeViewModel::class.java]
         DataBindingUtil.setContentView<ActivityHogeBinding>(
             this,
             R.layout.activity_hoge
