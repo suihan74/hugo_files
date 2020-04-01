@@ -8,7 +8,7 @@ archives:
     - 2020
     - 2020-03
     - 2020-03-31
-hide_overview: false
+hide_overview: true
 noindex: true
 draft: false
 ---
