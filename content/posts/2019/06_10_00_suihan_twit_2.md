@@ -8,7 +8,6 @@ archives:
     - 2019
     - 2019-06
     - 2019-06-10
-hide_overview: true
 draft: false
 ---
 
