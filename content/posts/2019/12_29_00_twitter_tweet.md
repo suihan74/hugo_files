@@ -3,12 +3,31 @@ title: "HugoでTwitterの投稿を引用表示するために必要な設定"
 description: そのままTwitterの引用コードをコピーしても表示できないっぽいという話
 tags: ["hugo"]
 date: 2019-12-29T03:05:26+09:00
-lastmod: 2019-12-29T03:05:26+09:00
+lastmod: 2020-04-03T12:45:00+09:00
 archives:
     - 2019
     - 2019-12
     - 2019-12-29
+hide_overview: true
 draft: false
+---
+
+# 追記 (2020-04-03)
+
+ショートコードを使用すればこの記事の内容を行う必要はない。申し訳ない。
+
+```md
+{{</*tweet 1210955996861882370*/>}}
+```
+
+↓
+
+{{<tweet 1210955996861882370>}}
+
+## 参考
+
+[Shortcodes | Hugo](https://gohugo.io/content-management/shortcodes/#tweet)
+
 ---
 
 # 必要な設定
