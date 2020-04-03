@@ -1,9 +1,9 @@
 ---
 title: Win10用Twitter/MastodonアプリSuihanTwit
 description: Twitter/Mastodonを一画面に並べて閲覧・同時投稿できるUWPアプリ
-tags: ["UWP", "CSharp", "Twitter", "Mastodon", "migrated_from_previous_blog"]
+tags: ["UWP", "CSharp", "Twitter", "Mastodon", "SuihanTwit", "migrated_from_previous_blog"]
 date: 2019-06-10T00:00:00+09:00
-lastmod: 2019-06-10T00:00:00+09:00
+lastmod: 2020-04-03T11:45:00+09:00
 archives:
     - 2019
     - 2019-06
@@ -21,11 +21,15 @@ draft: false
 
 ---
 
+## 更新 (2020-04-03)
+
+特定のURLを含んだステータスをタイムラインに表示する際にクラッシュする問題を修正した。ver:0.7.6
+
+---
+
 # Win10用Twitter/MastodonアプリSuihanTwit
 
 2017年6月4日 by suihan
-
-— 2019/06/10 更新 —
 
 ## スクリーンショット
 
@@ -45,7 +49,7 @@ draft: false
 
 ## ダウンロード
 
-[SuihanTwit ver:0.7.5](http://suihan74.orz.hm/SuihanTwit/SuihanTwit2_0.7.5.0.zip)
+[SuihanTwit ver:0.7.6](http://suihan74.orz.hm/SuihanTwit/SuihanTwit2_0.7.6.0.zip)
 
 ## インストール方法
 
@@ -58,17 +62,21 @@ draft: false
 
 ### オレオレ証明書なので、手動で証明書をインストールする
 
-1. `SuihanTwit2_0.7.5.0_x86_x64.cer`をダブルクリック→「`証明書のインストール`」
+1. `SuihanTwit2_0.7.6.0_x86_x64.cer`をダブルクリック→「`証明書のインストール`」
 2. 保存場所→「`ローカルコンピュータ`」
 3. 「`証明書をすべて次のストアに配置する`」→「`信頼されたユーザー`」
 
 ### アプリのインストール
 
-1. `SuihanTwit2_0.7.5.0_x86_x64.appxbundle`をダブルクリック  
+1. `SuihanTwit2_0.7.6.0_x86_x64.appxbundle`をダブルクリック  
     （もし依存ランタイムを手動で入れる必要がある場合は，下記リンクからダウンロードしてインストールしてください）
     - [依存ランタイム](http://suihan74.orz.hm/SuihanTwit/Dependencies.zip)
 
 ## 更新履歴
+
+### [ver:0.7.6] 2020/04/03
+
+- タイムラインに特定のURLを表示される際にクラッシュする問題を修正
 
 ### [ver:0.7.5] 2019/06/10
 
