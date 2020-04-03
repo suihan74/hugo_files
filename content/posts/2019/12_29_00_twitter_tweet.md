@@ -1,5 +1,5 @@
 ---
-title: "HugoでTwitterの投稿を引用表示するために必要な設定"
+title: "(非推奨) HugoでTwitterの投稿を引用表示するために必要な設定"
 description: そのままTwitterの引用コードをコピーしても表示できないっぽいという話
 tags: ["hugo"]
 date: 2019-12-29T03:05:26+09:00
