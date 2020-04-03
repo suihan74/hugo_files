@@ -40,14 +40,14 @@ draft: false
 
 ### layouts/shortcodes/set.html
 
-```hugo
+```md
 <!-- set key value で変数をセット -->
 {{- .Page.Scratch.Set (index .Params 0) (index .Params 1) -}}
 ```
 
 ### layouts/shortcodes/get.html
 
-```hugo
+```md
 <!-- get key で変数を文字列として取得 -->
 {{- .Page.Scratch.Get (index .Params 0) -}}
 ```
