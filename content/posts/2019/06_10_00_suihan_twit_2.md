@@ -12,6 +12,8 @@ hide_overview: true
 draft: false
 ---
 
+{{<set latest 0.7.6>}}
+
 ## おことわり
 
 この記事は旧ブログから引っ張ってきたものの再掲です。
@@ -23,7 +25,7 @@ draft: false
 
 ## 更新 (2020-04-03)
 
-特定のURLを含んだステータスをタイムラインに表示する際にクラッシュする問題を修正した。ver:0.7.6
+特定のURLを含んだステータスをタイムラインに表示する際にクラッシュする問題を修正した。ver:{{<get latest>}}
 
 ---
 
@@ -49,7 +51,7 @@ draft: false
 
 ## ダウンロード
 
-[SuihanTwit ver:0.7.6](http://suihan74.orz.hm/SuihanTwit/SuihanTwit2_0.7.6.0.zip)
+[SuihanTwit ver:{{< get latest >}}](http://suihan74.orz.hm/SuihanTwit/SuihanTwit2_{{<get latest>}}.0.zip)
 
 ## インストール方法
 
@@ -62,13 +64,13 @@ draft: false
 
 ### オレオレ証明書なので、手動で証明書をインストールする
 
-1. `SuihanTwit2_0.7.6.0_x86_x64.cer`をダブルクリック→「`証明書のインストール`」
+1. `SuihanTwit2_{{<get latest>}}.0_x86_x64.cer`をダブルクリック→「`証明書のインストール`」
 2. 保存場所→「`ローカルコンピュータ`」
 3. 「`証明書をすべて次のストアに配置する`」→「`信頼されたユーザー`」
 
 ### アプリのインストール
 
-1. `SuihanTwit2_0.7.6.0_x86_x64.appxbundle`をダブルクリック  
+1. `SuihanTwit2_{{<get latest>}}.0_x86_x64.appxbundle`をダブルクリック  
     （もし依存ランタイムを手動で入れる必要がある場合は，下記リンクからダウンロードしてインストールしてください）
     - [依存ランタイム](http://suihan74.orz.hm/SuihanTwit/Dependencies.zip)
 
