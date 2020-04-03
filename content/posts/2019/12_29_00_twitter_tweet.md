@@ -9,6 +9,7 @@ archives:
     - 2019-12
     - 2019-12-29
 hide_overview: true
+noindex: true
 draft: false
 ---
 
