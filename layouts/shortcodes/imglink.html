@@ -1,0 +1,14 @@
+{{ $src := "" }}
+{{ $href := "" }}
+{{ if .IsNamedParams }}
+  {{ $src = .Get "src" }}
+  {{ $href = .Get "href" }}
+{{ else }}
+  {{ $src = .Get 0 }}
+  {{ $href = .Get 1 }}
+{{ end }}
+{{ if ne $src "" }}
+<a href="{{ $href }}" target="_blank">
+  <img border="0" src="{{ $src }}" >
+</a>
+{{ end }}
