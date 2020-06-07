@@ -9,9 +9,7 @@ archives:
     - 2020-05
     - 2020-05-03
 hide_overview: false
-
-# 公開するならfalseにする
-draft: true
+draft: false
 ---
 
 ## 前提
@@ -34,7 +32,7 @@ Androidアプリでは`Intent`を使用してアプリ間で情報をやりと�
 ## 何故そんなことしたいのか
 
 [Satena](https://play.google.com/store/apps/details?id=com.suihan74.satena)ではURLに対して「ページを外部ブラウザで開く」というコマンドを用意しているのだが、これには当然ながら`Intent`を利用している。  
-そして同時に「ブコメページのURLを[Satena](https://play.google.com/store/apps/details?id=com.suihan74.satena)で開く」ことができるようにしてある。(後述の[intent-filter例](#satenaのintent-filter例)参照)  
+そして同時に「ブコメページのURLを[Satena](https://play.google.com/store/apps/details?id=com.suihan74.satena)で開く」ことができるようにしてある。(後述の[intent-filter例](#satenaのintent-filter例)参照)
 
 さて、では[Satena](https://play.google.com/store/apps/details?id=com.suihan74.satena)アプリ内でブコメページのURLを「外部ブラウザで開く」した場合、どうなるだろう。  
 「ブコメページのURLをSatenaで開く」がデフォルト動作として設定されている場合、Chromeなどの外部ブラウザが開かれることはなく、Satenaのブコメページ用Activityが新たに開かれてしまう。なんだか書いてあるのと挙動が違わね？ というようなことになる。
@@ -95,4 +93,3 @@ else {
 - [別のアプリにユーザーを送信する | Android デベロッパー | Android Developers](https://developer.android.com/training/basics/intents/sending?hl=ja)
 
 - [Android でアプリから URL を強制的にブラウザで開く - Qiita](https://qiita.com/hota911/items/df669e2179b6a2342f48)
-
