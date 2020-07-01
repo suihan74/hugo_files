@@ -1,15 +1,21 @@
 <!-- 簡易的な画像リンク -->
-{{ $src := "" }}
-{{ $href := "" }}
-{{ if .IsNamedParams }}
-  {{ $src = .Get "src" }}
-  {{ $href = .Get "href" }}
-{{ else }}
-  {{ $src = .Get 0 }}
-  {{ $href = .Get 1 }}
-{{ end }}
-{{ if ne $src "" }}
+{{- $src := "" -}}
+{{- $href := "" -}}
+{{- $width := "" -}}
+{{- $height := "" -}}
+{{- if .IsNamedParams -}}
+  {{- $src = .Get "src" -}}
+  {{- $href = .Get "href" -}}
+  {{- $width = .Get "width" -}}
+  {{- $height = .Get "height" -}}
+{{- else -}}
+  {{- $src = .Get 0 -}}
+  {{- $href = .Get 1 -}}
+  {{- $width = .Get 2 -}}
+  {{- $height = .Get 3 -}}
+{{- end -}}
+{{- if ne $src "" -}}
 <a href="{{ $href }}" target="_blank">
-  <img border="0" src="{{ $src }}" >
+  <img border="0" src="{{ $src }}" width="{{ $width }}" height="{{ $height }}">
 </a>
-{{ end }}
+{{- end -}}
