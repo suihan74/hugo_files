@@ -193,7 +193,7 @@ OP曲と出撃シーンはかっこよかった。お話は微妙だった。
 <iframe src="https://store.steampowered.com/widget/424840/" frameborder="0" width="646" height="190"></iframe>
 
 こえーって進んでたら操作キャラが一番怖かったやつ。  
-ジブリかよって感じの食堂で飯貪っている謎のデブたちを振り解いていくところが好き。
+食堂で飯貪っている謎のデブたちを振り解いていくところが好き。
 
 ### Minecraft Java Edition (PC)
 
