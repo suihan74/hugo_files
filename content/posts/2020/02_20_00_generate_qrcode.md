@@ -3,7 +3,7 @@ title: "AndroidでQRコードを生成して画面に表示する"
 description: "zxingでQRコード生成"
 tags: ["Android", "kotlin", "QRcode"]
 date: 2020-02-20T01:48:21+09:00
-lastmod: 2020-03-31T17:50:00+09:00
+lastmod: 2020-07-21T12:40:00+09:00
 archives:
     - 2020
     - 2020-02
@@ -14,6 +14,10 @@ draft: false
 
 AndroidアプリでQRコードを生成して画面に表示する方法。今回は読み取りについては書いていない。
 
+## 追記 (2020-07-21)
+
+データバインディングの始め方についての記事へのリンクを追加。
+
 ## 追記 (2020-03-31)
 
 lifecycleに関する依存先のバージョンを`2.2.0`にアップデート。  
@@ -21,6 +25,13 @@ lifecycleに関する依存先のバージョンを`2.2.0`にアップデート�
 
 `ViewModelProviders.of(owner)` → `ViewModelProvider(owner)`
 
+---
+
+## 準備
+
+ここでは(無駄に)データバインディングを使用しているので、準備が必要ならしておく。
+
+[Android - DataBindingはじめ - すいはんぶろぐ.io](/posts/2020/01_02_00_beginning_of_data_binding/#buildgradle-app)
 
 ## build.gradle (app)
 
