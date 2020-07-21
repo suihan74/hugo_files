@@ -3,7 +3,7 @@ title: "Android - DataBindingはじめ"
 description: いまさらAndroidでDataBinding触れはじめてみた浅い記事
 tags: ["android", "kotlin", "DataBinding", "ViewModel", "LiveData"]
 date: 2020-01-02T17:04:24+09:00
-lastmod: 2020-03-31T17:50:00+09:00
+lastmod: 2020-07-21T12:30:00+09:00
 archives:
     - 2020
     - 2020-01
@@ -11,6 +11,23 @@ archives:
 hide_overview: true
 draft: false
 ---
+
+## 追記 (2020-07-21)
+
+（先月頭だかのAndroidStudio4.0アップデートで起きた話なので、割と今さら感あるが）  
+データバインディングを使用したいときに必要な設定の記述が```Android Gradle Plugin 4.0.0```では次のものに変わっていた。ちなみに```Gradle```のバージョンは```6.1.1```だった。
+
+```gradle
+android {
+    buildFeatures {
+        dataBinding = true
+    }
+}
+```
+
+[以前の記述法](https://github.com/suihan74/hugo_files/blob/6faf8f75867b39f64a3ecde7fda03d2060f9d4c1/content/posts/2020/01_02_00_beginning_of_data_binding.md#buildgradle-app)でも今のところ動きはするがビルド時に警告が出る。
+
+```DSL element 'android.dataBinding.enabled' is obsolete and has been replaced with 'android.buildFeatures.dataBinding'.```
 
 ## 追記 (2020-03-31)
 
@@ -36,18 +53,17 @@ DataBindingに関しては以前UWPアプリ作るとき（中途半端に）触
 
 ## 導入
 
+以下、```Android Studio 4.0```、```Android Gradle Plugin 4.0.0```、```Gradle 6.1.1```時点でのお話になります。
+
 ### build.gradle (app)
 
 ViewModelやらDataBindingを使用するのに必要な設定・依存関係を追加する。
 
 ```gradle
 android {
-    ...
-    // DataBinding利用に必要
-    dataBinding {
-        enabled = true
+    buildFeatures {
+        dataBinding = true
     }
-    ...
 }
 
 dependencies {
