@@ -214,7 +214,7 @@ OP曲と出撃シーンはかっこよかった。お話は微妙だった。
 
 ### Little Nightmares (PC)
 
-<iframe src="https://store.steampowered.com/widget/424840/" frameborder="0" width="646" height="190"></iframe>
+{{<steam 424840>}}
 
 こえーって進んでたら操作キャラが一番怖かったやつ。  
 食堂で飯貪っている謎のデブたちを振り解いていくところが好き。
@@ -230,7 +230,7 @@ OP曲と出撃シーンはかっこよかった。お話は微妙だった。
 
 ### Project Nimbus Complete Edition (PC)
 
-<iframe src="https://store.steampowered.com/widget/257030/" frameborder="0" width="646" height="190"></iframe>
+{{<steam 257030>}}
 
 随分前（多分早期アクセスの頃）に買って途中までやってたのをクリアした。  
 「ANUBIS ZONE OF THE ENDERS」「ARMORED CORE（なかでも4系）」「ガンダムUC（とくに澤野BGM）」「フルメタル・パニック！」……などなどの影響が一目でわかるのが逆に好い。日本のロボ本当好きなんだなっていうのが伝わってきた。  
@@ -239,7 +239,7 @@ OP曲と出撃シーンはかっこよかった。お話は微妙だった。
 
 ### Sid Meier's Civilization VI (PC)
 
-<iframe src="https://store.steampowered.com/widget/289070/" frameborder="0" width="646" height="190"></iframe>
+{{<steam 289070>}}
 
 いや貰ったのはEpic Gamesストアなんですが、埋め込み的なのがないので。  
 ちょっと遊んだらすさまじく時間が溶けていったので恐ろしすぎて封印した。  
@@ -247,7 +247,7 @@ OP曲と出撃シーンはかっこよかった。お話は微妙だった。
 
 ### サムライスピリッツ ネオジオコレクション (PC)
 
-<iframe src="https://store.steampowered.com/widget/999660/" frameborder="0" width="646" height="190"></iframe>
+{{<steam 999660>}}
 
 いや貰ったのは（以下略  
 そういえば格ゲーはあまりやってこなかったなぁゲーセンにも行かなかったしなぁ。と思ってやってみたけどやっぱりそんな得意じゃないんだよな。  
