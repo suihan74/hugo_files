@@ -1,0 +1,18 @@
+<!-- 相対リサイズ可能な画像表示 -->
+{{- $src := "" -}}
+{{- $ratio := "" -}}
+{{- $title := "" -}}
+{{- if .IsNamedParams -}}
+  {{- $src = .Get "src" -}}
+  {{- $ratio = .Get "ratio" -}}
+  {{- $title = .Get "title" -}}
+{{- else -}}
+  {{- $src = .Get 0 -}}
+  {{- $title = .Get 1 -}}
+  {{- $ratio = .Get 2 -}}
+{{- end -}}
+{{- if ne $src "" -}}
+<a href="{{ $src }}">
+  <img border="0" src="{{ $src }}" {{- if ne $title "" }}title="{{ $title }}"{{ end }} {{- if ne $ratio "" }} style="zoom:{{ $ratio }}"{{ end }}>
+</a>
+{{- end -}}
