@@ -1,9 +1,15 @@
 <!-- 相対リサイズ可能な画像表示 -->
+<!-- src : 画像パス, 階層のないベースファイル名を渡すと"/images/記事年/記事コード(08_01_00など)/$src"に読み替える (省略不可) -->
+<!-- href : リンク先 (省略時: $srcと同じ) -->
+<!-- title : 画像タイトル, hover時に表示される (省略時: 設定なし) -->
+<!-- zoom : 各縮率 (省略時: 設定なし(1.0)) -->
 {{- $src := "" -}}
+{{- $href := "" -}}
 {{- $zoom := "" -}}
 {{- $title := "" -}}
 {{- if .IsNamedParams -}}
   {{- $src = .Get "src" -}}
+  {{- $href = .Get "href" -}}
   {{- $zoom = .Get "zoom" -}}
   {{- $title = .Get "title" -}}
 {{- else -}}
@@ -11,11 +17,17 @@
   {{- $title = .Get 1 -}}
   {{- $zoom = .Get 2 -}}
 {{- end -}}
+
 {{- if ne $src "" -}}
-{{- if not (in $src "/") -}}
-  {{- $src = printf "/images/%d/%s/%s" $.Page.PublishDate.Year (index (findRE `\d+_\d+_\d+` $.Page.File.BaseFileName) 0) $src -}}
-{{- end -}}
-<a href="{{ $src }}">
-  <img border="0" src="{{ $src }}" {{- if ne $title "" }}title="{{ $title }}"{{ end }} {{- if ne $zoom "" }} style="zoom:{{ $zoom }}"{{ end }}>
-</a>
+  {{- if not (in $src "/") -}}
+    {{- $src = printf "/images/%d/%s/%s" $.Page.PublishDate.Year (index (findRE `\d+_\d+_\d+` $.Page.File.BaseFileName) 0) $src -}}
+  {{- end -}}
+
+  {{- if eq $href "" -}}
+    {{- $href = $src -}}
+  {{- end -}}
+
+  <a href="{{ $src }}">
+    <img border="0" src="{{ $src }}" {{- if ne $title "" }}title="{{ $title }}"{{ end }} {{- if ne $zoom "" }} style="zoom:{{ $zoom }}"{{ end }}>
+  </a>
 {{- end -}}
