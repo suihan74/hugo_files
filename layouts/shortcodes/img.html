@@ -1,18 +1,21 @@
 <!-- 相対リサイズ可能な画像表示 -->
 {{- $src := "" -}}
-{{- $ratio := "" -}}
+{{- $zoom := "" -}}
 {{- $title := "" -}}
 {{- if .IsNamedParams -}}
   {{- $src = .Get "src" -}}
-  {{- $ratio = .Get "ratio" -}}
+  {{- $zoom = .Get "zoom" -}}
   {{- $title = .Get "title" -}}
 {{- else -}}
   {{- $src = .Get 0 -}}
   {{- $title = .Get 1 -}}
-  {{- $ratio = .Get 2 -}}
+  {{- $zoom = .Get 2 -}}
 {{- end -}}
 {{- if ne $src "" -}}
+{{- if not (in $src "/") -}}
+  {{- $src = printf "/images/%d/%s/%s" $.Page.PublishDate.Year (index (findRE `\d+_\d+_\d+` $.Page.File.BaseFileName) 0) $src -}}
+{{- end -}}
 <a href="{{ $src }}">
-  <img border="0" src="{{ $src }}" {{- if ne $title "" }}title="{{ $title }}"{{ end }} {{- if ne $ratio "" }} style="zoom:{{ $ratio }}"{{ end }}>
+  <img border="0" src="{{ $src }}" {{- if ne $title "" }}title="{{ $title }}"{{ end }} {{- if ne $zoom "" }} style="zoom:{{ $zoom }}"{{ end }}>
 </a>
 {{- end -}}
