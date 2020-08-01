@@ -20,6 +20,7 @@ hasCJKLanguage = true
   hugoRepository = "hugo_files"
   googleCSE = "006598476776954487838:x6qvcxfxgqt"
   amazonAssociate = "suihan7406-22"
+  disableDarkMode = true
 
 [markup]
   [markup.goldmark]
