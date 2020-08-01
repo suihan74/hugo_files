@@ -13,13 +13,17 @@ draft: false
 
 どこをどう変えたか、どうやって変えたか……etcを忘れそうなので急ぎメモ。
 
-## ベーステーマ
+## テーマ
 
-[github-style](https://github.com/MeiK2333/github-style)
+- 適用しているテーマ  
+  [suihan74/github-style](https://github.com/suihan74/github-style)
 
-[サンプルページ](https://themes.gohugo.io//theme/github-style/)
+- 改造前のテーマ  
+  - [MeiK2333/github-style](https://github.com/MeiK2333/github-style)
 
-GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるテーマ。
+  - [サンプルページ](https://themes.gohugo.io//theme/github-style/)
+
+GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるやつ。
 
 ## 改修点
 
@@ -57,6 +61,11 @@ GitHubでは「押すたびにちょっとずつ増える」だが、作る側�
 これもGitHubそのままというわけにはいかなかったが、まぁこれで十分でしょうという感じもする。
 
 [add 'show more activity' button and behavior of selecting a rect · suihan74/github-style@4c4de3a](https://github.com/suihan74/github-style/commit/4c4de3a86d5a49a7390ddb258163207e884f7818)
+
+#### 記事タイトルの前に著者名を表示しないようにした
+
+すいはんしかいませんしおすし。  
+文責ということならどこかに書いておいた方がいいかもしれないが。
 
 #### スタイルシートを最近のGitHubのものに追従した
 
