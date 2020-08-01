@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-03-08T00:30:00+09:00
+lastmod: 2020-08-01T19:00:00+09:00
 archives:
     - 2019
     - 2019-12
@@ -22,6 +22,50 @@ draft: false
 GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるテーマ。
 
 ## 改修点
+
+### 追記 (2020/08/01 19:00)
+
+#### fork元マージした
+
+今までは最初にforkして以来勝手にやっていたのだが、  
+fork元の方でグラフとかタイムラインとかがいい感じに実装されていたので、頂戴した。感謝。
+
+貢献しないのに何故forkしたという話ではあるが、改造していると思いのほか「自分にとってはこの変更でいいのだが、プルリク投げて「おれのやつの方がいいだろ！！１」って他所まで影響与えるような改修ではないな……」みたいな気持ちになることが多かったのだよな。  
+今回は幾つか直せるところ見つけたから送ってみたけど。
+
+#### 幾つかの簡単な修正をPullRequest投げた
+
+- 画面が狭い場合、タイムラインに表示される項目の日付部分が下方向にズレる問題を修正  
+  [fix an issue with position of activity items · suihan74/github-style@f146b07](https://github.com/suihan74/github-style/commit/f146b079d38864942d727230c8d6852dc52b601a)
+
+- 進捗グラフにマウスオーバーしたときに表示されるメッセージ中の'contribution'を'post'に置き換えた  
+  [replace &#39;contribution&#39; with &#39;post&#39; on hover messages · suihan74/github-style@dc55047](https://github.com/suihan74/github-style/commit/dc5504790b61e055cf59e77edd828dca7bd4c660)
+
+- 名詞の複数形への対応 ('1 post', '2 posts'...など)  
+  [fix to consider plural nouns · suihan74/github-style@9ac05a2](https://github.com/suihan74/github-style/commit/9ac05a2a74d6e777b1be482dd1a082fba96015a6)
+
+#### 「Show more activity」ボタンを追加した
+
+最初から表示されている情報は直近2ヶ月分だけにするようにした。
+
+「Show more activity」ボタンを押すと、ボタンを隠して残りの全項目を表示するようにした。  
+GitHubでは「押すたびにちょっとずつ増える」だが、作る側も見る側も面倒そうなので再現しないことにした。
+
+#### 進捗グラフ(草のやつ)のタイルを押した時の挙動を作成した
+
+タイルを押すと、そのタイルが属する月のアクティビティだけをタイムラインに表示するようにした。  
+これもGitHubそのままというわけにはいかなかったが、まぁこれで十分でしょうという感じもする。
+
+[add 'show more activity' button and behavior of selecting a rect · suihan74/github-style@4c4de3a](https://github.com/suihan74/github-style/commit/4c4de3a86d5a49a7390ddb258163207e884f7818)
+
+#### スタイルシートを最近のGitHubのものに追従した
+
+全体的に角が丸くなった。  
+この作業において、何点か修正が必要だった。
+
+[replace stylesheets with newer · suihan74/github-style@81b909e](https://github.com/suihan74/github-style/commit/81b909eb27df914a0e71944bc761f45d2d44b669)
+
+---
 
 ### 追記 (2020/03/06 18:00)
 
