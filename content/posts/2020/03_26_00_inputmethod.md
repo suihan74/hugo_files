@@ -3,13 +3,20 @@ title: "入力メソッドの表示に関するTIPS"
 description: "ややこしい思いをしたのでとりあえず問題のなくなった状態を記録する。"
 tags: ["android", "kotlin", "InputMethod"]
 date: 2020-03-26T22:14:43+09:00
-lastmod: 2020-03-26T22:14:43+09:00
+lastmod: 2020-08-03T15:10:00+09:00
 archives:
     - 2020
     - 2020-03
     - 2020-03-26
 hide_overview: false
 draft: false
+---
+
+## 追記 (2020-08-03)
+
+```Activity.hideSoftInputMethod()```にフォーカス先のビューを渡せるようにした。  
+以前の単純に```window.decorView.rootView```を使う方法だと、ルートが```focusable = false```の場合に文字入力先のビューからフォーカスが外れないため。より確実にフォーカスを外すには、画面中の```focusable = true```な適当なViewやViewGroupを渡せばよい。
+
 ---
 
 久しぶりに触ってたら「わっかんねぇよ」とブチギレた件。
@@ -39,12 +46,12 @@ fun Activity.showSoftInputMethod(
 /**
  * キーボードを隠して入力対象のビューをアンフォーカスする
  */
-fun Activity.hideSoftInputMethod() : Boolean {
+fun Activity.hideSoftInputMethod(focusTarget: View? = null) : Boolean {
     val windowToken = window.decorView.windowToken
     val imm = getSystemService(Context.INPUT_METHOD_SERVICE) as? InputMethodManager
     val result = imm?.hideSoftInputFromWindow(windowToken, InputMethodManager.HIDE_NOT_ALWAYS)
     currentFocus?.clearFocus()
-    window.decorView.rootView?.requestFocus()
+    (focusTarget ?: window.decorView.rootView)?.requestFocus()
     return result ?: false
 }
 ```
@@ -58,7 +65,8 @@ fun Activity.hideSoftInputMethod() : Boolean {
 requireActivity().showSoftInputMethod(editText)
 
 // 非表示
-requireActivity().hideSoftInputMethod()
+// mainLayoutはfocusableな(IMEのフォーカス対象ではない)適当なビューでよい
+requireActivity().hideSoftInputMethod(mainLayout)
 ```
 
 `imm.showSoftInput(view, flag)`の`flag`には`InputMethodManager.SHOW_FORCED`とかいかにも強制的に表示できそうな値が渡せるのだが、どうもこれは使用しない方がよさそう。これを渡すとあとで入力メソッドを隠す際にうまくいかなくなる場合があり、非常に混乱した。
