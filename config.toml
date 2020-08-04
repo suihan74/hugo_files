@@ -30,3 +30,11 @@ hasCJKLanguage = true
 [taxonomies]
   tag = "tags"
   archive = "archives"
+
+[minify]
+  disableCSS = false
+  disableHTML = false
+  disableJS = true
+  disableJSON = false
+  disableSVG = true
+  disableXML = false
