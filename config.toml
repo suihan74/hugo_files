@@ -34,7 +34,7 @@ hasCJKLanguage = true
 [minify]
   disableCSS = false
   disableHTML = false
-  disableJS = true
+  disableJS = false
   disableJSON = false
   disableSVG = true
   disableXML = false
