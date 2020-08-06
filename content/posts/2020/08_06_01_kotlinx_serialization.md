@@ -73,6 +73,8 @@ dependencies {
 ##---------------End: proguard configuration for kotlinx.serialization  ----------
 ```
 
+- ```# <-- change package name to your app's``` : 自分のアプリのパッケージ名に書き換えるのを忘れずに
+
 ---
 
 ## データクラス例
