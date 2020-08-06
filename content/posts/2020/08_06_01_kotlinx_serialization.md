@@ -89,8 +89,8 @@ data class Hoge(
     @ContextualSerialization
     val b : Boolean,
 
-    @Serializable(with = LocalDateTimeSerializer::class)
-    val date: LocalDateTime,
+    @Serializable(with = ZonedDateTimeSerializer::class)
+    val date: ZonedDateTime,
 
     val nullableStr : String? = null
 ) {
@@ -116,20 +116,20 @@ data class Hoge(
 ### シリアライザを用意しないとそもそも扱えないデータ型のためのシリアライザ
 
 ```kt
-/** LocalDateTime用シリアライザ */
-@Serializer(forClass = LocalDateTime::class)
-object LocalDateTimeSerializer : KSerializer<LocalDateTime> {
-    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd HH:mm:ss.SSS")
+/** ZonedDateTime用シリアライザ */
+@Serializer(forClass = ZonedDateTime::class)
+object ZonedDateTimeSerializer : KSerializer<ZonedDateTime> {
+    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
 
     override val descriptor : SerialDescriptor =
-        PrimitiveDescriptor("LocalDateTime", PrimitiveKind.STRING)
+        PrimitiveDescriptor("ZonedDateTime", PrimitiveKind.STRING)
 
-    override fun serialize(encoder: Encoder, obj: LocalDateTime) {
+    override fun serialize(encoder: Encoder, obj: ZonedDateTime) {
         encoder.encodeString(obj.format(formatter))
     }
 
-    override fun deserialize(decoder: Decoder) : LocalDateTime =
-        LocalDateTime.parse(decoder.decodeString(), formatter)
+    override fun deserialize(decoder: Decoder) : ZonedDateTime =
+        ZonedDateTime.parse(decoder.decodeString(), formatter)
 }
 ```
 
@@ -161,14 +161,14 @@ object UserBooleanSerializer : KSerializer<Boolean> {
 ```kt
 fun example() {
     // サンプル用データ
-    val hoge = Hoge("hello world.", 1234, true, LocalDateTime.now())
+    val hoge = Hoge("hello world.", 1234, true, ZonedDateTime.now())
 
     // 型ごとのシリアライザを一括で指定する
     val context = serializersModuleOf(mapOf(
         Boolean::class to BooleanSerializer,
-        LocalDateTime::class to LocalDateTimeSerializer
+        ZonedDateTime::class to ZonedDateTimeSerializer
     ))
-    // この記事の場合ではLocalDateTimeSerializerはプロパティ側で指定されているのでここでは必要ないが、複数の型・シリアライザペアをcontextに登録する例として無駄に書いている
+    // この記事の場合ではZonedDateTimeSerializerはプロパティ側で指定されているのでここでは必要ないが、複数の型・シリアライザペアをcontextに登録する例として無駄に書いている
 
     val json = Json(JsonConfiguration.Stable, context)
 
@@ -176,19 +176,19 @@ fun example() {
     val jsonData = json.stringify(Hoge.serializer(), hoge)
 
     println(jsonData)
-    // ==> {"strstr":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:02:29.571","nullableStr":null}
+    // ==> {"strstr":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:02:29+09:00","nullableStr":null}
 
     // ■デシリアライズ
     val restored = json.parse(Hoge.serializer(), jsonData)
 
     println(restored.message)
-    // ==> hello world.1234true2020-08-06T21:02:29.571null
+    // ==> hello world.1234true2020-08-06T21:02:29+09:00null
 
     // ■リストの扱い方
     val jsonListData = json.stringify(Hoge.serializer().list, listOf(hoge, hoge))
 
     println(jsonListData)
-    // ==> [{"hogegege":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:32:50.745","nullableStr":null},{"hogegege":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:32:50.745","nullableStr":null}]
+    // ==> [{"hogegege":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:02:29+09:00","nullableStr":null},{"hogegege":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:02:29+09:00","nullableStr":null}]
 }
 ```
 
