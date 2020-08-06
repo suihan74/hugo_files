@@ -170,7 +170,7 @@ fun example() {
     ))
     // この記事の場合ではLocalDateTimeSerializerはプロパティ側で指定されているのでここでは必要ないが、複数の型・シリアライザペアをcontextに登録する例として無駄に書いている
 
-    val json = Json(JsonConfiguration.Stable)
+    val json = Json(JsonConfiguration.Stable, context)
 
     // ■シリアライズ
     val jsonData = json.stringify(Hoge.serializer(), hoge)
