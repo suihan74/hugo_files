@@ -2,7 +2,7 @@
 title: "kotlinx.serializationことはじめ"
 description: "kotlin用のJsonシリアライザを使ってみる"
 tags: ["kotlin", "kotlinx", "serialization"]
-date: 2020-08-06T21:40:40+09:00
+date: 2020-08-06T21:40:00+09:00
 lastmod: 2020-08-06T21:40:00+09:00
 archives:
     - 2020
