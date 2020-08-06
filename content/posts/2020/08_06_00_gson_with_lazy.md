@@ -30,7 +30,7 @@ data class Hoge(
 ```
 
 ```kt
-fun incorrectExample() {
+fun correctExample() {
     val hoge = Hoge("hoge", 1234)
     val gson = Gson()
 
