@@ -166,6 +166,7 @@ fun example() {
         Boolean::class to BooleanSerializer,
         LocalDateTime::class to LocalDateTimeSerializer
     ))
+    // この記事の場合ではLocalDateTimeSerializerはプロパティ側で指定されているのでここでは必要ないが、複数の型・シリアライザペアをcontextに登録する例として無駄に書いている
 
     val json = Json(JsonConfiguration.Stable)
 
