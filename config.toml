@@ -9,6 +9,7 @@ hasCJKLanguage = true
 [params]
   author = "すいはん"
   description = "SNSよりも少し長い文を書くところ"
+  keywords = ["ブログ","プログラミング","Android","kotlin","Hugo"]
   github = "suihan74"
   twitter = "suihan742"
   mastodon = "https://pawoo.net/@suihan742"
