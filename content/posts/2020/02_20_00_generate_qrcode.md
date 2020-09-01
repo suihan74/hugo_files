@@ -14,6 +14,11 @@ draft: false
 
 AndroidアプリでQRコードを生成して画面に表示する方法。今回は読み取りについては書いていない。
 
+## 追記 (2020-09-02)
+
+あまりにあんまりだったのでサンプルコードを修正した。  
+まぁ多少はマシになった。
+
 ## 追記 (2020-07-21)
 
 データバインディングの始め方についての記事へのリンクを追加。
@@ -23,12 +28,7 @@ AndroidアプリでQRコードを生成して画面に表示する方法。今�
 lifecycleに関する依存先のバージョンを`2.2.0`にアップデート。  
 それに伴い、`ViewModelProvider`を使用したViewModelのインスタンス生成方法を修正。
 
-`ViewModelProviders.of(owner)` → `ViewModelProvider(owner)`
-
-## 追記 (2020-09-02)
-
-あまりにあんまりだったのでサンプルコードを修正した。  
-まぁ多少はマシになった。
+`ViewModelProviders.of(owner)` → `ViewModelProvider(owner)`]
 
 ---
 
