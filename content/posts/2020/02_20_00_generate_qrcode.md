@@ -3,7 +3,7 @@ title: "AndroidでQRコードを生成して画面に表示する"
 description: "zxingでQRコード生成"
 tags: ["Android", "kotlin", "QRcode"]
 date: 2020-02-20T01:48:21+09:00
-lastmod: 2020-09-02T02:30:00+09:00
+lastmod: 2020-09-02T03:00:00+09:00
 archives:
     - 2020
     - 2020-02
@@ -66,10 +66,9 @@ data class QRSource(
     val data: String,
 
     /**
-     * QRコードサイズ(dp)
+     * QRコードサイズ(px)
      *
-     * ライブラリにはpxで渡さないといけないが、それは色々面倒
-     * (QRビットマップ側の余白は0で)ImageViewのサイズいっぱいに拡縮無しで表示する前提でdpで扱うようにした
+     * dpではなくpxなので注意
      */
     val size: Int,
 
@@ -99,7 +98,6 @@ data class QRSource(
 ```kt
 package com.suihan74.sample
 
-import android.content.Context
 import android.graphics.Bitmap
 import android.graphics.Color
 import android.util.Log
@@ -125,24 +123,19 @@ class HogeViewModel : ViewModel() {
     }
 
     /** QRコード化する情報をセット */
-    fun setQRSource(qrSource: QRSource?, context: Context) {
+    fun setQRSource(qrSource: QRSource?) {
         this.qrSource = qrSource
         viewModelScope.launch(Dispatchers.Default) {
             (qrBitmap as MutableLiveData<Bitmap?>).postValue(
-                generateQRCodeBitmap(qrSource, context)
+                generateQRCodeBitmap(qrSource)
             )
         }
     }
 
     /** QRコードのビットマップを生成 */
-    private fun generateQRCodeBitmap(qrSource: QRSource?, context: Context) : Bitmap? =
+    private fun generateQRCodeBitmap(qrSource: QRSource?) : Bitmap? =
         if (qrSource == null) null
         else try {
-            // dpからpxに変換する
-            // 他に良いやりようがあるんだろうなという感じはする
-            val density = context.resources.displayMetrics.density
-            val pxSize = (qrSource.size * density).toInt()
-
             // 生成に関するパラメータ
             val hints = mapOf(
                 // マージン
@@ -204,6 +197,18 @@ class HogeActivity : AppCompatActivity {
             lifecycleOwner = this@HogeActivity
             vm = viewModel
         }
+
+        // サンプルだし適当にこの辺で値入れちゃう
+        viewModel.setQRSource(
+            QRSource(
+                data = "https://suihan742.github.io",
+                size = resources.getDimension(R.dimen.qr_size),
+                errorCorrectionLevel = ErrorCorrectionLevel.M,
+                charset = "UTF-8",
+                margin = 0,
+            ),
+            this
+        )
     }
 }
 ```
