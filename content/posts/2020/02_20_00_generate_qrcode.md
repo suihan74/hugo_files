@@ -224,7 +224,7 @@ fun ImageView.setBitmapSource(bitmap: Bitmap?) {
     <data>
         <variable
             name="vm"
-            type="com.suihan74.hoge.HogeViewModel" />
+            type="com.suihan74.sample.HogeViewModel" />
     </data>
 
     <LinearLayout
