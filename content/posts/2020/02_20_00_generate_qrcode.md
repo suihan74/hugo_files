@@ -3,7 +3,7 @@ title: "AndroidでQRコードを生成して画面に表示する"
 description: "zxingでQRコード生成"
 tags: ["Android", "kotlin", "QRcode"]
 date: 2020-02-20T01:48:21+09:00
-lastmod: 2020-07-21T12:40:00+09:00
+lastmod: 2020-09-02T02:30:00+09:00
 archives:
     - 2020
     - 2020-02
@@ -24,6 +24,11 @@ lifecycleに関する依存先のバージョンを`2.2.0`にアップデート�
 それに伴い、`ViewModelProvider`を使用したViewModelのインスタンス生成方法を修正。
 
 `ViewModelProviders.of(owner)` → `ViewModelProvider(owner)`
+
+## 追記 (2020-09-02)
+
+あまりにあんまりだったのでサンプルコードを修正した。  
+まぁ多少はマシになった。
 
 ---
 
@@ -47,39 +52,143 @@ dependencies {
 
 READMEに色々書いてあるが、QRコードの読み込みはしないで単純にQRコードを生成するだけならそんなに色々やる必要はなさそう。
 
+## Model
+
+```kt
+package com.suihan74.sample
+
+import android.graphics.Color
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
+
+/** QRコード生成の元情報 */
+data class QRSource(
+    /** QR化するデータ */
+    val data: String,
+
+    /** QRコードサイズ(dp) */
+    val size: Int,
+
+    /** 誤り訂正レベル */
+    val errorCorrectionLevel: ErrorCorrectionLevel,
+
+    /** 文字コード */
+    val charset: String,
+
+    /** マージン(dp) */
+    val margin: Int,
+
+    /** 前景色 */
+    val foregroundColor: Int = Color.BLACK,
+
+    /** 背景色 */
+    val backgroundColor: Int = Color.WHITE
+)
+```
+
 ## ViewModel
 
 ```kt
+package com.suihan74.sample
+
+import android.content.Context
+import android.graphics.Bitmap
+import android.graphics.Color
+import android.util.Log
+import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
+import androidx.lifecycle.ViewModel
+import androidx.lifecycle.viewModelScope
+import com.google.zxing.BarcodeFormat
+import com.google.zxing.EncodeHintType
+import com.google.zxing.qrcode.decoder.ErrorCorrectionLevel
+import com.journeyapps.barcodescanner.BarcodeEncoder
+import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.launch
+
 class HogeViewModel : ViewModel() {
-    /** QRコード化する文字列 */
-    val qrData by lazy {
-        MutableLiveData<String>("https://foo.bar.baz/")
+    /** QRコード化する情報 */
+    var qrSource: QRSource? = null
+        private set
+
+    /** QRコードのビットマップ */
+    val qrBitmap: LiveData<Bitmap?> by lazy {
+        MutableLiveData<Bitmap?>(null)
     }
 
-    /** QRコードの色 */
-    val qrForegroundColor by lazy {
-        MutableLiveData<Int>(Color.BLACK)
+    /** QRコード化する情報をセット */
+    fun setQRSource(qrSource: QRSource?, context: Context) {
+        this.qrSource = qrSource
+        viewModelScope.launch(Dispatchers.Default) {
+            (qrBitmap as MutableLiveData<Bitmap?>).postValue(
+                generateQRCodeBitmap(qrSource, context)
+            )
+        }
     }
 
-    /** QRコードの背景色 */
-    val qrBackgroundColor by lazy {
-        MutableLiveData<Int>(Color.WHITE)
-    }
+    /** QRコードのビットマップを生成 */
+    private fun generateQRCodeBitmap(qrSource: QRSource?, context: Context) : Bitmap? =
+        if (qrSource == null) null
+        else try {
+            // dpからpxに変換する
+            // 他に良いやりようがあるんだろうなという感じはする
+            val density = context.resources.displayMetrics.density
+            val pxSize = (qrSource.size * density).toInt()
+            val pxMargin = (qrSource.margin * density).toInt()
 
-    /** コルーチンスコープ */
-    val coroutineScope get() = this.viewModelScope
-    // DataBinding経由で渡すためにプロパティとして用意し直している。冗長感ある
+            // 生成に関するパラメータ
+            val hints = mapOf(
+                // マージン
+                EncodeHintType.MARGIN to pxMargin,
+                // 誤り訂正レベル
+                EncodeHintType.ERROR_CORRECTION to qrSource.errorCorrectionLevel,
+                // 文字コード
+                EncodeHintType.CHARACTER_SET to qrSource.charset
+            )
+
+            BarcodeEncoder().encodeBitmap(
+                qrSource.data,
+                BarcodeFormat.QR_CODE,
+                pxSize, pxSize,
+                hints
+            ).also { encoder ->
+                // 黒白以外にしたいならここで適当にQRコードを色付けする
+                val pixels = IntArray(pxSize * pxSize)
+                encoder.getPixels(pixels, 0, pxSize, 0, 0, pxSize, pxSize)
+                for (idx in pixels.indices) {
+                    pixels[idx] =
+                        if (pixels[idx] == Color.BLACK) qrSource.foregroundColor
+                        else qrSource.backgroundColor
+                }
+                encoder.setPixels(pixels, 0, pxSize, 0, 0, pxSize, pxSize)
+            }
+        }
+        catch (e: Throwable) {
+            Log.e("genQRCode", Log.getStackTraceString(e))
+            null
+        }
 }
 ```
 
 ## Activity
 
 ```kt
+package com.suihan74.sample
+
+import androidx.appcompat.app.AppCompatActivity
+import androidx.databinding.DataBindingUtil
+import androidx.lifecycle.ViewModelProviders
+import com.suihan74.sample.R
+import com.suihan74.sample.databinding.ActivityHogeBinding
+import kotlinx.android.synthetic.main.activity_hoge.*
+
 class HogeActivity : AppCompatActivity {
+    private val viewModel: HogeViewModel by lazy {
+        ViewModelProvider(this)[HogeViewModel::class.java]
+    }
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        val viewModel = ViewModelProvider(this)[HogeViewModel::class.java]
         DataBindingUtil.setContentView<ActivityHogeBinding>(
             this,
             R.layout.activity_hoge
@@ -94,63 +203,50 @@ class HogeActivity : AppCompatActivity {
 ## BindingAdapter
 
 ```kt
-/** ImageViewにQRコードを描画するBindingAdapter */
-@BindingAdapter("app:qrSrc", "app:background", "app:foreground", "app:coroutineScope")
-fun AppCompatImageView.generateQRCode(data: String?, backgroundColor: Int?, foregroundColor: Int?, coroutineScope: CoroutineScope?) {
-    if (data.isNullOrBlank()) return
-    if (backgroundColor == null) return
-    if (foregroundColor == null) return
-    if (coroutineScope == null) return
+package com.suihan74.sample
 
-    val pxSize = context.resources.getDimension(R.dimen.qr_size).toInt()
+import android.graphics.Bitmap
+import android.widget.ImageView
+import androidx.databinding.BindingAdapter
 
-    coroutineScope.launch(Dispatchers.Default) {
-        val bitmap = generateQRCodeBitmap(
-            data,
-            backgroundColor,
-            foregroundColor,
-            pxSize
-        ) ?: return@launch
-
-        withContext(Dispatchers.Main) {
-            setImageBitmap(bitmap)
-        }
-    }
-}
-
-/** QRコードのBitmapを生成 */
-private fun generateQRCodeBitmap(data: String, backgroundColor: Int, foregroundColor: Int, pxSize: Int) : Bitmap? {
-    return try {
-        val hints = mapOf(
-            // マージン指定
-            EncodeHintType.MARGIN to 0,
-            // 誤り訂正レベルを指定
-            EncodeHintType.ERROR_CORRECTION to ErrorCorrectionLevel.M
-        )
-
-        val barcodeEncoder = BarcodeEncoder()
-        barcodeEncoder.encodeBitmap(data, BarcodeFormat.QR_CODE, pxSize, pxSize, hints).apply {
-            // QRコードを色付けする
-            val pixels = IntArray(pxSize * pxSize)
-            getPixels(pixels, 0, pxSize, 0, 0, pxSize, pxSize)
-            pixels.indices.forEach { idx ->
-                pixels[idx] =
-                    if (pixels[idx] == Color.BLACK) foregroundColor
-                    else backgroundColor
-            }
-            setPixels(pixels, 0, pxSize, 0, 0, pxSize, pxSize)
-        }
-    }
-    catch (e: Throwable) {
-        Log.e("QR error", Log.getStackTraceString(e))
-        null
-    }
+/** ImageViewにBitmapをバインドする */
+@BindingAdapter("bitmap")
+fun ImageView.setBitmapSource(bitmap: Bitmap?) {
+    this.setImageBitmap(bitmap)
 }
 ```
 
-`Bitmap`の生成はコルーチンで行い、生成完了したらUIスレッドで`ImageView`に渡す。
+## Layout
 
-bindingを経由した拡張関数へのコルーチンスコープの渡し方に無理矢理感を感じる。ViewModelごと直接渡してしまった方がシンプルでいいかもしれない。
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android">
+    <data>
+        <variable
+            name="vm"
+            type="com.suihan74.hoge.HogeViewModel" />
+    </data>
+
+    <LinearLayout
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/QRImageView"
+            bitmap="@{vm.qrBitmap}"
+            android:contentDescription="@null"
+            android:scaleType="center"
+            android:layout_width="@dimen/qr_size"
+            android:layout_height="@dimen/qr_size" />
+
+...
+
+    </LinearLayout>
+</layout>
+```
+
+`Bitmap`の生成はコルーチンで行い、生成完了したらpostValue()で渡す。
 
 ### EncodeHintType
 
@@ -205,38 +301,3 @@ bindingを経由した拡張関数へのコルーチンスコープの渡し方�
 - `GS1_FORMAT` …… GS1標準のデータエンコードを強制するか (true or false)  
   GS1QRコードについてはこの辺？ <https://www.dsri.jp/standard/2d-symbol/gs1-qr.html>
 
-## レイアウト
-
-```xml
-<?xml version="1.0" encoding="utf-8"?>
-<layout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
-
-    <data>
-        <variable
-            name="vm"
-            type="com.suihan74.hoge.HogeViewModel" />
-    </data>
-
-    <LinearLayout
-        android:orientation="vertical"
-        android:background="@{vm.backgroundColor}"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <androidx.appcompat.widget.AppCompatImageView
-            app:qrSrc="@{vm.qrData}"
-            app:background="@{vm.qrBackgroundColor}"
-            app:foreground="@{vm.qrForegroundColor}"
-            app:coroutineScope="@{vm.coroutineScope}"
-            android:scaleType="center"
-            android:layout_width="@dimen/qr_size"
-            android:layout_height="@dimen/qr_size"
-            />
-
-...
-
-    </LinearLayout>
-</layout>
-```
