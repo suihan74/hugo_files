@@ -3,7 +3,7 @@ title: "Android - DataBindingはじめ"
 description: いまさらAndroidでDataBinding触れはじめてみた浅い記事
 tags: ["android", "kotlin", "DataBinding", "ViewModel", "LiveData"]
 date: 2020-01-02T17:04:24+09:00
-lastmod: 2020-07-21T12:30:00+09:00
+lastmod: 2020-09-02T02:35:00+09:00
 archives:
     - 2020
     - 2020-01
@@ -20,7 +20,7 @@ draft: false
 ```gradle
 android {
     buildFeatures {
-        dataBinding = true
+        dataBinding true
     }
 }
 ```
@@ -62,7 +62,7 @@ ViewModelやらDataBindingを使用するのに必要な設定・依存関係を
 ```gradle
 android {
     buildFeatures {
-        dataBinding = true
+        dataBinding true
     }
 }
 
