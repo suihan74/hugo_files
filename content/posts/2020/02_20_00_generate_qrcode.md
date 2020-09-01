@@ -202,7 +202,7 @@ class HogeActivity : AppCompatActivity {
         viewModel.setQRSource(
             QRSource(
                 data = "https://suihan742.github.io",
-                size = resources.getDimension(R.dimen.qr_size),
+                size = resources.getDimensionPixelSize(R.dimen.qr_size),
                 errorCorrectionLevel = ErrorCorrectionLevel.M,
                 charset = "UTF-8",
                 margin = 0,
