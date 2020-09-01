@@ -65,7 +65,11 @@ data class QRSource(
     /** QR化するデータ */
     val data: String,
 
-    /** QRコードサイズ(dp) */
+    /**
+     * QRコードサイズ(dp)
+     *
+     * margin=0にしてImageViewのサイズいっぱいに拡縮無しで表示するためにここではdpで扱っている
+     */
     val size: Int,
 
     /** 誤り訂正レベル */
@@ -74,8 +78,12 @@ data class QRSource(
     /** 文字コード */
     val charset: String,
 
-    /** マージン(dp) */
-    val margin: Int,
+    /**
+     * マージン(セル数, 4セル以上の余白が必要)
+     *
+     * レイアウト側で十分な余白を用意してある場合は0とかにしておいた方が制御しやすいかもしれない
+     */
+    val margin: Int = 4,
 
     /** 前景色 */
     val foregroundColor: Int = Color.BLACK,
@@ -133,12 +141,11 @@ class HogeViewModel : ViewModel() {
             // 他に良いやりようがあるんだろうなという感じはする
             val density = context.resources.displayMetrics.density
             val pxSize = (qrSource.size * density).toInt()
-            val pxMargin = (qrSource.margin * density).toInt()
 
             // 生成に関するパラメータ
             val hints = mapOf(
                 // マージン
-                EncodeHintType.MARGIN to pxMargin,
+                EncodeHintType.MARGIN to qrSource.margin,
                 // 誤り訂正レベル
                 EncodeHintType.ERROR_CORRECTION to qrSource.errorCorrectionLevel,
                 // 文字コード
