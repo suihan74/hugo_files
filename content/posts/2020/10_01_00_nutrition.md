@@ -9,8 +9,7 @@ archives:
     - 2020-10
     - 2020-10-01
 hide_overview: false
-# ↓公開時にfalseにする
-draft: true
+draft: false
 ---
 
 <!-- 前文 -->
