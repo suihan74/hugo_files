@@ -77,10 +77,12 @@ public final class Hoge {
 
 ### 拡張関数として用意する
 
+```kt
 @BindingAdapter("items")
 fun RecyclerView.setItems(items: List<Item>?) {
     // 省略
 }
+```
 
 簡単でいいと思う。  
 やたら拡張関数生やすのはちょっとと思ったら次の方法。
