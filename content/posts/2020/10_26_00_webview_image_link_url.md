@@ -71,7 +71,7 @@ webView.setOnLongClickListner {
 
 ## 余談
 
-なお、上記コード中の```message.data```からはここでは次の三つの情報が得られる。
+ちなみに、上記コード中の```message.data```からはここでは次の三つの情報が得られる。
 
 ```kt
 // リンク先URL
@@ -83,3 +83,9 @@ message.data.getString("src")
 // リンク部分の文字列(リンクテキストの場合。画像リンクではnullになる)
 message.data.getString("title")
 ```
+
+---
+
+## 参考
+
+[How to get link-URL in Android WebView with HitTestResult for a linked image (and not the image-URL) with Longclick - Stack Overflow](https://stackoverflow.com/questions/12168039/how-to-get-link-url-in-android-webview-with-hittestresult-for-a-linked-image-an)
