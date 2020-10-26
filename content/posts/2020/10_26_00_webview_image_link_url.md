@@ -56,7 +56,7 @@ webView.setOnLongClickListner {
         WebView.HitTestResult.SRC_IMAGE_ANCHOR_TYPE -> {
             // 画像リンクの場合
             val message = Handler().obtainMessage()
-            wv.requestFocusNodeHref(message)
+            webView.requestFocusNodeHref(message)
 
             val linkUrl: String? = message.data.getString("url")
 
