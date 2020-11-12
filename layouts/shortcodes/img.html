@@ -3,15 +3,18 @@
 <!-- href : リンク先 (省略時: $srcと同じ) -->
 <!-- title : 画像タイトル, hover時に表示される (省略時: 設定なし) -->
 <!-- zoom : 各縮率 (省略時: 設定なし(1.0)) -->
+<!-- lightbox : ポップアップ表示をまとめる際のタグ(省略時: ページデフォルトの値でまとめる) -->
 {{- $src := "" -}}
 {{- $href := "" -}}
 {{- $zoom := "" -}}
 {{- $title := "" -}}
+{{- $lightbox := "" -}}
 {{- if .IsNamedParams -}}
   {{- $src = .Get "src" -}}
   {{- $href = .Get "href" -}}
   {{- $zoom = .Get "zoom" -}}
   {{- $title = .Get "title" -}}
+  {{- $lightbox = .Get "lightbox" -}}
 {{- else -}}
   {{- $src = .Get 0 -}}
   {{- $title = .Get 1 -}}
@@ -27,7 +30,9 @@
     {{- $href = $src -}}
   {{- end -}}
 
-  <a href="{{ $src }}">
+  <a href="{{ $src }}"
+     data-lightbox="{{if ne $lightbox ""}}{{ $lightbox }}{{else}}images{{end}}"
+     {{ if ne $title "" }}data-title="{{ $title }}"{{ end }}>
     <img border="0" src="{{ $src }}" {{- if ne $title "" }}title="{{ $title }}"{{ end }} {{- if ne $zoom "" }} style="zoom:{{ $zoom }}"{{ end }}>
   </a>
 {{- end -}}
