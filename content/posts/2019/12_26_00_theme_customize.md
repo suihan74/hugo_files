@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-08-01T19:00:00+09:00
+lastmod: 2020-11-13T18:00:00+09:00
 archives:
     - 2019
     - 2019-12
@@ -27,6 +27,19 @@ GitHub風……というかCSSとか一部GitHubからそのまま持ってき�
 
 ## 改修点
 
+### 追記 (2020/11/13 18:00)
+
+#### 画像をポップアップするjQueryプラグイン導入した
+
+[Lightbox2](https://lokeshdhakar.com/projects/lightbox2/)
+
+今まで同タブで単純に画像を開いていたのだが、アレな感じがしたのでページ内でポップアップするようにした。
+
+ショートコード`img`を書き換えた。  
+(つまりこれを使用していない古い記事ではポップアップされずにページ遷移する)
+
+---
+
 ### 追記 (2020/08/01 19:00)
 
 #### fork元マージした
@@ -43,7 +56,7 @@ fork元の方でグラフとかタイムラインとかがいい感じに実装�
   [fix an issue with position of activity items · suihan74/github-style@f146b07](https://github.com/suihan74/github-style/commit/f146b079d38864942d727230c8d6852dc52b601a)
 
 - 進捗グラフにマウスオーバーしたときに表示されるメッセージ中の'contribution'を'post'に置き換えた  
-  [replace &#39;contribution&#39; with &#39;post&#39; on hover messages · suihan74/github-style@dc55047](https://github.com/suihan74/github-style/commit/dc5504790b61e055cf59e77edd828dca7bd4c660)
+  [replace 'contribution' with 'post' on hover messages · suihan74/github-style@dc55047](https://github.com/suihan74/github-style/commit/dc5504790b61e055cf59e77edd828dca7bd4c660)
 
 - 名詞の複数形への対応 ('1 post', '2 posts'...など)  
   [fix to consider plural nouns · suihan74/github-style@9ac05a2](https://github.com/suihan74/github-style/commit/9ac05a2a74d6e777b1be482dd1a082fba96015a6)
