@@ -3,12 +3,46 @@ title: "BindingAdapterに関するいくつかのこと"
 description: "シンプルな方法でビューに値をセットする。"
 tags: ["android", "kotlin", "DataBinding"]
 date: 2020-03-07T20:30:49+09:00
-lastmod: 2020-03-07T21:23:49+09:00
+lastmod: 2020-11-30T01:30:00+09:00
 archives:
     - 2020
     - 2020-03
     - 2020-03-07
 draft: false
+---
+
+## 追記 (2020-11-30)
+
+双方向バインディングのやり方を書いてなかったので追記。
+
+[#双方向バインディング](#双方向バインディング)
+
+### 拡張関数かオブジェクトかの選択
+
+以下2通りの方法でバインディングアダプタを記述することができるが、基本はオブジェクトの方を使った方がいいと思う。  
+コード側でも共用したい場合に限り拡張関数の方を使う感じで。
+
+#### 拡張関数として用意する
+
+```kt
+@BindingAdapter("items")
+fun RecyclerView.setItems(items: List<Item>?) {
+    // 省略
+}
+```
+
+#### オブジェクトとして用意する
+
+```kt
+object RecyclerViewBindingAdapters {
+    @JvmStatic
+    @BindingAdapter("items")
+    fun setItems(view: RecyclerView, items: List<Item>?) {
+        // 省略
+    }
+}
+```
+
 ---
 
 ## DataBinding
@@ -132,3 +166,49 @@ fun View.setHoge(oldA: Hoge?, oldB: Hoge?, newA: Hoge?, newB: Hoge?) {
     ...
 }
 ```
+
+## 双方向バインディング
+
+`Slider`の現在値(`android:value`)を双方向バインドする例。
+
+```kt
+
+object SliderBindingAdapters {
+
+    /** Model --> View */
+    @JvmStatic
+    @BindingAdapter("android:value")
+    fun bindSliderValue(slider: Slider, value: Float?) {
+        if (value != null && slider.value != value) {
+            slider.value = value
+        }
+    }
+
+    /** View --> Model */
+    @JvmStatic
+    @InverseBindingAdapter(attribute = "android:value")
+    fun bindSliderValueInverse(slider: Slider) : Float {
+        return slider.value
+    }
+
+    /**
+     * `android:value`が更新されたことを検知するリスナを登録して、
+     * 値変更時に`bindSliderValueInverse`を呼び出す
+     */
+    @JvmStatic
+    @BindingAdapter("android:valueAttrChanged")
+    fun bindListeners(slider: Slider, valueAttrChanged: InverseBindingListener?) {
+        slider.addOnChangeListener { _, _, _ ->
+            valueAttrChanged?.onChange()
+        }
+    }
+}
+```
+
+`InverseBindingAdapter`と、リスナをセットするための`BindingAdapter`を書くのが肝。
+
+バインドするリスナの属性名はデフォルトでは`(値バインド対象属性名+)AttrChanged`となる。(今回の場合`android:value`の変更を監視するから`android:valueAttrChanged`)
+
+任意の属性名を設定したい場合は`@InverseBindingAdapter`アノテーションの引数に`event="~~~"`という形で渡す。
+
+`bindListeners`で設定しているリスナの中身は、要は値が更新されたことだけ伝えられればいいのでただ単純に`valueAttrChanged?.onChange()`を呼んでいる。(`InverseBindingListener`が呼ばれる)
