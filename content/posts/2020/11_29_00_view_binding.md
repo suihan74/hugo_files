@@ -309,7 +309,7 @@ IDをスネークケースでつけている場合、それらをすべてロー
     val hoge = binding.hogeButton
     ```
 
-    すべての箇所を`binding`を経由して参照するように書き直す必要があるので、場合によっては`Activity`や`Fragment`に`binding`をプロパティとして保持するように書き足すとか、`Activity#onCreate`やら`Fragment#onCreateView`やらから他のメソッドに渡す際の引数にする必要がある。
+    すべての箇所を`binding`を経由して参照するように書き直す必要があるので、場合によっては`Activity`や`Fragment`に`binding`をプロパティとして保持するように書き足すとか、`Activity#onCreate`やら`Fragment#onCreateView`やらから他のメソッドを呼ぶ際の引数にする必要がある。
 
 ### 外部からの直接的な`View`参照を修正する
 
