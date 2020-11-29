@@ -205,6 +205,16 @@ object SliderBindingAdapters {
 }
 ```
 
+```xml
+<com.google.android.material.slider.Slider
+    android:value="@={vm.sliderValue}"
+    android:valueFrom="0.0"
+    android:valueTo="1.0"
+    android:stepSize="0.02"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"/>
+```
+
 `InverseBindingAdapter`と、リスナをセットするための`BindingAdapter`を書くのが肝。
 
 バインドするリスナの属性名はデフォルトでは`(値バインド対象属性名+)AttrChanged`となる。(今回の場合`android:value`の変更を監視するから`android:valueAttrChanged`)
