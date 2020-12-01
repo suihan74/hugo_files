@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-11-13T18:00:00+09:00
+lastmod: 2020-12-01T22:20:00+09:00
 archives:
     - 2019
     - 2019-12
@@ -26,6 +26,21 @@ draft: false
 GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるやつ。
 
 ## 改修点
+
+### 追記 (2020-12-01 22:20)
+
+#### 月別アクティビティが年を考慮していない問題を修正
+
+[contribution not properly displayed for past years #45](https://github.com/MeiK2333/github-style/issues/45)
+
+#### グラフタイルをクリックしたときに表示されるアクティビティが年を考慮していない問題を修正
+
+[fix generating contributions · suihan74/github-style@26ee9ff](https://github.com/suihan74/github-style/commit/26ee9ff5e8530b5cf7fb1de77f168ff29f1fa277)
+
+タイルをクリックしたときの挙動自体がこちらで勝手につけた機能なので、好きに直すなど。  
+年を表す変数だけ文字列として扱われていたので、これも数値に直した。
+
+---
 
 ### 追記 (2020/11/13 18:00)
 
