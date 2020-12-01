@@ -37,6 +37,8 @@ GitHub風……というかCSSとか一部GitHubからそのまま持ってき�
 
 [fix generating contributions · suihan74/github-style@26ee9ff](https://github.com/suihan74/github-style/commit/26ee9ff5e8530b5cf7fb1de77f168ff29f1fa277)
 
+[modify not to use yearStr · suihan74/github-style@08ad04](https://github.com/suihan74/github-style/commit/08ad04beeddb06517b22741d4811d4e98b90f26d)
+
 タイルをクリックしたときの挙動自体がこちらで勝手につけた機能なので、好きに直すなど。  
 年を表す変数だけ文字列として扱われていたので、これも数値に直した。
 
