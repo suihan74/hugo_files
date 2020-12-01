@@ -34,7 +34,7 @@ fun openFooDialog(fragmentManager: FragmentManager) {
     val dialog = FooDialogFragment.createInstance()
 
     dialog.setPositiveAction {
-        // 別のダイアログ`BarDialogFragment`を開く
+        // ダイアログのポジティブボタン押下で別のダイアログ`BarDialogFragment`を開く
         // `FooDialogFragment`表示中に画面回転すると失敗する
         openBarDialog(fragmentManager)
     }
@@ -95,7 +95,7 @@ class FooDialogFragment : DialogFragment() {
 
 ```kt
 dialog.setPositiveAction {
-    // 別のダイアログ`BarDialogFragment`を開く
+    // ダイアログのポジティブボタン押下で別のダイアログ`BarDialogFragment`を開く
     // `FooDialogFragment`表示中に画面回転すると失敗する
     openBarDialog(fragmentManager)
 }
@@ -116,7 +116,7 @@ fun openFooDialog(fragmentManager: FragmentManager) {
     val dialog = FooDialogFragment.createInstance()
 
     dialog.setPositiveAction { f ->
-        // 別のダイアログ`BarDialogFragment`を開く
+        // ダイアログのポジティブボタン押下で別のダイアログ`BarDialogFragment`を開く
         // `FooDialogFragment`の`parentFragmentManager`なので、
         // `openFooDialog()`に渡された`fragmentManager`に相当するものである(再生成されていたらインスタンスは別である)
         openBarDialog(f.parentFragmentManager)
