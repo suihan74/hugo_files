@@ -23,11 +23,6 @@ hasCJKLanguage = true
   amazonAssociate = "suihan7406-22"
   disableDarkMode = true
 
-[markup]
-  [markup.goldmark]
-    [markup.goldmark.renderer]
-      unsafe = true
-
 [taxonomies]
   tag = "tags"
   archive = "archives"
