@@ -5,6 +5,8 @@ theme = "github-style"
 publishDir = "public"
 googleAnalytics = "UA-71542625-2"
 hasCJKLanguage = true
+pygmentsCodefences = true
+pygmentsUseClasses = true
 
 [params]
   author = "すいはん"
