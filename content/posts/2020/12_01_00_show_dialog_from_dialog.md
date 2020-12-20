@@ -29,7 +29,7 @@ draft: false
 
 たとえば何らかの`Fragment`とかで、以下のようにしてダイアログを開くことにする。
 
-```kt
+```kt:HogeFragment(問題あり).kt
 fun openFooDialog(fragmentManager: FragmentManager) {
     val dialog = FooDialogFragment.createInstance()
 
@@ -48,7 +48,7 @@ fun openFooDialog(fragmentManager: FragmentManager) {
 ダイアログ自体は次のような感じ。  
 `BarDialogFragment`も同じ感じとする。
 
-```kt
+```kt:FooDialogFragment(問題あり).kt
 class FooDialogFragment : DialogFragment() {
     companion object {
         // 引数がある場合に`createInstance()`を経由して`setArguments()`したりしている
@@ -111,7 +111,7 @@ dialog.setPositiveAction {
 
 ### 呼び出し元(修正後)
 
-```kt
+```kt:HogeFragment.kt
 fun openFooDialog(fragmentManager: FragmentManager) {
     val dialog = FooDialogFragment.createInstance()
 
@@ -128,7 +128,7 @@ fun openFooDialog(fragmentManager: FragmentManager) {
 
 ### ダイアログ(修正後)
 
-```kt
+```kt:FooDialogFragment.kt
 class FooDialogFragment : DialogFragment() {
     companion object {
         // 引数がある場合に`createInstance()`を経由して`setArguments()`したりしている
