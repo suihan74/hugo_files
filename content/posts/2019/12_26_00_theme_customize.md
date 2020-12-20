@@ -3,7 +3,7 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-12-01T22:20:00+09:00
+lastmod: 2020-12-20T20:30:00+09:00
 archives:
     - 2019
     - 2019-12
@@ -11,7 +11,8 @@ archives:
 draft: false
 ---
 
-どこをどう変えたか、どうやって変えたか……etcを忘れそうなので急ぎメモ。
+どこをどう変えたか、どうやって変えたか……etcを忘れそうなので変更の都度メモ。  
+記事の下にいくほど古く、現在では変更してしまった内容も含まれます。
 
 ## テーマ
 
@@ -23,9 +24,49 @@ draft: false
 
   - [サンプルページ](https://themes.gohugo.io//theme/github-style/)
 
-GitHub風……というかCSSとか一部GitHubからそのまま持ってきてる感じのあるやつ。
+マージ作業が面倒なので`MeiK2333/github-style`の最新の状態はほぼ追従していません。ので、本家ではとっくに直っている問題がそのままだったり、現時点では内部的にはだいぶ別物になっているかも。
 
-## 改修点
+---
+
+### 追記 (2020-12-20 20:30)
+
+#### シンタックスハイライトにタイトルを挿入できるようにした
+
+[HugoのコードブロックにQiitaのようなTitleをつける | AABrain](https://aakira.app/blog/2018/12/code-block-title/)
+
+参考……というかほぼそのまま使わせてもらいました。  
+(タイトル部分のスタイルは適当に修正した > [dbc6945](https://github.com/suihan74/github-style/blob/dbc694577b234ecbbf7c59ab71e2e59aee0b8abc/static/css/syntax-highlight.css#L84))
+
+```kt:example.kt
+/** こんな感じ */
+fun main(args : Array<String>) {
+    println("hello world")
+}
+```
+
+````md:タイトル付きシンタックスハイライトのマークダウンでの書き方.md
+```kt:title.kt
+~~~
+```
+````
+
+のように書くと、`言語:タイトル`のタイトルの部分が表示される。タイトル部分には言語ごとの正しい拡張子が必須っぽい。
+
+#### タグ部分の表示を`MeiK2333/github-style`のものに追従した
+
+[modify styles for tags and timestamp · suihan74/github-style@7e90814](https://github.com/suihan74/github-style/commit/7e908145e43f3e4bd7182a0b0902e2a3da1fb4bc)
+
+ついでにトップページ・投稿一覧ページでのタイムスタンプの相対表記やめた。
+
+画面幅が狭い場合にタグ文字列の途中で改行されないように`display: inline-block`を指定した。
+
+#### 空白を含むタグのリンクが誤っていたのを修正した
+
+[fix tags url · suihan74/github-style@66ebceb](https://github.com/suihan74/github-style/commit/66ebcebfb7b35beebf882acf85ab5f3c6da71bf2)
+
+文字列をURL用に変換するための関数`urlize`を使用し忘れていたので、タグ文字列に空白が含まれる場合に誤ったリンクが生成されていたので修正した。
+
+---
 
 ### 追記 (2020-12-01 22:20)
 
