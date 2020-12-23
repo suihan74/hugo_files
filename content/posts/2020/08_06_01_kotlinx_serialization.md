@@ -32,9 +32,7 @@ draft: false
 
 必要なところだけ
 
-### build.gradle (Project)
-
-```gradle
+```gradle:[project]build.gradle
 buildscript {
     ext.kotlin_version = '1.3.72'
     repositories {
@@ -49,9 +47,7 @@ buildscript {
 }
 ```
 
-### build.gradle (app)
-
-```gradle
+```gradle:[app]build.gradle
 apply plugin: 'kotlinx-serialization'
 // ほか省略
 
@@ -67,9 +63,7 @@ dependencies {
 }
 ```
 
-### proguard-rules&#046;pro
-
-```txt
+```:proguard-rules.pro
 ##---------------Begin: proguard configuration for kotlinx.serialization  ----------
 
 -keepattributes *Annotation*, InnerClasses
@@ -90,7 +84,7 @@ dependencies {
 
 ## データクラス例
 
-```kt
+```kt:Hoge.kt
 @Serializable
 data class Hoge(
     @SerialName("strstr")
@@ -126,7 +120,7 @@ data class Hoge(
 
 ### シリアライザを用意しないとそもそも扱えないデータ型のためのシリアライザ
 
-```kt
+```kt:Serializers.kt
 /** ZonedDateTime用シリアライザ */
 @Serializer(forClass = ZonedDateTime::class)
 object ZonedDateTimeSerializer : KSerializer<ZonedDateTime> {
@@ -146,7 +140,7 @@ object ZonedDateTimeSerializer : KSerializer<ZonedDateTime> {
 
 ### 元からシリアライザが用意されている型に別のものを用意する
 
-```kt
+```kt:Serializers.kt
 /** 真偽値が何故か0と1で扱われているやつが渡されてくるので変換するやつ */
 @Serializer(forClass = Boolean::class)
 object UserBooleanSerializer : KSerializer<Boolean> {
@@ -169,7 +163,7 @@ object UserBooleanSerializer : KSerializer<Boolean> {
 
 ### シリアライズ・デシリアライズしてみる
 
-```kt
+```kt:example.kt
 fun example() {
     // サンプル用データ
     val hoge = Hoge("hello world.", 1234, true, ZonedDateTime.now())
