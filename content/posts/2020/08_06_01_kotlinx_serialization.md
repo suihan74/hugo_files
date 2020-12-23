@@ -3,7 +3,7 @@ title: "kotlinx.serializationことはじめ"
 description: "kotlin用のJsonシリアライザを使ってみる"
 tags: ["kotlin", "kotlinx", "serialization"]
 date: 2020-08-06T21:40:00+09:00
-lastmod: 2020-08-06T21:40:00+09:00
+lastmod: 2020-12-23T15:30:00+09:00
 archives:
     - 2020
     - 2020-08
@@ -15,7 +15,18 @@ draft: false
 ## この記事の情報
 
 ```kotlinx.serialization 0.20.0```について書かれています。  
-アップデートによって内容が古くなる可能性が高いです。
+アップデートによって内容が古くなっています。
+
+## 追記 (2020-12-23)
+
+この追記時点での最新バージョン`1.0.1`では、この記事の執筆当時(`0.20.0`)から使い方がそれなりに変わっている部分も多そうな感じです。  
+公式のドキュメントがかなりしっかり書いてあるので、そっちを読んだ方がいいと思います。
+
+[kotlinx.serialization/docs at master · Kotlin/kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization/tree/master/docs)
+
+以下の内容は古い情報をそのまま残していますので、その点ご注意ください。
+
+---
 
 ## 依存関係の設定
 
