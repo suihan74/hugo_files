@@ -13,10 +13,22 @@ layout: "about"
 - すいはん
 - 1992/12/06
 - 神奈川県横浜市 在住
-- e-mail -> suihan742@gmail.com
+- e-mail -> suihan742"あっと"gmail.com
 - GitHub -> https://github.com/suihan74
 - blog -> https://suihan74.github.io/
 - Twitter -> https://twitter.com/suihan742
+
+ちょっとプログラム齧っただけの人生だった。
+
+## できる
+
+C(ANSI-C,99), C++(11,14,17), C#(7~7.3), Java(7,8), Kotlin, Lua(5.1~5.3)
+
+## できなくはない
+
+JavaScript, TypeScript, HTML5, CSS3, Go, など
+
+<!--
 
 ## 資格
 
@@ -99,3 +111,4 @@ layout: "about"
 - 2012/04 入学
 - 2016/03 卒業
 - 卒業研究: 進化アルゴリズムを用いた多数目的最適化の性能向上のための手法の検討
+-->
