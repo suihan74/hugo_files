@@ -3,7 +3,7 @@ title: "Android - DataBindingはじめ"
 description: いまさらAndroidでDataBinding触れはじめてみた浅い記事
 tags: ["android", "kotlin", "DataBinding", "ViewModel", "LiveData"]
 date: 2020-01-02T17:04:24+09:00
-lastmod: 2020-09-02T02:35:00+09:00
+lastmod: 2020-12-27T13:00:00+09:00
 archives:
     - 2020
     - 2020-01
@@ -113,18 +113,19 @@ ActivityHogeBindingはレイアウトまで書いてビルドすると自動的�
 
 ```kt
 class HogeActivity : AppCompatActivity() {
-    private lateinit var viewModel: HogeViewModel
+    private val viewModel: HogeViewModel by lazy {
+        // ViewModelの生成
+        // ViewModel用のFactoryを用意しておけばViewModelを生成する際コンストラクタに値を渡すことができる
+         val factory = HogeViewModel.Factory(
+            ...
+        )
+        ViewModelProvider(this, factory)[HogeViewModel::class.java]
+    }
+
     private lateinit var binding: ActivityHogeBinding
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-
-        // ViewModelの生成/取得
-        // ViewModel用のFactoryを用意しておけばViewModelを生成する際コンストラクタに値を渡すことができる
-        val factory = HogeViewModel.Factory(
-            ...
-        )
-        viewModel = ViewModelProvider(this, factory)[HogeViewModel::class.java]
 
         // データバインド
         binding = DataBindingUtil.setContentView<ActivityHogeBinding>(
@@ -161,7 +162,7 @@ class HogeViewModel(
 
     ...
 
-    // DIできるよ的な例
+    // NewInstanceFactoryを用意すればViewModelのプライマリコンストラクタでプロパティが初期化できる
     class Factory(
         private val repository : HogeRepository
     ) : ViewModelProvider.NewInstanceFactory() {
@@ -171,6 +172,9 @@ class HogeViewModel(
     }
 }
 ```
+
+`ViewModel`ごとに`Factory`を用意しなくてよくするための拡張を書いた▼  
+[コンストラクタ引数有りのViewModelを簡単に作成する - すいはんぶろぐ.io](/posts/2020/09_14_01_provide_view_model/)
 
 これを先ほどのレイアウトファイルに`TextView`を追加して、データバインディングで表示するようにするには次のように`TextView`を記述する。
 
@@ -232,6 +236,9 @@ class HogeViewModel(
 
 ## 双方向バインディングでConverterを介して値をやりとりする
 
+`BindingAdapter`を使うやり方についてはこちらに書いた。そっちでよさそう。  
+[BindingAdapterに関するいくつかのこと - すいはんぶろぐ.io](/posts/2020/03_07_00_binding_adapter/)
+
 たとえば適当な列挙型`HogeEnum`があるとして、これを`Spinner`に表示して選択させたいときなどに以下のようなシングルトンを用意しておいて、レイアウトから呼ぶことができる。
 
 ```kt
@@ -268,12 +275,3 @@ object HogeEnumConverter {
 ```
 
 [DataBindingのInverseMethodの使い方 - Kenji Abe - Medium](https://medium.com/@star_zero/databindingのinversemethodの使い方-63f4effa49a0)
-
-## 手をつけていないこと
-
-以上のように特にシンプルな部分に関してはデータバインディング使っておけば基本的には楽そうである。
-
-まだ詳しく知らないのだけども、`RecyclerView`と合わせて使うのは面倒臭そうだなぁと思ったり、イベントの処理はコード側に書けばいいんじゃないかなぁとか思ったりしている。
-
-「全ての画面をばっちりMVVM的な感じに書き直してやるぜ」という気分には今さらあまりなれないものの、変に複雑なことになったりハマったりしないで使えそうなところではやっていこうかなという感じになった。  
-よかったですね。

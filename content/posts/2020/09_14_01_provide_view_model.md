@@ -3,13 +3,19 @@ title: "コンストラクタ引数有りのViewModelを簡単に作成する"
 description: "NewInstanceFactoryを継承したFactoryをいちいち用意しないようにする一方法"
 tags: ["Android", "kotlin", "ViewModel"]
 date: 2020-09-14T16:49:08+09:00
-lastmod: 2020-09-14T16:49:08+09:00
+lastmod: 2020-12-27T12:50:00+09:00
 archives:
     - 2020
     - 2020-09
     - 2020-09-14
 hide_overview: false
 draft: false
+---
+
+## 追記 (2020-12-27)
+
+`ViewModelOwner#lazyProvideViewModel`を追加。[▼](#lazyprovideviewmodelを追加-2020-12-27)
+
 ---
 
 ## 前提1
@@ -39,7 +45,7 @@ class HogeActivity {
 以上の方法では```ViewModel```が引数有りコンストラクタを用意することができないため、外部から初期値を与えたい場合などは対象のプロパティをミュータブルにせざるを得ない問題がある。  
 きっちりイミュータブルにしておきたい場合は、次のようにインスタンス生成用の```Factory```を用意する。
 
-```kt
+```kt:普通にプライマリコンストラクタでプロパティ宣言する例.kt
 class HogeViewModel(
     private val hogeArg : Hoge
 ) : ViewModel() {
@@ -55,7 +61,7 @@ class HogeViewModel(
 }
 ```
 
-```kt
+```kt:引数付きのViewModel生成例.kt
 class HogeActivity {
     private val viewModel : HogeViewModel by lazy {
         val hoge = Hoge()
@@ -72,7 +78,7 @@ class HogeActivity {
 
 新しい```ViewModel```を作るごとにこの```Factory```を毎回書くのは少々面倒であるし無駄に冗長なので、```Factory```を作る関数と、作った```Factory```を使って```ViewModel```インスタンスを生成する関数を作って簡単にする。
 
-```kt
+```kt:ViewModelFactoryUtil.kt
 package com.suihan74.utilities
 
 import androidx.lifecycle.ViewModel
@@ -119,11 +125,28 @@ inline fun <reified ViewModelT : ViewModel> provideViewModel(
     key: String?,
     noinline creator: ()->ViewModelT
 ) = createViewModelFactory(creator).provide(owner, key)
+
+// ------ //
+
+/**
+ * ViewModelを作成・取得する(lazy版)
+ */
+inline fun <reified ViewModelT : ViewModel> ViewModelStoreOwner.lazyProvideViewModel(
+    noinline creator: ()->ViewModelT
+) = lazy { provideViewModel(this, creator) }
+
+/**
+ * ViewModelを作成・取得する(lazy版)
+ */
+inline fun <reified ViewModelT : ViewModel> ViewModelStoreOwner.lazyProvideViewModel(
+    key: String?,
+    noinline creator: ()->ViewModelT
+) = lazy { provideViewModel(this, key, creator) }
 ```
 
 以上の内容のファイルを用意しておいて、次のように使う。
 
-```kt
+```kt:HogeViewModel.kt
 class HogeViewModel(
     private val hoge: Hoge
 ) : ViewModel() {
@@ -131,7 +154,7 @@ class HogeViewModel(
 }
 ```
 
-```kt
+```kt:HogeActivity.kt
 class HogeActivity {
     private val viewModel : HogeViewModel by lazy {
         provideViewModel(this) {
@@ -147,3 +170,24 @@ class HogeActivity {
 
 これで少しはすっきりしたというものです。  
 よかったですね。
+
+## lazyProvideViewModelを追加 (2020-12-27)
+
+```kt
+private val viewModel by lazy {
+    provideViewModel(this) {
+        HogeViewModel()
+    }
+}
+```
+
+をもう少し簡単に書くために`lazyProvideViewModel`関数を追加した。
+
+```kt
+private val viewModel by lazyProvideViewModel {
+    HogeViewModel()
+}
+```
+
+使用できる`ViewModelStoreOwner`が`this`限定である(他の`owner`を渡せない)という制限がある点には注意。  
+これは`Fragment`のプロパティ初期化などで`Activity`などを`owner`に指定すると`Fragment`インスタンス生成時にはまだアタッチ前なので失敗する問題があるため、このようにしている。
