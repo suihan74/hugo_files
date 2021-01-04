@@ -185,6 +185,71 @@ draft: false
 </MotionScene>
 ```
 
+### メニュー項目のレイアウト
+
+```xml
+<?xml version="1.0" encoding="utf-8"?>
+<layout>
+    <data>
+        <import type="androidx.lifecycle.LiveData"/>
+        <import type="com.suihan74.example.MenuItem"/>
+
+        <variable
+            name="item"
+            type="MenuItem"/>
+
+        <variable
+            name="selectedItem"
+            type="LiveData&lt;MenuItem&gt;"/>
+    </data>
+
+    <FrameLayout
+        xmlns:android="http://schemas.android.com/apk/res/android"
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:background="@{selectedItem == item ? @color/selectedMenuItemBackground : @android:color/transparent}"
+        android:elevation="@{selectedItem == item ? 48f : 0f}"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="?selectableItemBackground"
+            android:paddingHorizontal="12dp"
+            android:paddingVertical="12dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <ImageView
+                android:id="@+id/icon"
+                src="@{item.iconId}"
+                app:tint="?android:textColor"
+                android:background="@android:color/transparent"
+                android:contentDescription="@null"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_width="24dp"
+                android:layout_height="24dp"/>
+
+            <TextView
+                android:id="@+id/label"
+                textId="@{item.labelId}"
+                android:background="@android:color/transparent"
+                android:textSize="18sp"
+                android:singleLine="true"
+                android:ellipsize="none"
+                app:layout_constraintStart_toEndOf="@id/icon"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                app:layout_constraintBottom_toBottomOf="parent"
+                android:layout_marginStart="12dp"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"/>
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </FrameLayout>
+</layout>
+```
+
 ### dimens
 
 ```xml:values/dimens.xml
