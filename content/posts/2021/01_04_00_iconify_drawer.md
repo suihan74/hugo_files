@@ -3,7 +3,7 @@ title: "アイコン化可能なドロワーをでっち上げる"
 description: "MotionLayoutを使ってアイコン化可能なDrawerLayout風のものを作る例"
 tags: ["Android","Kotlin","MotionLayout"]
 date: 2021-01-04T17:42:49+09:00
-lastmod: 2021-01-04T17:42:49+09:00
+lastmod: 2021-01-04T20:00:00+09:00
 archives:
     - 2021
     - 2021-01
@@ -213,8 +213,8 @@ draft: false
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:background="?selectableItemBackground"
-            android:paddingHorizontal="12dp"
-            android:paddingVertical="12dp"
+            android:paddingHorizontal="@dimen/menuIconPadding"
+            android:paddingVertical="@dimen/menuIconPadding"
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
 
@@ -227,8 +227,8 @@ draft: false
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 app:layout_constraintBottom_toBottomOf="parent"
-                android:layout_width="24dp"
-                android:layout_height="24dp"/>
+                android:layout_width="@dimen/menuIconSize"
+                android:layout_height="@dimen/menuIconSize"/>
 
             <TextView
                 android:id="@+id/label"
@@ -259,6 +259,11 @@ draft: false
     <dimen name="menuWidthCompact">48dp</dimen>
     <!-- メニュー部分を開いているときの横幅 -->
     <dimen name="menuWidthFull">256dp</dimen>
+
+    <!-- メニューアイコンサイズ -->
+    <dimen name="menuIconSize">24dp</dimen>
+    <!-- メニューアイコンパディング(2倍してmenuIconSizeと足したらmenuWidthCompactになるようにする) -->
+    <dimen name="menuIconPadding">12dp</dimen>
 </resources>
 ```
 
