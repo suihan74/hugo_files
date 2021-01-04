@@ -202,9 +202,10 @@ draft: false
 ```kt:HogeActivity.kt
 class HogeActivity : AppCompatActivity() {
 
+    // `lazyProvideViewModel`は良い感じに`ViewModel`を生成するための拡張
+    // -> https://suihan74.github.io/posts/2020/09_14_01_provide_view_model/
     val viewModel by lazyProvideViewModel {
-        val app = Application.instance
-        PreferencesViewModel(app.preferencesRepository)
+        HogeViewModel()
     }
 
     // ------ //
@@ -212,12 +213,10 @@ class HogeActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
 
-        binding = DataBindingUtil.setContentView<ActivityHogeBinding>(
-            this,
-            R.layout.activity_hoge
-        ).also {
+        val binding = ActivityHogeBinding.inflate(layoutInflater).also {
             it.lifecycleOwner = this
         }
+        setContentView(binding.root)
 
         // ページ選択メニュー
         initializeMenu(binding)
@@ -231,11 +230,11 @@ class HogeActivity : AppCompatActivity() {
     // ------ //
 
     /** ページ選択メニューの準備 */
-    private fun initializeMenu(binding: ActivityPreferencesBinding) {
+    private fun initializeMenu(binding: ActivityHogeBinding) {
         val list = binding.menuRecyclerView.also { list ->
             // 項目のDataBinding用に`ListAdapter<T,VH>`を拡張したやつ
             // 関係ないので中身は割愛
-            val adapter = BindingListAdapter<MenuItem, ListItemPreferencesMenuBinding>(
+            val adapter = BindingListAdapter<MenuItem, ListItemHogeMenuBinding>(
                 R.layout.list_item_hoge_menu,
                 this,
                 MenuItem.DiffCallback(),
