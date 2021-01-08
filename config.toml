@@ -36,3 +36,6 @@ pygmentsUseClasses = true
   disableJSON = false
   disableSVG = true
   disableXML = false
+
+[frontmatter]
+  lastmod = [":git", "lastmod", "date", "publishDate"]
