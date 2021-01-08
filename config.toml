@@ -7,6 +7,7 @@ googleAnalytics = "UA-71542625-2"
 hasCJKLanguage = true
 pygmentsCodefences = true
 pygmentsUseClasses = true
+enableGitInfo = true
 
 [params]
   author = "すいはん"
