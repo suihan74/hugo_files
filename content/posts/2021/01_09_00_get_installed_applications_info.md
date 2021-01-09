@@ -20,6 +20,8 @@ draft: false
 val apps = context.packageManager.getInstalledApplications(0)
 ```
 
+[PackageManager#getInstalledApplications | Android デベロッパー | Android Developers](https://developer.android.com/reference/android/content/pm/PackageManager#getInstalledApplications(int))
+
 ## パッケージ名を指定してアプリ情報を取得
 
 第二引数のフラグに`PackageManager.MATCH_UNINSTALLED_PACKAGES`が指定されている場合、指定されたパッケージがインストールされていなかったら「過去にインストールされていたが削除済みで、かつデータが残っている」アプリも探す。  
@@ -34,6 +36,8 @@ fun applicationInfo(packageName: String) : ApplicationInfo? =
         null
     }
 ```
+
+[PackageManager#getApplicationInfo | Android デベロッパー | Android Developers](https://developer.android.com/reference/android/content/pm/PackageManager#getApplicationInfo(java.lang.String,%20int))
 
 ## アプリの表示名を取得
 
@@ -103,7 +107,7 @@ fun loadAppIcon(appInfo: ApplicationInfo) : Drawable =
 
 ## アプリを起動するためのインテントを取得する
 
-アクティビティとして起動できないアプリの場合`null`が返る。
+外からアクティビティを直接起動できないアプリの場合`null`が返る。
 
 ```kt
 fun getLaunchIntent(appInfo: ApplicationInfo) : Intent? =
