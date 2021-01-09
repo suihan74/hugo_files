@@ -1,1 +1,10 @@
-<a href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}{{ if strings.HasPrefix .Destination "http" }} target="_blank"{{ end }}>{{ .Text }}</a>
+<!-- タイトルを"_noencode"にするとURLエンコードを行わないようにする -->
+<!-- 例: [text](url "_noencode") -->
+<a 
+  {{ if eq .Title "_noencode" }}
+    {{ printf "href='%s'" .Destination | safeHTMLAttr }}
+  {{ else }}
+    href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}
+  {{ end }}
+  {{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Text }}
+</a>

@@ -37,7 +37,7 @@ fun applicationInfo(packageName: String) : ApplicationInfo? =
     }
 ```
 
-[PackageManager#getApplicationInfo | Android デベロッパー | Android Developers](https://developer.android.com/reference/android/content/pm/PackageManager#getApplicationInfo(java.lang.String,%20int))
+[PackageManager#getApplicationInfo | Android デベロッパー | Android Developers](https://developer.android.com/reference/android/content/pm/PackageManager#getApplicationInfo(java.lang.String,%20int) "_noencode")
 
 ## アプリの表示名を取得
 
@@ -124,4 +124,4 @@ fun getLaunchIntent(appInfo: ApplicationInfo) : Intent? =
 
 ### `PackageManager#getApplicationInfo`に渡せるフラグ
 
-[PackageManager#getApplicationInfo | Android デベロッパー | Android Developers](https://developer.android.com/reference/android/content/pm/PackageManager#getApplicationInfo(java.lang.String,%20int))
+[PackageManager#getApplicationInfo | Android デベロッパー | Android Developers](https://developer.android.com/reference/android/content/pm/PackageManager#getApplicationInfo(java.lang.String,%20int) "_noencode")
