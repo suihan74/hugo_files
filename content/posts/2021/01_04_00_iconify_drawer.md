@@ -3,7 +3,6 @@ title: "アイコン化可能なドロワーをでっち上げる"
 description: "MotionLayoutを使ってアイコン化可能なDrawerLayout風のものを作る例"
 tags: ["Android","Kotlin","MotionLayout"]
 date: 2021-01-04T17:42:49+09:00
-lastmod: 2021-01-04T20:00:00+09:00
 archives:
     - 2021
     - 2021-01
@@ -284,6 +283,7 @@ class HogeActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
 
         val binding = ActivityHogeBinding.inflate(layoutInflater).also {
+            it.vm = viewModel
             it.lifecycleOwner = this
         }
         setContentView(binding.root)
