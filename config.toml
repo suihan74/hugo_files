@@ -37,6 +37,14 @@ enableGitInfo = true
   disableJSON = false
   disableSVG = true
   disableXML = false
+  [minify.tdewolff]
+    [minify.tdewolff.html]
+      keepConditionalComments = true
+      keepDefaultAttrVals = true
+      keepDocumentTags = true
+      keepEndTags = true
+      keepQuotes = true
+      keepWhitespace = false
 
 [frontmatter]
   lastmod = ["lastmod", ":git", "date", "publishDate"]

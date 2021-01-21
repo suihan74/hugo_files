@@ -2,7 +2,7 @@
 <!-- 例: [text](url "_noencode") -->
 <a 
   {{ if eq .Title "_noencode" }}
-    {{ printf "href='%s'" .Destination | safeHTMLAttr }}
+    {{ printf "href=\"%s\"" .Destination | safeHTMLAttr }}
   {{ else }}
     href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}
   {{ end }}
