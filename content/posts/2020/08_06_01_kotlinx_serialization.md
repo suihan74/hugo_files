@@ -42,7 +42,7 @@ buildscript {
 }
 ```
 
-`serialization 1.0.1`では`kotlin 1.4.10`以上である必要がある。
+`serialization 1.0.1`では`kotlin 1.4.0`以上である必要がある。
 
 ```gradle:[app]build.gradle
 apply plugin: 'kotlinx-serialization'
