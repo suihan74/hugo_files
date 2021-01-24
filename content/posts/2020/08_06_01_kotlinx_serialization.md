@@ -28,7 +28,7 @@ draft: false
 
 ## 依存関係の設定
 
-必要なところだけ
+必要なところだけ。とりあえずAndroidアプリプロジェクトの想定で。
 
 ```gradle:[project]build.gradle
 buildscript {
