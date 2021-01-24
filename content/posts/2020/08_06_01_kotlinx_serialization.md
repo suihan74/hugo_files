@@ -434,3 +434,10 @@ hage
 @SerialName("derived_a")
 class DerivedA(val msg: String) : Base(0)
 ```
+
+実行結果の出力▼
+
+```
+{"data":{"type":"derived_a","id":0,"msg":"hage"}}
+hage
+```
