@@ -47,4 +47,4 @@ enableGitInfo = true
       keepWhitespace = false
 
 [frontmatter]
-  lastmod = ["lastmod", ":git", "date", "publishDate"]
+  lastmod = ["lastmod", ":fileModTime", "date", "publishDate"]

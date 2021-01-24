@@ -3,7 +3,6 @@ title: "kotlinx.serializationことはじめ"
 description: "kotlin用のJsonシリアライザを使ってみる"
 tags: ["kotlin", "kotlinx", "serialization"]
 date: 2020-08-06T21:40:00+09:00
-lastmod: 2020-12-23T15:30:00+09:00
 archives:
     - 2020
     - 2020-08
@@ -14,17 +13,16 @@ draft: false
 
 ## この記事の情報
 
-```kotlinx.serialization 0.20.0```について書かれています。  
-アップデートによって内容が古くなっています。
+```kotlinx.serialization 1.0.1```について書かれています。  
+アップデートによって内容が古くなる可能性があります。
 
-## 追記 (2020-12-23)
-
-この追記時点での最新バージョン`1.0.1`では、この記事の執筆当時(`0.20.0`)から使い方がそれなりに変わっている部分も多そうな感じです。  
-公式のドキュメントがかなりしっかり書いてあるので、そっちを読んだ方がいいと思います。
+公式のドキュメントがかなりしっかり書いてあるので、そっちを読んだ方がいいとは思います。
 
 [kotlinx.serialization/docs at master · Kotlin/kotlinx.serialization](https://github.com/Kotlin/kotlinx.serialization/tree/master/docs)
 
-以下の内容は古い情報をそのまま残していますので、その点ご注意ください。
+## 追記 (2021-01-24)
+
+バージョン`1.0.1`時点での内容に更新。
 
 ---
 
@@ -34,18 +32,17 @@ draft: false
 
 ```gradle:[project]build.gradle
 buildscript {
-    ext.kotlin_version = '1.3.72'
+    ext.kotlin_version = '1.4.21'
     repositories {
-        google()
         jcenter()
     }
     dependencies {
-        classpath 'com.android.tools.build:gradle:4.0.1'
-        classpath "org.jetbrains.kotlin:kotlin-gradle-plugin:$kotlin_version"
         classpath "org.jetbrains.kotlin:kotlin-serialization:$kotlin_version"
     }
 }
 ```
+
+`serialization 1.0.1`では`kotlin 1.4.10`以上である必要がある。
 
 ```gradle:[app]build.gradle
 apply plugin: 'kotlinx-serialization'
@@ -55,19 +52,26 @@ android {
     // 省略
 }
 
-
 dependencies {
-    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-runtime:0.20.0'
+    implementation 'org.jetbrains.kotlinx:kotlinx-serialization-json:1.0.1'
 
     // ほか省略
 }
 ```
 
 ```:proguard-rules.pro
-##---------------Begin: proguard configuration for kotlinx.serialization  ----------
-
 -keepattributes *Annotation*, InnerClasses
--dontnote kotlinx.serialization.SerializationKt
+-dontnote kotlinx.serialization.AnnotationsKt # core serialization annotations
+
+# kotlinx-serialization-json specific. Add this if you have java.lang.NoClassDefFoundError kotlinx.serialization.json.JsonObjectSerializer
+-keepclassmembers class kotlinx.serialization.json.** {
+    *** Companion;
+}
+-keepclasseswithmembers class kotlinx.serialization.json.** {
+    kotlinx.serialization.KSerializer serializer(...);
+}
+
+# Change here com.yourcompany.yourpackage
 -keep,includedescriptorclasses class com.yourcompany.yourpackage.**$$serializer { *; } # <-- change package name to your app's
 -keepclassmembers class com.yourcompany.yourpackage.** { # <-- change package name to your app's
     *** Companion;
@@ -75,7 +79,6 @@ dependencies {
 -keepclasseswithmembers class com.yourcompany.yourpackage.** { # <-- change package name to your app's
     kotlinx.serialization.KSerializer serializer(...);
 }
-##---------------End: proguard configuration for kotlinx.serialization  ----------
 ```
 
 - ```# <-- change package name to your app's``` : 自分のアプリのパッケージ名に書き換えるのを忘れずに
@@ -87,15 +90,19 @@ dependencies {
 ```kt:Hoge.kt
 @Serializable
 data class Hoge(
-    @SerialName("strstr")
+    @SerialName("hogegege")
     val str : String,
+
     val num : Int,
 
-    @ContextualSerialization
+    @Serializable(with = BooleanAsBinarySerializer::class)
     val b : Boolean,
 
     @Serializable(with = ZonedDateTimeSerializer::class)
-    val date: ZonedDateTime,
+    val date : ZonedDateTime,
+
+    @Serializable(with = RectSerializer::class)
+    val rect : Rect,
 
     val nullableStr : String? = null
 ) {
@@ -105,102 +112,325 @@ data class Hoge(
 }
 ```
 
-- ```@SerialName("")``` : Jsonでのキー名が異なる場合に指定する  
+- `@SerialName("")` : Jsonでのキー名が異なる場合に指定する  
   Gsonなどのように「すべてのキー名をJsonではスネークケースで扱う」とかは自動でできないっぽいので、現状いちいちこいつを設定する必要がありそう。
 
-- ```@ContextualSerialization``` : 実際にシリアライズ・デシリアライズを行う際に処理方法(シリアライザ)を決定する
+- `@Serializable(with = xxSerializer::class)` : シリアライザをプロパティ側で指定する
 
-- ```@Serializable(with = xxSerializer::class)``` : シリアライザをプロパティ側で指定する
+- `@Contextual` : Jsonインスタンス側でシリアライザを指定する  
+    `@Contextual`と`@Serializable`をどちらも指定した場合、`@Serializable`のシリアライザ指定が優先される。
 
-- nullable : 無くてもいいプロパティには```@Optional```を付けるらしいが、```nullable```にはべつに必要ないっぽい
+- プリミティブ値 : シリアライザを明示的に指定しない場合はアノテーションをつける必要はない
+
+- nullable : `null`の場合はシリアライズ時に出力されない
 
 - lazyプロパティ : Gsonなどと違い、明示的に回避する必要はない
 
 ## ユーザー定義のシリアライザ例
 
-### シリアライザを用意しないとそもそも扱えないデータ型のためのシリアライザ
+### 非プリミティブなクラス用のシリアライザ
 
-```kt:Serializers.kt
+プリミティブ型の値(文字列、数値、真偽値など)やそれらだけをプロパティにもつデータクラスは`@Serializable`アノテーションを指定する以外には特別な処理を必要としない。  
+一方、ユーザーが作成したクラスや、他のモジュールによって用意されたクラスの内容をjson文字列にシリアライズする際には`KSerializer<T>`を継承したシリアライザを用意する必要がある。
+
+#### プリミティブな値と相互変換可能な場合
+
+```kt:ZonedDateTimeSerializer.kt
 /** ZonedDateTime用シリアライザ */
-@Serializer(forClass = ZonedDateTime::class)
-object ZonedDateTimeSerializer : KSerializer<ZonedDateTime> {
-    private val formatter = DateTimeFormatter.ofPattern("yyyy-MM-dd'T'HH:mm:ssXXX")
-
-    override val descriptor : SerialDescriptor =
-        PrimitiveDescriptor("ZonedDateTime", PrimitiveKind.STRING)
-
-    override fun serialize(encoder: Encoder, obj: ZonedDateTime) {
-        encoder.encodeString(obj.format(formatter))
+class ZonedDateTimeSerializer : KSerializer<ZonedDateTime> {
+    override val descriptor: SerialDescriptor by lazy {
+        PrimitiveSerialDescriptor(
+            ZonedDateTimeSerializer::class.qualifiedName!!,
+            PrimitiveKind.STRING
+        )
     }
 
-    override fun deserialize(decoder: Decoder) : ZonedDateTime =
-        ZonedDateTime.parse(decoder.decodeString(), formatter)
+    private val formatter = DateTimeFormatter.ofPattern("uuuu-MM-dd'T'HH:mm:ssXXX")
+
+    override fun serialize(encoder: Encoder, value: ZonedDateTime) {
+        encoder.encodeString(value.format(formatter))
+    }
+
+    override fun deserialize(decoder: Decoder): ZonedDateTime {
+        return ZonedDateTime.parse(decoder.decodeString(), formatter)
+    }
 }
 ```
 
-### 元からシリアライザが用意されている型に別のものを用意する
+`ZonedDateTime`の内容は`Long`型の数値と相互に可換である。このようにプリミティブ値で表現可能なデータクラスは`PrimitiveSerialDescriptor`を使用して変換できる。
 
-```kt:Serializers.kt
-/** 真偽値が何故か0と1で扱われているやつが渡されてくるので変換するやつ */
-@Serializer(forClass = Boolean::class)
-object UserBooleanSerializer : KSerializer<Boolean> {
-    override val descriptor : SerialDescriptor =
-        PrimitiveDescriptor("BooleanInt", PrimitiveKind.INT)
+`PrimitiveSerialDescriptor`の第一引数には一意な名前を指定する。シリアライザ自身の名前を渡しておけばまず大丈夫と思われる。  
+第二引数の`PrimitiveKind`指定は、何型にエンコードして出力するかという指定だ。(ちなみに、仮に間違った指定をしてもとくにエラーなどにはならず動きはする)
 
-    override fun serialize(encoder: Encoder, obj: Boolean) {
-        encoder.encodeInt(if (obj) 1 else 0)
+#### 直接プリミティブ値に変換できない場合
+
+例として、外部モジュールから提供される次のような`Rect`クラスを扱いたいとする。`Rect`クラスの4つのプロパティは何らかの1つのプリミティブ値にまとめて表現することはできないとする。
+
+```kt:Rect.kt
+data class Rect(
+    val left : Int,
+    val top : Int,
+    val right : Int,
+    val bottom : Int
+) {
+    init {
+        require(left <= right)
+        require(top <= bottom)
     }
-
-    override fun deserialize(decoder: Decoder) : Boolean =
-        decoder.decodeInt() == 1
 }
 ```
 
-- descriptorに既存の物と被らないように名前を与える必要がある  
-  (```PrimitiveDescriptor("Boolean", PrimitiveKind.INT)```ではダメ)
+この場合、使用するデスクリプタは`PrimitiveSerialDescriptor`ではなく、次例のように`buildClassSerialDescriptor {...}`を使用してデータ構造を扱うデスクリプタを作成する。
+
+```kt:RectSerializer.kt
+class RectSerializer : KSerializer<Rect> {
+    private enum class Element(val selector: (Rect)->Int) {
+        LEFT({ it.left }),
+        TOP({ it.top }),
+        RIGHT({ it.right }),
+        BOTTOM({ it.bottom })
+    }
+
+    override val descriptor: SerialDescriptor
+        get() = buildClassSerialDescriptor(RectSerializer::class.qualifiedName!!) {
+            Element.values().forEach {
+                element<Int>(it.name.toLowerCase())
+            }
+        }
+
+    override fun serialize(encoder: Encoder, value: Rect) {
+        encoder.encodeStructure(descriptor) {
+            Element.values().forEachIndexed { index, elem ->
+                encodeIntElement(descriptor, index, elem.selector(value))
+            }
+        }
+    }
+
+    override fun deserialize(decoder: Decoder): Rect {
+        return decoder.decodeStructure(descriptor) {
+            val elements = IntArray(Element.values().size)
+            while (true) {
+                when (val index = decodeElementIndex(descriptor)) {
+                    CompositeDecoder.DECODE_DONE -> break
+                    else -> {
+                        if (0 <= index && index < elements.size) {
+                            elements[index] = decodeIntElement(descriptor, index)
+                        }
+                        else error("Unexpected index: $index")
+                    }
+                }
+            }
+            Rect(elements[0], elements[1], elements[2], elements[3])
+        }
+    }
+}
+```
+
+これによって`{"left":0,"top":1,"right":2,"bottom":3}`というような形で出力されるようになる。
+
+ここまでやるなら、この方法用のベースクラスを用意して`Element`列挙体の部分だけ差し替えるように処理の共通化もできそうだが。
+
+シンプルにべたっと書いた感じは公式リファレンスを参照。
+
+[Hand-written composite serializer](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/serializers.md#hand-written-composite-serializers)
+
+### プリミティブ型に別の様式のものを用意する
+
+```kt:BooleanAsBinarySerializer.kt
+/** 真偽値を0と1で表現するやつ */
+class BooleanAsBinarySerializer : KSerializer<Boolean> {
+    override val descriptor: SerialDescriptor by lazy {
+        PrimitiveSerialDescriptor(
+            BooleanBinarySerializer::class.qualifiedName!!,
+            PrimitiveKind.INT
+        )
+    }
+
+    override fun serialize(encoder: Encoder, value: Boolean) {
+        encoder.encodeInt(if (value) 1 else 0)
+    }
+
+    override fun deserialize(decoder: Decoder): Boolean {
+        return decoder.decodeInt() == 1
+    }
+}
+```
+
+真偽値などのプリミティブ型の値に対しては基本的にはシリアライザを用意する必要はない。ただし、なんらかの事情でjson側での表現方法を変更する必要がある場合にはこのように新しいシリアライザを用意して、`@Serializable`アノテーションで指定することができる。
 
 ---
 
 ### シリアライズ・デシリアライズしてみる
 
 ```kt:example.kt
-fun example() {
-    // サンプル用データ
-    val hoge = Hoge("hello world.", 1234, true, ZonedDateTime.now())
+fun main() {
+    val hoge = Hoge(
+        str = "hello world.",
+        num = 1234,
+        b = true,
+        date = ZonedDateTime.now(),
+        rect = Rect(0, 1, 2, 3)
+    )
 
-    // 型ごとのシリアライザを一括で指定する
-    val context = serializersModuleOf(mapOf(
-        Boolean::class to BooleanSerializer,
-        ZonedDateTime::class to ZonedDateTimeSerializer
-    ))
-    // この記事の場合ではZonedDateTimeSerializerはプロパティ側で指定されているのでここでは必要ないが、複数の型・シリアライザペアをcontextに登録する例として無駄に書いている
+    val encoded = Json.encodeToString(hoge)
+    println("1: $encoded")
 
-    val json = Json(JsonConfiguration.Stable, context)
+    val decoded = Json.decodeFromString<Hoge>(encoded)
+    println("2: ${decoded.message}")
 
-    // ■シリアライズ
-    val jsonData = json.stringify(Hoge.serializer(), hoge)
+    val list = listOf(hoge, hoge)
+    val encodedList = Json.encodeToString(list)
 
-    println(jsonData)
-    // ==> {"strstr":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:02:29+09:00","nullableStr":null}
-
-    // ■デシリアライズ
-    val restored = json.parse(Hoge.serializer(), jsonData)
-
-    println(restored.message)
-    // ==> hello world.1234true2020-08-06T21:02:29+09:00null
-
-    // ■リストの扱い方
-    val jsonListData = json.stringify(Hoge.serializer().list, listOf(hoge, hoge))
-
-    println(jsonListData)
-    // ==> [{"hogegege":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:02:29+09:00","nullableStr":null},{"hogegege":"hello world.","num":1234,"b":1,"date":"2020-08-06 21:02:29+09:00","nullableStr":null}]
+    println("3: $encodedList")
 }
 ```
 
-- ```serializersModuleOf()```で型に対応するシリアライザを指定できる。  
-  これはプロパティ側で```@ContextualSerialization```が指定されている場合に使用される。(ここで指定していてもアノテーションを忘れるとシリアライザが差し変わらない)
+実行結果の出力▼
 
-- ```Hoge.serializer().list``` : リストを扱うときはこうする。マップなら```map```  
-  パッケージは```kotlinx.serialization.builtins.*```のものをインポートすることに注意。
+```:出力
+1: {"hogegege":"hello world.","num":1234,"b":1,"date":"2021-01-24T17:22:49+09:00","rect":{"left":0,"top":1,"right":2,"bottom":3}}
+2: hello world.1234true2021-01-24T17:22:49+09:00null
+3: [{"hogegege":"hello world.","num":1234,"b":1,"date":"2021-01-24T17:22:49+09:00","rect":{"left":0,"top":1,"right":2,"bottom":3}},{"hogegege":"hello world.","num":1234,"b":1,"date":"2021-01-24T17:22:49+09:00","rect":{"left":0,"top":1,"right":2,"bottom":3}}]
+```
 
-- 結果をnullableにする場合 : ```Hoge.serializer().nullable```
+json文字列化するには`Json.encodeToString(value)`、json文字列からデータクラスを生成するには`Json.decodeFromString<T>(str)`を使う。  
+シンプルな用途では基本的にこれだけでよい。
+
+---
+
+## ほか
+
+公式リファレンスがすごい文量なので、いくつか使ったことがある部分だけ適当にピックアップしていく。
+
+### データクラスに存在しないフィールドを無視する
+
+[Ignoring unknown keys](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/json.md#ignoring-unknown-keys)
+
+```kt
+@Serializable
+data class Project(val name: String)
+
+fun main() {
+    val formatter = Json { ignoreUnknownKeys = true }
+    val data = formatter.decodeFromString<Project>("""
+        {"name":"kotlinx.serialization","language":"Kotlin"}
+    """)
+    println(data)
+}
+```
+
+`language`フィールドは`Project`クラスには存在しないが、json文字列には存在する。このような場合、`ignoredUnknownKeys = true`を指定した新しい`Json`インスタンスを生成したものを使用することでプログラム上では`language`フィールドを無視することができる。  
+(指定しない場合`JsonDecodingException`が発生する)
+
+### シリアライザを`Json`インスタンス側で設定する
+
+プロパティに`@Contextual`を指定している場合、そのプロパティを変換するのに使用するシリアライザは`Json`インスタンス生成時に指定する必要がある。
+
+```kt
+@Serializable
+data class Hoge(
+    @Contextual
+    val data : ZonedDateTime
+)
+
+fun main() {
+    val formatter = Json {
+        serializersModule = SerializersModule {
+            contextual(ZonedDataTime::class, ZonedDataTimeSerializer())
+        }
+    }
+}
+```
+
+あるクラスに対するシリアライザが常に一種類でかつ何度もその型のプロパティを記述する場合や、値が異なるフォーマットで記録されているがデータ内容自体は同じ複数のjsonを扱う場合(あるか？)などには面倒が減っていいかもしれない。  
+基本的には`@Serializable(with = xxSerializer::class)`を毎回きっちり指定する方が混乱を招かなくて済むと思う。
+
+### ポリモーフィズムへの対応
+
+[Polymorphism](https://github.com/Kotlin/kotlinx.serialization/blob/master/docs/polymorphism.md)
+
+#### 継承元を`sealed class`にする場合
+
+`sealed class`を使用する場合、`Json`インスタンスに追加の指定を行うことなくポリモーフィックな値を扱うことができる。
+
+```kt
+@Serializable
+sealed class Base(val id : Int)
+
+@Serializable
+class DerivedA(val msg: String) : Base(0)
+
+@Serializable
+class DerivedB(val msg: String) : Base(1)
+
+@Serializable
+class Exam(val data: Base)
+
+fun main() {
+    val exam = Exam(
+        data = DerivedA("hage")
+    )
+
+    val str = Json.encodeToString(exam)
+    println(str)
+
+    val decoded = Json.decodeFromString<Exam>(str)
+    println((decoded.data as DerivedA).msg)
+}
+```
+
+#### モジュールに継承構造を教える場合
+
+`sealed class`を使用したくない場合は、次のように継承構造を教えた`Json`インスタンスを使用することで取り扱いが可能になる。
+
+```kt
+@Serializable
+abstract class Base(val id : Int)
+
+@Serializable
+class DerivedA(val msg: String) : Base(0)
+
+@Serializable
+class DerivedB(val msg: String) : Base(1)
+
+@Serializable
+class Exam(val data: Base)
+
+fun main() {
+    val formatter = Json {
+        serializersModule = SerializersModule {
+            polymorphic(Base::class) {
+                subclass(DerivedA::class)
+                subclass(DerivedB::class)
+            }
+        }
+    }
+
+    val exam = Exam(
+        data = DerivedA("hage")
+    )
+
+    val str = formatter.encodeToString(exam)
+    println(str)
+
+    val decoded = formatter.decodeFromString<Exam>(str)
+    println((decoded.data as DerivedA).msg)
+}
+```
+
+実行結果の出力▼
+
+```
+{"data":{"type":"com.suihan74.sandbox.DerivedA","id":0,"msg":"hage"}}
+hage
+```
+
+実体が何型であるかを記録するための`type`フィールドが自動的に挿入されるので、対象のデータクラスに`type`という名前のプロパティを持たせているとエラーになる。`@SerialName("~~")`で保存時に改名するか違うプロパティ名を使用する必要がある。
+
+また、この`type`に記録される内容(デフォルトではクラス名)は次のようにして`@SerialName("~~")`で明示的に指定することができる。
+
+```kt
+@Serializable
+@SerialName("derived_a")
+class DerivedA(val msg: String) : Base(0)
+```
