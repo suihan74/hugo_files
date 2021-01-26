@@ -11,6 +11,13 @@ hide_overview: false
 draft: false
 ---
 
+## 追記 (2021-01-26)
+
+メニュー開閉時に仮想キーボードを閉じるためのコードを追加  
+(該当位置は[commit: 847804a](https://github.com/suihan74/hugo_files/commits/master/content/posts/2021/01_04_00_iconify_drawer.md/commit/847804ab21e23ca38bf6f0c100f9a32688837a8f)を参照)
+
+---
+
 ## なにこれ
 
 {{<img src="sample.gif" zoom="0.8" title="アイコン化可能なドロワー">}}
