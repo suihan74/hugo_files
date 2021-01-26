@@ -17,7 +17,7 @@ draft: false
 
 最近モチベーション下がっていたこともあり「とりあえずネタひとつみっけ」ということで対応してみた。
 
-<div class="appreach"><img src="https://lh3.googleusercontent.com/8s4Fzo7AmnoNOT-pbsRoBSYbmBFgfS98l0Qatr1-aHYCRUJlHwab6jB1rijGC1_FYA=s128" alt="Satena - はてなブックマーククライアント, はてブビューア" class="appreach__icon"><div class="appreach__detail"><p class="appreach__name">Satena - はてなブックマーククライアント, はてブビューア</p><p class="appreach__info"><span class="appreach__developper">すいはん</span><span class="appreach__price">無料</span><span class="appreach__posted">posted with<a href="https://mama-hack.com/app-reach/" title="アプリーチ" target="_blank" rel="nofollow">アプリーチ</a></span></p></div><div class="appreach__links"><a href="https://play.google.com/store/apps/details?id=com.suihan74.satena" rel="nofollow" class="appreach__gplink"><img src="https://nabettu.github.io/appreach/img/gplay_ja.png"></a></div></div>
+{{<AndroidApp_Satena>}}
 
 ## 「あなたへのお知らせ」を取得するAPI
 

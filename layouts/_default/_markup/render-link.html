@@ -6,5 +6,6 @@
   {{ else }}
     href="{{ .Destination | safeURL }}"{{ with .Title}} title="{{ . }}"{{ end }}
   {{ end }}
-  {{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>{{ .Text }}
+  {{ if strings.HasPrefix .Destination "http" }} target="_blank" rel="noopener"{{ end }}>
+    {{ .Text }}
 </a>

@@ -1,0 +1,7 @@
+<!-- GitHubリポジトリ画像リンク -->
+{{ with (.Get 0) }}
+<div>
+<div class="github-card" data-github="{{.}}" data-width="400" data-height="150" data-theme="default"></div>
+<script src="https://cdn.jsdelivr.net/github-cards/latest/widget.js"></script>
+</div>
+{{ end }}

@@ -43,9 +43,9 @@ env:
 
 今までは億劫がってCI的なことしていなかったので、記事を書くたびに「`public/`を`suihan74.github.io`にpushして」「`hugo_files`をpushする」みたいな手間をかけていた。
 
-[![suihan74/hugo_files - GitHub](https://gh-card.dev/repos/suihan74/hugo_files.svg?fullname=)](https://github.com/suihan74/hugo_files)
+{{<github "suihan74/hugo_files">}}
 
-[![suihan74/suihan74.github.io - GitHub](https://gh-card.dev/repos/suihan74/suihan74.github.io.svg?fullname=)](https://github.com/suihan74/suihan74.github.io)
+{{<github "suihan74/suihan74.github.io">}}
 
 ## やったこと
 
@@ -53,11 +53,11 @@ env:
 
 色々よしなにやってくれるActionが公開されているので使わせてもらう。神。
 
-[![actions/checkout - GitHub](https://gh-card.dev/repos/actions/checkout.svg)](https://github.com/actions/checkout)
+{{<github "actions/checkout">}}
 
-[![peaceiris/actions-gh-pages - GitHub](https://gh-card.dev/repos/peaceiris/actions-gh-pages.svg)](https://github.com/peaceiris/actions-gh-pages)
+{{<github "peaceiris/actions-gh-pages">}}
 
-[![peaceiris/actions-hugo - GitHub](https://gh-card.dev/repos/peaceiris/actions-hugo.svg)](https://github.com/peaceiris/actions-hugo)
+{{<github "peaceiris/actions-hugo">}}
 
 ## 方法
 

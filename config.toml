@@ -48,3 +48,8 @@ enableGitInfo = true
 
 [frontmatter]
   lastmod = ["lastmod", ":git", "date", "publishDate"]
+
+[markup]
+  [markup.goldmark]
+    [markup.goldmark.renderer]
+      unsafe = true
