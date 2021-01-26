@@ -301,6 +301,7 @@ class HogeActivity : AppCompatActivity() {
 
     /** ページ選択メニューの準備 */
     private fun initializeMenu(binding: ActivityHogeBinding) {
+        // メニュー項目を初期化
         val list = binding.menuRecyclerView.also { list ->
             // 項目のDataBinding用に`ListAdapter<T,VH>`を拡張したやつ
             // 関係ないので中身は割愛
@@ -332,6 +333,18 @@ class HogeActivity : AppCompatActivity() {
                 )
             }
         }
+
+        // メニュー操作時に仮想キーボードを閉じる
+        binding.motionLayout.setTransitionListener(object : MotionLayout.TransitionListener {
+            override fun onTransitionStarted(p0: MotionLayout?, p1: Int, p2: Int) {
+                // 仮想キーボードを閉じてフォーカスをクリアする`View`の拡張関数
+                // 実装は割愛
+                currentFocus?.hideSoftInputMethod(binding.mainLayout)
+            }
+            override fun onTransitionChange(p0: MotionLayout?, p1: Int, p2: Int, p3: Float) {}
+            override fun onTransitionCompleted(p0: MotionLayout?, p1: Int) {}
+            override fun onTransitionTrigger(p0: MotionLayout?, p1: Int, p2: Boolean, p3: Float) {}
+        })
 
         // `MotionLayout`にタッチイベントを伝播させる
         // リスト、各項目のタッチイベント処理で伝播が止まってしまうので、
