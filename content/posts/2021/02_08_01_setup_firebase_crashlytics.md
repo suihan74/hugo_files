@@ -74,9 +74,14 @@ allprojects {
 ```
 
 ```gradle:(app)build.gradle
-// 2行追加
-apply plugin: 'com.google.gms.google-services'
-apply plugin: 'com.google.firebase.crashlytics'
+plugins {
+    // ...
+
+    // 2行追加
+    id 'com.google.gms.google-services'
+    id 'com.google.firebase.crashlytics'
+}
+
 
 android {
     // ...
