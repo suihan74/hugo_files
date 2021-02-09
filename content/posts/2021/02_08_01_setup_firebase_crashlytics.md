@@ -3,7 +3,6 @@ title: "Firebase CrashlyticsをAndroidアプリに導入する"
 description: ""
 tags: ["Android", "Kotlin", "Firebase", "Crashlytics"]
 date: 2021-02-08T14:59:48+09:00
-lastmod: 2021-02-08T14:59:48+09:00
 archives:
     - 2021
     - 2021-02
@@ -28,7 +27,7 @@ draft: false
 
 [ステップ 1: Firebase プロジェクトを作成する - Android プロジェクトに Firebase を追加する](https://firebase.google.com/docs/android/setup?hl=ja#create-firebase-project)
 
-[Firebase コンソール](https://console.firebase.google.com/)に新規プロジェクトを作って、作ったプロジェクトのサイドメニュー上にある歯車マーク>「`プロジェクトの設定`」>「`マイアプリ`」(ページ真ん中)>「`アプリを追加`」ボタンから対象アプリを登録する。
+[Firebase コンソール](https://console.firebase.google.com/)に新規プロジェクトを作って、作ったプロジェクトのサイドメニュー上にある歯車マーク>「`プロジェクトの設定`」>「`マイアプリ`」>「Androidのアイコン」or「`アプリを追加`」ボタンから対象アプリを登録する。
 
 `Androidパッケージ名`だけしっかり入力されていれば、あとは空欄でも今回の用途では問題ない。
 
