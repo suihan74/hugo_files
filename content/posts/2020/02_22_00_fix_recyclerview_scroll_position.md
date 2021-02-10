@@ -3,12 +3,23 @@ title: "RecyclerViewロード時にスクロール位置を調整する"
 description: "ListAdapterを使ってアイテムをロードしたときに初期スクロール位置が変な位置になることがあったので修正した。"
 tags: ["Android", "kotlin", "RecyclerView"]
 date: 2020-02-22T14:10:58+09:00
-lastmod: 2020-02-24T14:45:00+09:00
 archives:
     - 2020
     - 2020-02
     - 2020-02-22
+hide_overview: true
 draft: false
+---
+
+## 追記 (2021-02-10)
+
+表示内容のリスト(色々加工したあとアダプタにセットした状態のもの)を`ViewModel`でキャッシュするか、  
+`recyclerview:1.2.0`の`StateRestorationPolicy`を使用して`RecyclerView`の初期化時にセットされているリストが空の場合に状態の復元を後回しにするようにすると大丈夫になる場合もある。
+
+参考
+
+[RecyclerViewのスクロール位置の復元. RecyclerView: 1.2.0-alpha02 から… | by Kenji Abe | Medium](https://star-zero.medium.com/recyclerview%E3%81%AE%E3%82%B9%E3%82%AF%E3%83%AD%E3%83%BC%E3%83%AB%E4%BD%8D%E7%BD%AE%E3%81%AE%E5%BE%A9%E5%85%83-21e08c7372c7)
+
 ---
 
 ## 追記 (2020/02/24 14:45)
