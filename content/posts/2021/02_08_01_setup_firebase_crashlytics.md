@@ -113,22 +113,14 @@ Firebase BoM を導入することで、firebaseの各モジュールは勝手�
 
 ## デバッグビルドでレポート送信しないようにする
 
-デバッグビルド(または他のビルド構成)で Crashlytics にレポートを送信しないようにするには、アプリレベルの`build.gradle`に次のような設定を記述する。
+デバッグビルド(または他のビルド構成)で Crashlytics にレポートを送信しないようにするには、アプリ起動時に以下のような設定を行う。
 
-```gradle:(app)build.gradle
-android {
-    // ...
-    buildTypes {
-        release {
-            // ...
-        }
-        debug {
-            firebaseCrashlytics {
-                mappingFileUploadEnabled false
-            }
-        }
-    }
-}
+```kt
+// デバッグビルドでクラッシュレポートを送信しない
+FirebaseCrashlytics.getInstance()
+    .setCrashlyticsCollectionEnabled(
+        BuildConfig.DEBUG.not()
+    )
 ```
 
 ## アプリ内で処理した例外をレポート送信する
