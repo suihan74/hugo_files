@@ -172,7 +172,7 @@ override fun onCreate() {
     }
 
     // デバッグビルドでクラッシュレポートを送信しない
-    FirebaseCrashlytics.getInstance()       // <-- ここで例外発生
+    FirebaseCrashlytics.getInstance()
         .setCrashlyticsCollectionEnabled(
             BuildConfig.DEBUG.not()
         )
