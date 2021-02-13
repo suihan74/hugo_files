@@ -136,7 +136,7 @@ Caused by: java.lang.IllegalStateException: Default FirebaseApp is not initializ
 
 `Make sure to call FirebaseApp.initializeApp(Context) first.`
 
-Firebase は基本的にはメインプロセス以外での使用をサポートされておらず、別プロセスで使用する場合には明示的に初期化処理を行う必要がある。
+Firebase は基本的にはメインプロセス以外での使用をサポートしておらず、別プロセスで使用する場合には明示的に初期化処理を行う必要がある。
 
 ## メインプロセスで実行されているか確認する
 
