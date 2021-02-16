@@ -10,23 +10,33 @@ layout: "about"
 
 ## About
 
-- すいはん
-- 1992/12/06
-- 神奈川県横浜市 在住
-- e-mail -> suihan742"あっと"gmail.com
+- Name -> すいはん
+- BirthDay -> 1992-12-06
+- Location -> 神奈川県横浜市 在住
+- Mail -> suihan742@gmail.com
 - GitHub -> https://github.com/suihan74
-- blog -> https://suihan74.github.io/
 - Twitter -> https://twitter.com/suihan742
+- WebSite -> https://suihan74.github.io/
 
 ちょっとプログラム齧っただけの人生だった。
 
-## できる
+## よくやる
 
 C(ANSI-C,99), C++(11,14,17), C#(7~7.3), Java(7,8), Kotlin, Lua(5.1~5.3)
 
-## できなくはない
+---
 
-JavaScript, TypeScript, HTML5, CSS3, Go, など
+## 最近作ったもの
+
+### Satena - はてなブックマーク閲覧投稿アプリ
+
+{{<AndroidApp_Satena>}}
+
+- [Satena 関連記事](/tags/satena/)
+
+### nEdge - 通知LED代替アプリ
+
+{{<AndroidApp_nEdge>}}
 
 <!--
 

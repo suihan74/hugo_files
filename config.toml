@@ -11,13 +11,13 @@ enableGitInfo = true
 
 [params]
   author = "すいはん"
-  description = "SNSよりも少し長い文を書くところ"
+  description = "おもにAndroidアプリをつくっています。仕事があったらください。切実に。"
   keywords = ["ブログ","プログラミング","Android","kotlin","Hugo"]
   github = "suihan74"
   twitter = "suihan742"
   mastodon = "https://pawoo.net/@suihan742"
   hatena = "suihan74"
-  email = "suihan742あっとgmail.com"
+  email = "suihan742@gmail.com"
   utterances = "suihan74/suihan74.github.io"
   avatar = "/images/author.png"
   url = "https://suihan74.github.io/"
