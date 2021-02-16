@@ -3,11 +3,11 @@ title: "Hugoテーマのカスタマイズ箇所メモ"
 description: このサイトのテーマの改造に関するメモ
 tags: ["Hugo", "html"]
 date: 2019-12-26T01:09:42+09:00
-lastmod: 2020-12-20T20:30:00+09:00
 archives:
     - 2019
     - 2019-12
     - 2019-12-26
+hide_overview: true
 draft: false
 ---
 
@@ -25,6 +25,16 @@ draft: false
   - [サンプルページ](https://themes.gohugo.io//theme/github-style/)
 
 マージ作業が面倒なので`MeiK2333/github-style`の最新の状態はほぼ追従していません。ので、本家ではとっくに直っている問題がそのままだったり、現時点では内部的にはだいぶ別物になっているかも。
+
+---
+
+### 追記 (2021-02-16)
+
+#### 関連記事を表示するようにした
+
+各投稿ページ下部(記事本文とコメント投稿欄の間)に関連(と思われる)記事を表示するようにした。
+
+[43a8a04](https://github.com/suihan74/github-style/commit/43a8a04b11b55bef8b9fb92032a63a90ff34b010)
 
 ---
 
