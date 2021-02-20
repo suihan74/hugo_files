@@ -3,13 +3,19 @@ title: "コンストラクタ引数有りのViewModelを簡単に作成する"
 description: "NewInstanceFactoryを継承したFactoryをいちいち用意しないようにする一方法"
 tags: ["Android", "kotlin", "ViewModel"]
 date: 2020-09-14T16:49:08+09:00
-lastmod: 2020-12-27T12:50:00+09:00
 archives:
     - 2020
     - 2020-09
     - 2020-09-14
-hide_overview: false
+hide_overview: true
 draft: false
+---
+
+## 補足 (2021-02-20)
+
+この記事の内容は[Dagger + Hilt を使用したDI](https://developer.android.com/training/dependency-injection/hilt-android?hl=ja)を行う場合は関係ない内容になっています。  
+DIライブラリを使用せず`ViewModel`へのコンストラクタインジェクションだけを軽く行いたい場合(限定的すぎる？)などにちょっと楽をする方法、くらいに見てもらればと思います。
+
 ---
 
 ## 追記 (2020-12-27)
