@@ -14,8 +14,13 @@ draft: false
 
 ## 依存パッケージのアップデート
 
-`androidx.fragment:fragment-ktx`を`1.2.5`から`1.3.0`に更新した結果、`Activity`や`Fragment`の扱い方に関する幾つかの変更が発生した。  
+`androidx.fragment:fragment-ktx`を`1.2.5`から`1.3.0`に更新した結果、`Activity`や`Fragment`の扱い方に関する幾つかの変更が発生した。
+
 今回の内容もそのひとつであり、「`FragmentPagerAdapter`が非推奨になったので`FragmentStateAdapter`に移行してくれ(そして必然的に`ViewPager`やめて`ViewPager2`に移行してくれ)」という問題に対応する。
+
+### 他に対応したこと
+
+[startActivityForResult()を新APIに置き換える](/posts/2021/02_25_00_relace_start_activity_for_result/)
 
 ## ViewPager
 
