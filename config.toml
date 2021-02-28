@@ -11,7 +11,7 @@ enableGitInfo = true
 
 [params]
   author = "すいはん"
-  description = "おもにAndroidアプリをつくっています。仕事があったらください。"
+  description = "最近はおもにAndroidアプリをつくっています。"
   keywords = ["ブログ","プログラミング","Android","kotlin","Hugo"]
   github = "suihan74"
   twitter = "suihan742"
