@@ -3,7 +3,6 @@ title: "startActivityForResult()を新APIに置き換える"
 description: "ActivityResultLauncherの基本的な使い方"
 tags: ["Android","Kotlin","Activity","Fragment","ActivityResultLauncher"]
 date: 2021-02-25T14:11:51+09:00
-lastmod: 2021-02-25T14:11:51+09:00
 archives:
     - 2021
     - 2021-02
@@ -33,7 +32,7 @@ draft: false
 class HogeActivity : AppCompatActivity {
     // ...
 
-    /** リクエスコード */
+    /** リクエストコード */
     enum class RequestCode {
         FOO,
         BAR,
@@ -44,7 +43,7 @@ class HogeActivity : AppCompatActivity {
 
     fun startPiyoActivity() {
         val intent = Intent(this, PiyoActivity::class.java)
-        startActivityForResult(intent, RequestCode.FOO.name)
+        startActivityForResult(intent, RequestCode.FOO.ordinal)
     }
 
     // ------ //
@@ -55,7 +54,7 @@ class HogeActivity : AppCompatActivity {
             // failed
         }
         when (requestCode) {
-            RequestCode.FOO -> {
+            RequestCode.FOO.ordinal -> {
                 val msg = data?.getStringExtra(PiyoActivity.ResultExtra.MESSAGE.name)!!
                 Log.i("piyo result", msg)
             }
