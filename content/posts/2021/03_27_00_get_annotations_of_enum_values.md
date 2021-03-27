@@ -23,13 +23,13 @@ val anno =
     .getAnnotation(TestAnno::class.java)
 ```
 
+```kt:例のアノテーション.kt
+annotation class TestAnno
+```
+
 ```kt:例のEnum.kt
 enum class HogeEnum {
     @TestAnno
     VALUE
 }
-```
-
-```kt:例のアノテーション.kt
-annotation class TestAnno
 ```
