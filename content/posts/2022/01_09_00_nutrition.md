@@ -18,6 +18,8 @@ draft: false
 
 ---
 
+ながら見であんまり集中して観ていなかった感ある。
+
 10月～12月に新しく触れたものの記録です。
 
 [すいはん (suihan742)が見たアニメ | Annict](https://annict.jp/@suihan742/watched)
