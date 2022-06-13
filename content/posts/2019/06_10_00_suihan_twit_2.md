@@ -50,7 +50,7 @@ draft: false
 
 ## ダウンロード
 
-[SuihanTwit ver:{{< get latest >}}](http://suihan74.orz.hm/SuihanTwit/SuihanTwit2_{{<get latest>}}.0.zip)
+[SuihanTwit ver:{{< get latest >}}](https://satena-bc06a.web.app/SuihanTwit2_{{<get latest>}}.0.zip)
 
 ## インストール方法
 
@@ -71,7 +71,7 @@ draft: false
 
 1. `SuihanTwit2_{{<get latest>}}.0_x86_x64.appxbundle`をダブルクリック  
     （もし依存ランタイムを手動で入れる必要がある場合は，下記リンクからダウンロードしてインストールしてください）
-    - [依存ランタイム](http://suihan74.orz.hm/SuihanTwit/Dependencies.zip)
+    - [依存ランタイム](https://satena-bc06a.web.app/Dependencies.zip)
 
 ## 更新履歴
 
