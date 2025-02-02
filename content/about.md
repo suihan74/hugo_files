@@ -13,7 +13,6 @@ layout: "about"
 - Name -> すいはん
 - BirthDay -> 1992-12-06
 - Location -> 東京都にいる
-- Mail -> suihan742@gmail.com
 - GitHub -> https://github.com/suihan74
 - Twitter -> https://twitter.com/suihan742
 - WebSite -> https://suihan74.github.io/
